@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title><%= @page_title << " | #{APP_CONFIG[:site_name]}" || controller.action_name %></title>
+    
+    
+    <script src="http://www.google.com/jsapi"></script>
+  	<script language = "javascript" type="text/javascript"> 
+  		google.load("jquery", "1.4.0");
+  	</script>
+
+  	<script src="/javascripts/jrails.js" type="text/javascript"></script>
+
+    <%= yield :javascripts %>
+    
+    <%= stylesheet_link_tag 'blueprint/screen.css', :media => "screen, projection" %>
+    <%= stylesheet_link_tag 'blueprint/print.css', :media => "print" %>
+    <!--[if lt IE 8]>
+      <%= stylesheet_link_tag 'blueprint/ie.css', :media => "screen, projection" %>
+    <![endif]-->
+    
+    <%= stylesheet_link_tag 'app' %>
+    <%= stylesheet_link_tag 'styles' %>
+    
+    <%= yield :stylesheets %>
+  </head>
+  <body>
+    <div class="container">
+  	<div id="navigation" class="span-24 last">
+  		<%= render :partial => 'shared/navigation'%>
+  	</div>
+    <%= render :partial => 'layouts/flashes' -%>
+    <%= yield %>
+    </div>
+  </body>
+</html>
