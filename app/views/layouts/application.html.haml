@@ -1,0 +1,25 @@
+!!!
+%html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
+  %head
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-type" }
+    %title
+      Maker Factory
+    %script{ :src => "http://www.google.com/jsapi" }
+    %script{ :language => "javascript", :type => "text/javascript" }
+      google.load("jquery", "1.4.0");
+    = javascript_include_tag 'application'
+    = stylesheet_link_tag 'style'
+    = yield :stylesheets
+  %body
+    .container
+      .header
+        .logo
+          .icon
+          %h1
+            MAKER
+            %br
+            FACTORY
+        .nav
+          = render :partial => 'shared/navigation'
+      = render :partial => 'layouts/flashes'
+      = yield
