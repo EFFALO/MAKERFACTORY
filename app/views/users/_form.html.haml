@@ -1,16 +1,7 @@
-= form.label :first_name
 %br
-= form.text_field :first_name
+= form.label :name
 %br
-%br
-= form.label :last_name
-%br
-= form.text_field :last_name
-%br
-%br
-= form.label :login
-%br
-= form.text_field :login
+= form.text_field :name
 %br
 %br
 = form.label :password, form.object.new_record? ? nil : "Change password"
@@ -26,6 +17,11 @@
 = form.label :email
 %br
 = form.text_field :email
+%br
+%br
+= form.label :location
+%br
+= form.text_field :location
 %br
 %br
 = form.label :time_zone

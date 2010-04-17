@@ -2,7 +2,6 @@ class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table :users do |t|
       t.timestamps
-      t.string :login, :null => false
       t.string :crypted_password, :null => false
       t.string :password_salt, :null => false
       t.string :persistence_token, :null => false
@@ -12,14 +11,13 @@ class CreateUsers < ActiveRecord::Migration
       t.datetime :current_login_at
       t.string :last_login_ip
       t.string :current_login_ip
-      t.string :first_name
-      t.string :last_name
+      t.string :name
+      t.string :location
       t.string :perishable_token, :default => "", :null => false
       t.string :email, :default => "", :null => false
       t.string :time_zone
     end
     
-    add_index :users, :login
     add_index :users, :persistence_token
     add_index :users, :last_request_at
     add_index :users, :perishable_token

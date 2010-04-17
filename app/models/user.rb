@@ -2,7 +2,13 @@ class User < ActiveRecord::Base
   acts_as_authentic
   
   has_and_belongs_to_many :roles
-  attr_accessible :login, :password, :password_confirmation, :email, :first_name, :last_name,:role_ids, :time_zone
+  attr_accessible :name, :password, :password_confirmation, :email, :location, :first_name, :last_name,:role_ids, :time_zone
+  # 
+  # WON JOBS
+  # CREATED JOBS
+  # BIDDED JOBS
+  has_many :created_jobs, :class_name => "Job"
+
   
   #for declarative authorization
   def role_symbols

@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
-
   #declarative_authorization
   #filter_resource_access
-  
+
   def index
     @users = User.all
     @page_title = "All Users"
@@ -25,27 +24,28 @@ class UsersController < ApplicationController
   
   def show
     @user = current_user
-    @page_title = "#{@user.login} details"
+    @page_title = "#{@user.name} details"
   end
 
   def edit
-    @user = User.find(params[:id])
-    @page_title = "Edit #{@user.login}"
+    @user = current_user
+    if @user
+      @page_title = "Edit #{@user.name}"
+    else
+      flash[:notice] = "Unauthorized request! Gadzooks!"
+      redirect_to login_path
+    end
   end
   
   def update
+    @user = current_user
+    return redirect_to(login_path) unless @user
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
       redirect_to account_url
     else
       render :action => :edit
     end
-  end
-
-  def destroy
-    @user.destroy
-    flash[:notice] = 'User was deleted.'
-    redirect_to(users_url)  
   end
   
 end

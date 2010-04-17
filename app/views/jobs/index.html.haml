@@ -1,0 +1,46 @@
+.page.shadow
+  .content.light
+    .full
+      .map
+      .paginator
+        .summary
+          XX jobs available
+        .controls
+          %span
+            \&laquo; Previous
+          %ul
+            %li
+              1
+            %li
+              2
+            %li.selected
+              3
+            %li
+              4
+          %span
+            Next &raquo;
+        .clear
+      %table.list{ :cellspacing => "0", :cellpadding => "0" }
+        %tr
+          %th.title
+            JOB TITLE
+          %th.deliver-to
+            DELIVER TO
+          %th.deliver-by
+            DELIVER BY
+          %th.quantity
+            QUANTITY
+          %th
+        - @jobs.each_with_index do |job, i|
+          %tr{:class => (cycle :tater, :alt) + ((@jobs.size >= i + 1) ? 'last' : nil)}
+            %td
+              = job.title
+            %td
+              = job.deliver_to
+            %td
+              = job.deliver_by
+            %td
+              = job.quantity_needed
+            %td
+              = link_to '-', job_path(job)
+    .clear

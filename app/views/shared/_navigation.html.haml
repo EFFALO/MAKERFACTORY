@@ -1,7 +1,9 @@
 %ul
-  %li
+  %li.main
+    = link_to("FIND A JOB", url_for(jobs_path))
+  %li.main
+    = link_to("POST A JOB", url_for(new_job_path))
+  %li.bids
+    = link_to("BIDS", url_for(login_path))
+  %li.login
     = link_to("LOGIN", url_for(login_path))
-  %li
-    FIND A JOB
-  %li
-    POST A JOB

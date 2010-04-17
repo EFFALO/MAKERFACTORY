@@ -12,6 +12,21 @@ require 'spec/rails'
 # in ./support/ and its subdirectories.
 Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
 
+require 'factory_girl'
+Dir[File.expand_path(File.join(File.dirname(__FILE__),'factories','**','*_factory.rb'))].each {|f| require f}
+
+require "authlogic/test_case"
+include Authlogic::TestCase
+
+def login_as! user
+  activate_authlogic
+  UserSession.create!(user)
+end
+
+def logout!
+  UserSession.find.destroy
+end
+
 Spec::Runner.configure do |config|
   # If you're not using ActiveRecord you should remove these
   # lines, delete config/database.yml and disable :active_record

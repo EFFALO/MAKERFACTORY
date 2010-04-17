@@ -1,0 +1,6 @@
+%h1
+  Edit This Job
+- form_for @job do |form|
+  = form.error_messages
+  = render :partial => "form", :object => form
+  = form.submit "Update"
