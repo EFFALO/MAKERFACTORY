@@ -4,9 +4,10 @@
     %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-type" }
     %title
       MAKERFACTORY
-    %script{ :src => "http://www.google.com/jsapi" }
+    %script{ :src => "http://www.google.com/jsapi?key=ABQIAAAAUXDSXET8IRGdgHP9FpGw5BRViv8RhOX8wnlgxhPnh51fICCM4BR4mNt9txaKw-s4gqb1L5Cm5S0JaA", :type => "text/javascript" }
     %script{ :language => "javascript", :type => "text/javascript" }
       google.load("jquery", "1.4.0");
+      google.load("maps", "2.x");
     = javascript_include_tag 'application'
     = stylesheet_link_tag 'style'
     = yield :stylesheets
