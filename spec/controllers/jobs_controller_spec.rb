@@ -15,8 +15,8 @@ describe JobsController do
     end
     
     it "should only get the 10 most recent jobs" do
-      old_jobs = 10.times.map {|i| Factory.create(:job, :created_at => Time.now - 1.week) }
-      new_jobs = 10.times.map {|i| Factory.create(:job) }
+      old_jobs = 10.times.map { Factory.create(:job) }
+      new_jobs = 10.times.map { Factory.create(:job, :created_at => Time.now + 1.week) }
       get :index
       assigns[:jobs].to_set.should == new_jobs.to_set
     end
