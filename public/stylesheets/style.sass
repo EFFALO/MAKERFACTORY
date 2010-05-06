@@ -1,0 +1,661 @@
+body
+  text-align: center
+  background: url(/images/grid.png)
+  font-family: "Lucida Grande", Verdana, Arial, sans-serif
+  margin: 20px 0 0 0
+
+
+.container
+  text-align: left
+  margin: 0 auto
+  width: 640px
+
+
+.header
+
+.logo
+  float: left
+  width: 200px
+
+
+.icon
+  float: left
+  width: 65px
+  height: 51px
+  display: block
+  background: url(/images/icon.png) no-repeat
+
+
+.logo h1
+  float: left
+  width: 120px
+  font-family: "Helvetica Neue"
+  color: #534741
+  letter-spacing: -1px
+  line-height: 26px
+  font-size: 30px
+  margin: 0 0 0 10px
+  padding: 0
+
+
+.stripe
+  background: #534741
+  color: #fafafa
+  padding: 5px 10px
+
+  .left
+    width: 48%
+    float: left
+
+  .right
+    text-align: right
+    width: 48%
+    float: right
+
+  h2
+    margin: 0
+    padding: 0
+    font-family: "Helvetica Neue"
+    font-size: 18px
+    text-shadow: #534741 0px 0px 3px
+
+  h4
+    margin: 0
+    padding: 0
+    font-family: "Helvetica Neue"
+    font-size: 14px
+    text-shadow: #534741 0px 0px 3px
+
+  span.info
+    font-size: 11px
+    opacity: .5
+  
+  span.prompt
+    font-family: "Helvetica Neue"
+    font-weight: bold
+    font-size: 14px
+    display: block
+    margin-bottom: 5px
+    opacity: .7
+
+
+ul.context-menu
+  float: right
+  list-style: none
+  margin: 0
+  padding: 0
+
+  li
+    text-align: center
+    width: 24px
+    padding-top: 24px
+    font-size: 11px
+    color: #ccc
+    opacity: .7
+
+    a
+      color: #fafafa
+      text-decoration: none
+      padding-top: 24px
+
+    &:hover
+      opacity: 1
+
+    &.edit
+      background: url(/images/edit.png) no-repeat 0 2px
+
+
+.map
+  background: #ddd
+  width: 640px
+  height: 360px
+
+
+.page
+  margin-top: 10px
+  background: white
+
+
+.shadow
+  -webkit-box-shadow: 3px 5px 3px #ccc
+
+
+.content
+  font-size: 13px
+  color: #4c433e
+
+  &.light
+    background: url(/images/bg-2col.png) repeat-y
+
+  &.halfdark
+    background: url(/images/bg-2col_halfdark.png) repeat-y
+
+  &.dark
+    background: url(/images/bg-2col_dark.png) repeat-y
+
+  &.white
+    background: #fff
+
+  .full
+    width: 100%
+    border-bottom: 1px solid #ccc
+
+  .left
+    float: left
+    width: 349px
+
+  .right
+    float: right
+    width: 290px
+
+  p
+    margin-top: 0
+
+  span.red
+    color: #9e0b0f
+
+
+.box
+  padding: 10px
+
+
+.box-thick
+  padding: 20px
+
+
+.box-inline
+  padding: 10px 0
+
+
+.home
+  .left
+    font-size: 16px
+    color: #ebebeb
+    text-shadow: #534741 0px 0px 5px
+
+  .right .callout p
+    font-size: 11px
+
+  .left a.action
+    text-decoration: none
+    color: #f8f0a9
+    font-size: 12px
+    font-weight: bold
+    padding-left: 10px
+    background: url(/images/bullet.png) no-repeat 0 5px
+
+    &:hover
+      color: #fff568
+
+
+.specifications table
+  background-color: #fbfafa
+  width: 100%
+  font-family: "Helvetica Neue"
+  border-top: 1px solid #ededed
+
+  td
+    vertical-align: top
+    border-bottom: 1px solid #ededed
+
+    ul
+      list-style: none
+      margin: 0
+      padding: 0
+
+    &.label
+      vertical-align: top
+      width: 130px
+      background: #fbfafa url(/images/bullet.png) no-repeat 10px 14px
+      font-size: 12px
+      font-weight: bold
+      color: #8b755b
+      padding-left: 20px
+
+
+.sepecifications table td.attribute
+  color: #534741
+  font-size: 14px
+
+
+.paginator
+  padding: 10px 0
+  background: #37302d
+  font-size: 11px
+  color: #fafafa
+
+  .summary
+    float: left
+    width: 300px
+    margin-left: 10px
+    color: #f8f0a9
+    text-shadow: #534741 0px 0px 5px
+    text-transform: uppercase
+
+  .controls
+    float: right
+    width: 300px
+    text-align: right
+
+    span
+      opacity: .5
+      margin: 0 10px
+
+    ul
+      list-style: none
+      display: inline
+      padding: 0
+
+      li
+        display: inline
+        padding: 3px 5px
+
+        &.selected
+          background: #ccc
+          color: black
+          font-weight: bold
+
+
+table.list
+  width: 100%
+  background: white
+
+  td
+    font-size: 12px
+    padding: 10px
+    border-bottom: 1px solid #ddd
+
+  tr
+    &.alt
+      background-color: #f5f5f5
+
+    &.last td
+      border-bottom: none
+
+  th
+    width: 100%
+    background: #534741
+    text-shadow: #534741 0px 0px 5px
+    color: #fafafa
+    padding: 5px 10px
+    font-family: "Helvetica Neue"
+    font-size: 10px
+
+    &.title
+      width: 40%
+
+    &.deliver-to
+      width: 25%
+
+    &.deliver-by
+      width: 20%
+
+    &.quantity
+      width: 5%
+
+    &.action
+      width: 10%
+
+
+.callout
+  padding-top: 15px
+  margin-bottom: 15px
+  font-size: 14px
+  color: #252525
+
+
+.left .callout
+  margin-left: -11px
+  width: 350px
+
+
+.right .callout
+  margin-left: 11px
+  width: 290px
+
+
+.left .callout .fold
+  display: block
+  width: 11px
+  height: 11px
+  margin-top: -11px
+  background: url(/images/callout-fold-left.png) no-repeat
+
+
+.right .callout
+  .fold
+    display: block
+    float: right
+    width: 11px
+    height: 11px
+    margin-top: -11px
+    background: url(/images/callout-fold-right.png) no-repeat
+
+  .content p
+    margin: 0
+
+
+.callout
+  .content
+    background: #f8f0a9
+    -webkit-box-shadow: 3px 3px 3px rgba(10,10,10,.25)
+    padding: 10px 10px 10px 20px
+
+    h3
+      font-family: "Helvetica Neue", Helvetica
+      text-transform: uppercase
+      font-weight: bold
+      font-size: 18px
+      color: #252525
+      margin: 0 0 5px 0
+      padding: 0
+
+  &.need-maker
+    padding-top: 25px
+
+  &.need-job
+    padding-top: 15px
+
+
+ul.things-to-remember
+  margin-left: -10px
+
+  li
+    list-style-image: url(/images/check.png)
+    font-size: 12px
+    margin-bottom: 10px
+
+
+form
+  &.place-a-bid
+    .quantity
+      margin-bottom: 10px
+
+      label
+        padding-left: 10px
+        background: url(/images/bullet.png) no-repeat 0 5px
+        font-weight: bold
+
+    input
+      border: none
+      font-size: 14px
+      padding: 3px
+      border-bottom: 1px solid #ccc
+      border-right: 1px solid #ccc
+
+    .quantity input
+      width: 40px
+
+    .message
+      h4
+        float: left
+
+      .counter
+        float: right
+        text-align: right
+        width: 100px
+        color: #bbbbbb
+
+      textarea
+        padding: 10px
+        font-size: 12px
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif
+        width: 299px
+        min-height: 200px
+        margin-top: -1px
+        border-collapse: collapse
+        border: none
+        border-bottom: 1px solid #ccc
+        border-right: 1px solid #ccc
+        margin-bottom: 10px
+
+    input
+      &.submit-bid
+        float: right
+        background: #c4df9b
+        border: 1px solid #bebd7b
+        color: #252525
+        padding: 10px
+        font-family: "Helvetica Neue", Helvetica
+        font-weight: bold
+        width: 35%
+
+      &.send-message
+        float: right
+        background: #c4df9b
+        border: 1px solid #bebd7b
+        color: #252525
+        padding: 10px
+        font-family: "Helvetica Neue", Helvetica
+        font-weight: bold
+        width: 50%
+
+      &.submit-bid:hover
+        background: #b1c98c
+
+    span.notice
+      float: left
+      width: 60%
+      font-size: 11px
+      font-style: italic
+      font-family: "Georgia", Times, serif
+
+  .specifications input
+    width: 90%
+    margin-top: -3px
+    padding: 3px 5px
+    color: #252525
+    border: none
+    border-bottom: 1px solid #ccc
+    border-right: 1px solid #ccc
+    
+  input.login
+    float: right
+    background: #c4df9b
+    border: 1px solid #bebd7b
+    color: #252525
+    padding: 10px
+    font-family: "Helvetica Neue", Helvetica
+    font-weight: bold
+    width: 30%
+
+
+ul.file-list
+  list-style: none
+  margin: 0
+  padding: 0
+
+  li
+    background: url(/images/blueprint.png) no-repeat
+    padding-left: 28px
+    margin-bottom: 10px
+
+    h5
+      margin: 0
+      padding: 0
+      font-size: 12px
+
+    span.details
+      font-size: 10px
+      opacity: .8
+
+
+.nav
+  float: right
+  width: 420px
+  color: #534741
+		
+  ul
+    list-style: none
+    margin: 0
+    padding: 0
+
+    li
+      text-align: center
+      line-height: 70px
+      margin-left: 10px
+      font-family: "Helvetica Neue"
+      float: right
+           
+    li.main
+      a
+        color: #423934 
+        text-decoration: none
+        display: block
+        background: #f6f6f5
+        border-top: 3px solid #534741
+        font-weight: bold
+        font-size: 13px
+        width: 90px
+        height: 50px
+
+        &:hover
+          background: #deded4
+          border-top-color: #423934
+        
+    li.login
+      margin-top: 2px
+      font-weight: bold
+      opacity: .7
+      line-height: 82px
+      background: url(/images/login.png) no-repeat 12px 0
+      width: 50px
+      height: 50px
+      font-size: 10px
+      
+      &:hover
+        opacity: 1
+        
+      a
+        padding-top: 30px
+        text-decoration: none
+        color: #252525
+
+    li.profile
+      margin-top: 2px
+      font-weight: bold
+      opacity: .7
+      line-height: 82px
+      background: url(/images/profile.png) no-repeat 8px 0
+      width: 50px
+      height: 50px
+      font-size: 10px
+
+      &:hover
+        opacity: 1
+
+      a
+        padding-top: 30px
+        text-decoration: none
+        color: #252525
+        
+    li.bids
+      margin-top: 2px
+      font-weight: bold
+      opacity: .7
+      line-height: 82px
+      background: url(/images/bids.png) no-repeat 8px 0
+      width: 50px
+      height: 50px
+      font-size: 10px
+
+      &:hover
+        opacity: 1
+
+      a
+        padding-top: 30px
+        text-decoration: none
+        color: #252525
+
+p.help
+  border-left: 3px solid rgba(0,0,0,.1)
+  padding-left: 5px
+  font-style: italic
+  font-size: 11px 
+
+
+.footer
+  border-top: 3px solid #534741
+  padding-top: 10px
+  margin-bottom: 30px
+  font-family: "Helvetica Neue"
+  font-size: 12px
+  color: #9f9c9b
+
+  span
+    &.notes
+      float: left
+
+    &.creator
+      float: right
+
+  a
+    text-decoration: none
+    font-weight: bold
+    color: #726d6c
+
+    &:hover
+      color: #534741
+
+
+.clear
+  clear: both
+
+table
+  .field-highlight
+    &.left
+      margin-left: -50px
+
+.field-highlight
+  &.left
+    background: url(/images/highlight-left.png) no-repeat
+    position: absolute
+    margin-left: -40px
+    margin-top: -5px
+    width: 40px
+    height: 28px
+    z-index: 444
+  &.right
+    background: url(/images/highlight-right.png) no-repeat
+    position: absolute
+    margin-left: 270px
+    margin-top: -5px
+    width: 40px
+    height: 28px
+    z-index: 444
+.new_user_session
+  label
+    font-size: 11px
+  .textfield
+    font-size: 14px
+    
+.upload-image
+  .bucket
+    background: #ddd
+    width: 290px
+    height: 219px
+    
+    h4
+      margin: 0 0 10px 0
+      padding: 0
+      font-family: "Helvetica Neue"
+      font-size: 14px
+
+form.post-a-job
+  .title
+    font-size: 14px
+    width: 330px
+  .left
+    textarea
+      width: 100%
+      height: 222px
+      margin: 0
+      padding: 0
+      
+.left
+  .description
+    h4
+      margin: 0 0 10px 0
+      padding: 0
+      font-family: "Helvetica Neue"
+      font-size: 14px
