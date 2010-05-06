@@ -28,6 +28,11 @@ describe JobsController do
       assigns[:job].should == @job
       response.should be_success
     end
+    
+    it "should have a new bid available" do
+      get :show, :id => @job.id
+      assigns[:bid].should be_a(Bid)
+    end
   end
 
   describe "#new" do

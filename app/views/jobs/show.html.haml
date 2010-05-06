@@ -23,6 +23,7 @@
               %td.label.box
                 Fabrication type:
               %td.attribute.box-inline
+                = @job.fabrication_type
             %tr
               %td.label.box
                 Quantity:
@@ -32,6 +33,7 @@
               %td.label.box
                 Deliver to:
               %td.attribute.box-inline
+                = @job.deliver_to
             %tr
               %td.label.box
                 Deliver by:
@@ -57,7 +59,7 @@
               %strong
                 333
             characters to explain your bid:
-          %form.place-a-bid
+          - form_for @bid, :class => 'place-a-bid' do |form|
             .message
               .stripe
                 .field-highlight.left.extra
@@ -66,12 +68,12 @@
                 .counter
                   222/333
                 .clear
-              %textarea
+              = form.text_area :message
             .quantity
               %label
                 .field-highlight.left
                 I can make
-                %input
+                = form.text_field :quantity, :size => 2
                 copies of this object
             %span.notice
               %strong
@@ -79,7 +81,6 @@
               This bid is not a legal contract, only a semi-formal way of engaging in a conversation!
             %input{:type=>"submit", :class=>"submit-bid", :value=>"PLACE BID"}
             .clear
->>>>>>> 20b4a75d82878969530bd7dc535deb0bc8a29af7
     .right
       .upload-image
         .bucket
