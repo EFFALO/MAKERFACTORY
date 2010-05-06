@@ -1,9 +1,67 @@
-= @job.title
-%br
-= @job.description
-%br
-= @job.deliver_by
-%br
-= @job.quantity_needed
-%br
-= link_to 'Edit', edit_job_path(@job)
+.page.shadow
+  .stripe
+    .left
+      %h2
+        = @job.title
+      %span.info
+        asdad
+    .right
+      %ul.context-menu
+        %li.edit
+          %a
+            = link_to 'Edit', edit_job_path(@job)
+    .clear
+  .content.light
+    .left
+      .description
+        .box
+          %p
+            = @job.description
+        .specifications
+          %table
+            %tr
+              %td.label.box
+                Fabrication type:
+              %td.attribute.box-inline
+            %tr
+              %td.label.box
+                Quantity:
+              %td.attribute.box-inline
+                = @job.quantity_needed
+            %tr
+              %td.label.box
+                Deliver to:
+              %td.attribute.box-inline
+            %tr
+              %td.label.box
+                Deliver by:
+              %td.attribute.box-inline
+                = @job.deliver_by
+      .callout
+        .fold
+        .content
+          %h3
+            LET'S POST A BID
+          %p
+            Fusce dignissim lectus id ipsum rhoncus facilisis. Donec rutrum mauris non tellus ullamcorper sit amet mattis justo ornare. Phasellus nec aliquet ante. Quisque sem ipsum, malesuada eget volutpat at, euismod eget mauris. Vivamus rutrum porta molestie. Morbi nunc sem, tincidunt at imperdiet ut, bibendum in nisl. Vivamus ac magna eros. Duis et tincidunt ligula. Nulla velit mauris, congue ac laoreet et, sodales et est. Nullam cursus convallis pretium. Phasellus pretium dolor sit amet ante eleifend ullamcorper.    
+    .right
+      .upload-image
+        .bucket
+          .box
+      .stripe
+        %h4
+          DOWNLOAD BLUEPRINTS
+      .box
+        %ul.file-list
+          %li
+            %h5
+              DOMEKIT-2V-HEXA.gcode
+            %span.details
+              details
+          %li
+            %h5
+              DOMEKIT-2V-HEXA.gcode
+            %span.details
+              details
+    .clear
+

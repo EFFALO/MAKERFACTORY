@@ -14,13 +14,19 @@
     .container
       .header
         .logo
-          .icon
-          %h1
-            MAKER
-            %br
-            FACTORY
+          %a
+            .icon
+            %h1
+              MAKER
+              %br
+              FACTORY
         .nav
           = render :partial => 'shared/navigation'
         .clear
       = render :partial => 'layouts/flashes'
       = yield
+      .footer
+        %span.notes
+          (cc) 2010 MAKERFACTORY
+        %span.creator
+          AN EFFALO INITIATIVE

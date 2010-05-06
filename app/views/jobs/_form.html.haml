@@ -1,26 +1,27 @@
-%br
-= form.label :title
-%br
-= form.text_field :title
-%br
-%br
-= form.label :deliver_to
-%br
-= form.text_field :deliver_to
-%br
-%br
-= form.label :description
-%br
-= form.text_field :description
-%br
-%br
-= form.label :quantity_needed
-%br
-= form.text_field :quantity_needed
-%br
-%br
-= form.label :deliver_by
-%br
-= form.date_select :deliver_by
-%br
-%br
+.description.box
+.specifications
+  %table
+    %tr
+      %td.label.box
+        .field-highlight.left       
+        = form.label :title      
+      %td.attribute.box-inline
+        = form.text_field :title
+    %tr
+      %td.label.box
+        .field-highlight.left
+        = form.label :deliver_to 
+      %td.attribute.box-inline
+        = form.text_field :deliver_to
+    %tr
+      %td.label.box
+        .field-highlight.left
+        = form.label :quantity_needed      
+      %td.attribute.box-inline
+        = form.text_field :quantity_needed
+    %tr
+      %td.label.box
+        .field-highlight.left
+        = form.label :deliver_by 
+      %td.attribute.box-inline
+        = form.date_select :deliver_by
