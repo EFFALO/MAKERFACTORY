@@ -13,6 +13,8 @@ Rails::Initializer.run do |config|
   config.gem 'authlogic', :source => 'http://www.gemcutter.org'
   config.gem 'haml', :source => 'http://www.gemcutter.org'
   config.gem 'factory_girl'
+  config.gem 'faker'
+  
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
