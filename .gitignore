@@ -1,5 +1,6 @@
 .sass-cache/*
 config/database.yml
+config/mailreader.yml
 log/*.log
 tmp/**/*
 .DS_Store

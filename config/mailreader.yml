@@ -1,7 +1,0 @@
-development:
-  email_server: imap.gmail.com
-  email_login: communicate@makerfactory.com
-  email_password: fruitsnake
-  email_port: 993
-  email_folder: INBOX
-  use_ssl: true
