@@ -8,3 +8,4 @@ tmp/**/*
 public/system/*
 tmp/sent_mails/*
 public/stylesheets/*
+db/*.sqlite3
