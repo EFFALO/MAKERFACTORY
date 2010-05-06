@@ -41,9 +41,45 @@
         .fold
         .content
           %h3
-            LET'S POST A BID
+            LET'S MAKE A BID
           %p
-            Fusce dignissim lectus id ipsum rhoncus facilisis. Donec rutrum mauris non tellus ullamcorper sit amet mattis justo ornare. Phasellus nec aliquet ante. Quisque sem ipsum, malesuada eget volutpat at, euismod eget mauris. Vivamus rutrum porta molestie. Morbi nunc sem, tincidunt at imperdiet ut, bibendum in nisl. Vivamus ac magna eros. Duis et tincidunt ligula. Nulla velit mauris, congue ac laoreet et, sodales et est. Nullam cursus convallis pretium. Phasellus pretium dolor sit amet ante eleifend ullamcorper.    
+            Use the form below to submit your bid to the job owner. Be sure to include:
+          %ul.things-to-remember
+            %li
+              How much you will charge (or if you're willing to trade or barter)
+            %li
+              When you can deliver by
+            %li
+              How you plan on delivering (in person, in the mail, etc.)
+          %p
+            In the interest of keeping things simple, honest and straightforward, you have
+            %span.red
+              %strong
+                333
+            characters to explain your bid:
+          %form.place-a-bid
+            .message
+              .stripe
+                .field-highlight.left.extra
+                %h4
+                  TYPE YOUR MESSAGE HERE
+                .counter
+                  222/333
+                .clear
+              %textarea
+            .quantity
+              %label
+                .field-highlight.left
+                I can make
+                %input
+                copies of this object
+            %span.notice
+              %strong
+                NOTE
+              This bid is not a legal contract, only a semi-formal way of engaging in a conversation!
+            %input{:type=>"submit", :class=>"submit-bid", :value=>"PLACE BID"}
+            .clear
+>>>>>>> 20b4a75d82878969530bd7dc535deb0bc8a29af7
     .right
       .upload-image
         .bucket
