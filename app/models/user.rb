@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   attr_accessible :name, :password, :password_confirmation, :email, :location, :first_name, :last_name,:role_ids, :time_zone, :description, :equipment, :materials, :url
   validates_format_of :url, :with => URI::regexp(%w(http https))
+  validates_length_of :description, :maximum => 555
 
   # 
   # WON JOBS

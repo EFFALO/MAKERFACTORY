@@ -1,51 +1,88 @@
-%br
-= form.label :name
-%br
-= form.text_field :name
-%br
-%br
-= form.label :password, form.object.new_record? ? nil : "Change password"
-%br
-= form.password_field :password
-%br
-%br
-= form.label :password_confirmation
-%br
-= form.password_field :password_confirmation
-%br
-%br
-= form.label :email
-%br
-= form.text_field :email
-%br
-%br
-= form.label :location
-%br
-= form.text_field :location
-%br
-%br
-= form.label :time_zone
-%br
-= form.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones
-%br
-= form.label :description
-%br
-= form.text_area :description
-%br
-%br
-= form.label :equipment
-%br
-= form.text_field :equipment
-%br
-%br
-= form.label :materials
-%br
-= form.text_field :materials
-%br
-%br
-= form.label "URL"
-%br
-= form.text_field :url
-%br
-
-%br
+.stripe
+  .field-highlight.left
+  .left
+    %span.prompt
+      ENTER YOUR NAME
+    = form.text_field :name, :class => 'title'
+  .right
+  .clear
+.content.light
+  .left
+    .description
+      .box
+        .field-highlight.left
+        %h4
+          ENTER SOME TEXT
+        %p.help
+          Please enter some text below. It'll be shown on your user profile page. 555 characters or less, please.
+        = form.text_area :description
+        .description.box
+        .specifications
+          %table
+            %tr
+              %td.label.box
+                .field-highlight.left
+                = form.label :email
+              %td.attribute.box-inline
+                = form.text_field :email
+            %tr
+              %td.label.box
+                .field-highlight.left
+                = form.label :password, form.object.new_record? ? nil : "Change password"
+              %td.attribute.box-inline
+                = form.password_field :password
+            %tr
+              %td.label.box
+                .field-highlight.left
+                = form.label :password_confirmation
+              %td.attribute.box-inline
+                = form.password_field :password_confirmation
+            %tr
+              %td.label.box
+                .field-highlight.left
+                = form.label :location
+              %td.attribute.box-inline
+                = form.text_field :location
+            %tr
+              %td.label.box
+                .field-highlight.left
+                = form.label :time_zone
+              %td.attribute.box-inline
+                = form.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones
+            %tr
+              %td.label.box
+                .field-highlight.left
+                = form.label :url
+              %td.attribute.box-inline
+                = form.text_field :url
+            %tr
+              %td.label.box
+                .field-highlight.left
+                = form.label :equipment
+              %td.attribute.box-inline
+                = form.text_field :equipment
+            %tr
+              %td.label.box
+                .field-highlight.left
+                = form.label :materials
+              %td.attribute.box-inline
+                = form.text_field :materials
+    .callout
+      .fold
+      .content
+        %h3
+          = form.object.new_record? ? "CREATE YOUR ACCOUNT" : "UPDATE YOUR DETAILS"
+        %p
+          Fusce dignissim lectus id ipsum rhoncus facilisis. Donec rutrum mauris non tellus ullamcorper sit amet mattis justo ornare. Phasellus nec aliquet ante. Quisque sem ipsum, malesuada eget volutpat at, euismod eget mauris. Vivamus rutrum porta molestie. Morbi nunc sem, tincidunt at imperdiet ut, bibendum in nisl. Vivamus ac magna eros. Duis et tincidunt ligula. Nulla velit mauris, congue ac laoreet et, sodales et est. Nullam cursus convallis pretium. Phasellus pretium dolor sit amet ante eleifend ullamcorper.
+        = form.submit "Save"
+  .right
+    .upload-image
+      .bucket
+        .box
+          .field-highlight.right
+          %h4
+            UPLOAD IMAGE
+          %p.help
+            Please upload a picture, rendering or sketch represent this job. You may upload a maximum of three files, each much be 5MB or less.
+          %input{:type=>"file"}
+  .clear
