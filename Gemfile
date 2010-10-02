@@ -12,6 +12,7 @@ gem 'faker'
 
 group :development do
   gem 'sqlite3-ruby'
+  gem 'awesome_print', :require => 'ap'
 end
 
 group :test do 
