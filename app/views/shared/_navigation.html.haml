@@ -8,4 +8,4 @@
   %li.profile
     = link_to("PROFILE", url_for(login_path))
   %li.login
-    = link_to("LOGIN", url_for(login_path))
+    = logged_in? ? link_to("LOGOUT", url_for(logout_path)) : link_to("LOGIN", url_for(login_path))
