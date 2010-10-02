@@ -1,37 +1,48 @@
-%p
-  %b
-    Name:
-  = h @user.name
-%p
-  %b
-    Email:
-  = h @user.email
-%p
-  %b
-    Location:
-  = h @user.location
-%p
-  %b
-    Login count:
-  = h @user.login_count
-%p
-  %b
-    Last request at:
-  = h @user.last_request_at
-%p
-  %b
-    Last login at:
-  = h @user.last_login_at
-%p
-  %b
-    Current login at:
-  = h @user.current_login_at
-%p
-  %b
-    Last login ip:
-  = h @user.last_login_ip
-%p
-  %b
-    Current login ip:
-  = h @user.current_login_ip
-= link_to 'Edit', edit_account_path
+.page.shadow
+  .stripe
+    .left
+      %h2
+        = @user.name
+      %span.info
+        User since
+        = @user.created_at
+    .right
+      %ul.context-menu
+        %li.edit
+          %a
+            = link_to 'Edit', edit_user_path(@user)
+    .clear
+  .content.light
+    .left
+      .description
+        .box
+          %p
+            = @user.description
+        .specifications
+          %table
+            %tr
+              %td.label.box
+                Location:
+              %td.attribute.box-inline
+                = @user.location
+            %tr
+              %td.label.box
+                URL:
+              %td.attribute.box-inline
+                = link_to @user.url, @user.url
+            %tr
+              %td.label.box
+                Equipment:
+              %td.attribute.box-inline
+                = @user.equipment
+            %tr
+              %td.label.box
+                Materials:
+              %td.attribute.box-inline
+                = @user.materials
+    .right
+      .upload-image
+        .bucket
+          .box
+    .clear
+
