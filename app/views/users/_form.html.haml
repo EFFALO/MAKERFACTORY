@@ -46,12 +46,6 @@
             %tr
               %td.label.box
                 .field-highlight.left
-                = form.label :time_zone
-              %td.attribute.box-inline
-                = form.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones
-            %tr
-              %td.label.box
-                .field-highlight.left
                 = form.label :url
               %td.attribute.box-inline
                 = form.text_field :url

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101002012313) do
+ActiveRecord::Schema.define(:version => 20101002015054) do
 
   create_table "bids", :force => true do |t|
     t.string   "message"
@@ -91,7 +91,6 @@ ActiveRecord::Schema.define(:version => 20101002012313) do
     t.string   "location"
     t.string   "perishable_token",  :default => "", :null => false
     t.string   "email",             :default => "", :null => false
-    t.string   "time_zone"
     t.string   "description"
     t.string   "equipment"
     t.string   "materials"

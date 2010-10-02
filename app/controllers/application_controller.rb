@@ -17,7 +17,6 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :confirm_password, :password_confirmation, :creditcard
   
   before_filter { |c| Authorization.current_user = c.current_user}
-  before_filter :set_time_zone
   
   def logged_in?
     !current_user_session.nil?
@@ -33,10 +32,6 @@ class ApplicationController < ActionController::Base
     @current_user = current_user_session && current_user_session.user
   end
 
-  def set_time_zone
-    Time.zone = @current_user.time_zone if @current_user
-  end  
-  
 private
   def require_user
     unless current_user
