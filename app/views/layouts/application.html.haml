@@ -15,7 +15,7 @@
     .container
       .header
         .logo
-          %a
+          - link_to(root_url) do
             .icon
             %h1
               MAKER
@@ -28,6 +28,8 @@
       = yield
       .footer
         %span.notes
-          (cc) 2010 MAKERFACTORY
+          (cc)
+          = Time.now.year
+          MAKERFACTORY
         %span.creator
           AN EFFALO INITIATIVE

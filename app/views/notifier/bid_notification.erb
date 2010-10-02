@@ -1,0 +1,20 @@
+Howdy, <%= @bid.job.creator.name %>,
+
+The user <%= @bid.creator.name %> has placed a bid on your job "<%= @bid.job.title %>" on MAKERFACTORY:
+
+— · — · — · — · — · — · — · — · — · — · — · —
+
+QUANTITY:
+<%= @bid.quantity %> copies
+
+MESSAGE:
+<%= @bid.message %>
+
+— · — · — · — · — · — · — · — · — · — · — · —
+
+You may contact them at: <%= @bid.creator.email %>. Please do not reply to this email, as it's not monitored by anyone.
+
+Take care,
+
+MAKERFACTORY
+http://makerfactory.com

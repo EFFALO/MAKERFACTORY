@@ -8,6 +8,12 @@ class Bid < ActiveRecord::Base
   validates_numericality_of :quantity, :greater_than => 0
   validate :validate_quantity, :validate_nonownership
   
+  after_create :notify_job_owner
+  
+  def notify_job_owner
+    Notifier.deliver_bid_notification(self)
+  end
+  
   def validate_quantity
     if self.quantity > self.job.quantity_needed
       errors.add(:quantity, "can't be more than the job is asking for")

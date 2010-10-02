@@ -20,32 +20,32 @@
               Please describe your job below in 555 characters or less. Be sure to include any details the Maker might need to understand the job.
             = form.text_area :description
             .description.box
-            .specifications
-              %table
-                %tr
-                  %td.label.box
-                    .field-highlight.left
-                    = form.label :fabrication_type
-                  %td.attribute.box-inline
-                    = form.text_field :fabrication_type
-                %tr
-                  %td.label.box
-                    .field-highlight.left
-                    = form.label :deliver_to 
-                  %td.attribute.box-inline
-                    = form.text_field :deliver_to
-                %tr
-                  %td.label.box
-                    .field-highlight.left
-                    = form.label :quantity_needed      
-                  %td.attribute.box-inline
-                    = form.text_field :quantity_needed
-                %tr
-                  %td.label.box
-                    .field-highlight.left
-                    = form.label :deliver_by 
-                  %td.attribute.box-inline
-                    = form.date_select :deliver_by
+          .specifications
+            %table
+              %tr
+                %td.label.box
+                  .field-highlight.left
+                  = form.label :fabrication_type
+                %td.attribute.box-inline
+                  = form.text_field :fabrication_type
+              %tr
+                %td.label.box
+                  .field-highlight.left
+                  = form.label :deliver_to 
+                %td.attribute.box-inline
+                  = form.text_field :deliver_to
+              %tr
+                %td.label.box
+                  .field-highlight.left
+                  = form.label :quantity_needed      
+                %td.attribute.box-inline
+                  = form.text_field :quantity_needed
+              %tr
+                %td.label.box
+                  .field-highlight.left
+                  = form.label :deliver_by 
+                %td.attribute.box-inline
+                  = form.date_select :deliver_by
         .callout
           .fold
           .content

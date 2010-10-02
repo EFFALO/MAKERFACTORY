@@ -5,7 +5,7 @@
       %h2
         = @job.title
       %span.info
-        asdad
+        = @job.created_at
     .right
       %ul.context-menu
         %li.edit
@@ -27,7 +27,7 @@
                 = @job.fabrication_type
             %tr
               %td.label.box
-                Quantity:
+                Quantity needed:
               %td.attribute.box-inline
                 = @job.quantity_needed
             %tr
@@ -87,10 +87,16 @@
           - elsif owns_job?(current_user, @job)
             %h3
               THIS IS YOUR JOB!
+            %p
+              You created this job on
+              = @job.created_at
+              and so far # of people have submitted bids. To view this job's bid history, click here.
             .clear
           - else
             %h3
               YOU ALREADY BID ON THIS!
+            %p
+              Click here to see your bid.
             .clear
     .right
       .upload-image
