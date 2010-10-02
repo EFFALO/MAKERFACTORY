@@ -15,7 +15,9 @@ describe UsersController do
         :name => "Larry Felix",
         :location => "Savannah, Georgia",
         :password => "password",
-        :password_confirmation => "password"
+        :password_confirmation => "password",
+        :url => "http://www.effalo.com",
+        :description => "Hello, I am a nice fellow, with moods, desires, and feelings."
       }
       post :create, :user => user
       assigns[:user].should be_valid
