@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101002035950) do
+ActiveRecord::Schema.define(:version => 20101002051322) do
 
   create_table "bids", :force => true do |t|
     t.string   "message"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20101002035950) do
     t.integer  "quantity_needed"
     t.date     "deliver_by"
     t.string   "deliver_to"
-    t.integer  "needer_id"
+    t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

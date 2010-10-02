@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
   # WON JOBS
   # CREATED JOBS
   # BIDDED JOBS
-  has_many :created_jobs, :class_name => "Job"
+  has_many :created_jobs, :class_name => "Job", :foreign_key => :creator_id
+  has_many :bids, :foreign_key => :creator_id
 
   
   #for declarative authorization

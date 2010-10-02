@@ -46,11 +46,12 @@ describe BidsController do
 
   describe "#create" do
     it "should make a new bid with a creator" do
-      post :create, :bid => Factory.attributes_for(:bid)
+      job = Factory.create(:job)
+      post :create, :bid => Factory.attributes_for(:bid, :job => job)
       bid = assigns[:bid]
       bid.should be_valid
       bid.creator.should == @user
-      response.should redirect_to bid_path(bid)
+      response.should redirect_to job_url(job)
     end
   end
 

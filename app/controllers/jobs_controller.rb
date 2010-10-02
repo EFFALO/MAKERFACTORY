@@ -5,7 +5,7 @@ class JobsController < ApplicationController
 
   def show
     @job = Job.find(params[:id])
-    @bid = Bid.new
+    @bid = Bid.new(:job => @job)
   end
 
   def new

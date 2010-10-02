@@ -15,9 +15,11 @@ class BidsController < ApplicationController
     @bid = Bid.new(params[:bid].merge(:creator => current_user))
     if @bid.save
       flash[:notice] = "You have just successfully bid ... ed"
-      redirect_to bid_path(@bid)
+      redirect_to job_path(@bid.job)
     else
-      render :action => :new
+      @job = @bid.job
+      # WE'RE GOING BACK YA'LL CAUSE SHIT AIN'T RIGHT
+      render 'jobs/show'
     end
   end
   
