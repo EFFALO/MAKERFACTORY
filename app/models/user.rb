@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   acts_as_authentic
   
   has_and_belongs_to_many :roles
-  attr_accessible :name, :password, :password_confirmation, :email, :location, :first_name, :last_name,:role_ids, :description, :equipment, :materials, :url
+  attr_accessible :name, :password, :password_confirmation, :email, :location, :first_name, :last_name,:role_ids, :description, :equipment, :materials, :url, :image
   validates_format_of :url, :with => URI::regexp(%w(http https))
   validates_length_of :description, :maximum => 555
 
@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
   # BIDDED JOBS
   has_many :created_jobs, :class_name => "Job", :foreign_key => :creator_id
   has_many :bids, :foreign_key => :creator_id
-
+  
+  has_attached_file :image, :styles => { :profile => "290x218>" }
   
   #for declarative authorization
   def role_symbols
