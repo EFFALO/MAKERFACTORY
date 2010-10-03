@@ -1,5 +1,5 @@
 = error_messages_for('job')
-- form_for @job do |form|
+- form_for @job, :html => { :multipart => true } do |form|
   .page.shadow
     .stripe
       .field-highlight.left
@@ -63,7 +63,9 @@
                 UPLOAD IMAGE
               %p.help
                 Please upload a picture, rendering or sketch represent this job. You may upload a maximum of three files, each much be 5MB or less.
-              %input{:type=>"file"}
+              = form.file_field(:image1)
+              = form.file_field(:image2)
+              = form.file_field(:image3)
         .stripe
           .field-highlight.right
           %h4
@@ -71,7 +73,7 @@
         .box
           %p.help
             Please upload any files the Maker might need to make an informed bid on your job. You may upload a maximum of three files, each must be 5MB or less.
-          %input{:type=>"file"}
+          = form.file_field(:blueprint)
           %br
           %br
           %ul.file-list

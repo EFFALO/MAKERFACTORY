@@ -101,21 +101,18 @@
     .right
       .upload-image
         .bucket
-          .box
+          - [@job.image1, @job.image2, @job.image3].each do |image|
+            = image_tag image.url(:profile) if image.file?
       .stripe
         %h4
           DOWNLOAD BLUEPRINTS
       .box
         %ul.file-list
-          %li
-            %h5
-              DOMEKIT-2V-HEXA.gcode
-            %span.details
-              details
-          %li
-            %h5
-              DOMEKIT-2V-HEXA.gcode
-            %span.details
-              details
+          - if @job.blueprint.file?
+            %li
+              %h5
+                = link_to(@job.blueprint.original_filename, @job.blueprint.url)
+              %span.details
+                = number_to_human_size @job.blueprint.size
     .clear
 

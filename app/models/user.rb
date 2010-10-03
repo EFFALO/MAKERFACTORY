@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
   has_many :bids, :foreign_key => :creator_id
   
   has_attached_file :image, :styles => { :profile => "290x218>" }
-  
+  validates_attachment_size :image, :in => 1..3.megabytes
+    
   def deliver_password_reset_instructions!
     reset_perishable_token!
     Notifier.deliver_password_reset_instructions(self)

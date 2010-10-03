@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101003204149) do
+ActiveRecord::Schema.define(:version => 20101003204917) do
 
   create_table "bids", :force => true do |t|
     t.string   "message"
@@ -35,6 +35,22 @@ ActiveRecord::Schema.define(:version => 20101003204149) do
     t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image1_file_name"
+    t.string   "image1_content_type"
+    t.integer  "image1_file_size"
+    t.datetime "image1_updated_at"
+    t.string   "image2_file_name"
+    t.string   "image2_content_type"
+    t.integer  "image2_file_size"
+    t.datetime "image2_updated_at"
+    t.string   "image3_file_name"
+    t.string   "image3_content_type"
+    t.integer  "image3_file_size"
+    t.datetime "image3_updated_at"
+    t.string   "blueprint_file_name"
+    t.string   "blueprint_content_type"
+    t.integer  "blueprint_file_size"
+    t.datetime "blueprint_updated_at"
   end
 
   create_table "mail_readers", :force => true do |t|
