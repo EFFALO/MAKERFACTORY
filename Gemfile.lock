@@ -14,7 +14,7 @@ GEM
     authlogic (2.1.6)
       activesupport
     awesome_print (0.2.1)
-    declarative_authorization (0.5.1)
+    cancan (1.3.4)
     factory_girl (1.3.2)
     faker (0.3.1)
     haml (3.0.21)
@@ -44,7 +44,7 @@ DEPENDENCIES
   authlogic
   awesome_print
   bundler (~> 1.0.0)
-  declarative_authorization
+  cancan
   factory_girl
   faker
   haml

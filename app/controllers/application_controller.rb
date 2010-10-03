@@ -16,7 +16,10 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password"). 
   filter_parameter_logging :password, :confirm_password, :password_confirmation, :creditcard
   
-  before_filter { |c| Authorization.current_user = c.current_user}
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = exception.message
+    redirect_to login_url
+  end
   
   def logged_in?
     !current_user_session.nil?

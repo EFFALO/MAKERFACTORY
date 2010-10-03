@@ -6,6 +6,22 @@ describe JobsController do
     @job = Factory.create(:job, :creator => @user)
     login_as! @user
   end
+  
+  describe "access controls" do
+    before(:each) do
+      logout!
+    end
+    
+    it "anonymous user can get index" do
+      get :index
+      response.should be_success
+    end
+    
+    it "anonymous users can get show" do
+      get :show, :id => @job.id
+      response.should be_success
+    end
+  end
 
   describe "#index" do
     it "should be successful" do

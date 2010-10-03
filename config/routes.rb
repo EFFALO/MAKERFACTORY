@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   
   # Resources
   map.resources :password_resets
-  map.resources :users
+  map.resources :users, :only => :show
   map.resources :jobs
   map.resources :bids
   

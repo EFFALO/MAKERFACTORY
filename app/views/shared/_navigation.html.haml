@@ -1,11 +1,13 @@
 %ul
   %li.main
-    = link_to("FIND A JOB", url_for(jobs_path))
+    = link_to("FIND A JOB", jobs_url)
   %li.main
-    = link_to("POST A JOB", url_for(new_job_path))
-  %li.bids
-    = link_to("ACTIVE", url_for(login_path))
-  %li.profile
-    = link_to("PROFILE", url_for(login_path))
+    = link_to("POST A JOB", new_job_url)
+  - if can? :create, Bid
+    %li.bids
+      = link_to("ACTIVE", account_url)
+  - if can? :update, @current_user    
+    %li.profile
+      = link_to("PROFILE", account_url)
   %li.login
-    = logged_in? ? link_to("LOGOUT", url_for(logout_path)) : link_to("LOGIN", url_for(login_path))
+    = logged_in? ? link_to("LOGOUT", logout_url) : link_to("LOGIN", login_url)

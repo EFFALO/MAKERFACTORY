@@ -24,6 +24,7 @@ def login_as! user
 end
 
 def logout!
+  activate_authlogic
   UserSession.find.destroy
 end
 

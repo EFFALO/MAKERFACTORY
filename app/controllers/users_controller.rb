@@ -1,12 +1,6 @@
 class UsersController < ApplicationController
-  #declarative_authorization
-  #filter_resource_access
+  load_and_authorize_resource
 
-  def index
-    @users = User.all
-    @page_title = "All Users"
-  end
-  
   def new
     @user = User.new
     @page_title = "Create Account"
@@ -23,7 +17,9 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = current_user
+    # This handles both singular (account) and plural (users) resource.
+    @user = User.find(params[:id]) if params[:id]
+    @user ||= current_user
     @page_title = "#{@user.name} details"
   end
 

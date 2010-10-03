@@ -26,6 +26,16 @@ describe UsersController do
     end
   end
   
+  describe "#show" do
+    before(:each) do
+      @user = Factory(:user)
+    end
+    
+    it "should allow anonymous users to get profiles" do
+      get :show, :id => @user.id
+    end
+  end
+  
   describe "#edit" do
     before(:each) do
       @user = Factory(:user)

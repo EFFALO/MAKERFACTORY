@@ -1,6 +1,5 @@
 class UserSessionsController < ApplicationController
-  before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => :destroy
+  load_and_authorize_resource
   
   def new
     @page_title = "Login"

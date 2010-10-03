@@ -56,20 +56,17 @@ describe BidsController do
   end
 
   describe "#edit" do
-    it "should be successful" do
+    it "should not be successful" do
       get :edit, :id => @bid.id
-      assigns[:bid].should == @bid
-      response.should be_success
+      response.should_not be_success
     end
   end
 
   describe "#update" do
-    it "should update yo bidz" do
-      new_message = @bid.message + " some more text"
-      bid = {:message => new_message}
+    it "should not update yo bidz" do
+      bid = {:message => "new_mesage"}
       put :update, :id => @bid.id , :bid => bid
-      assigns[:bid].message.should == new_message
-      response.should redirect_to bid_path(assigns[:bid])
+      response.should_not be_success
     end
   end
 
