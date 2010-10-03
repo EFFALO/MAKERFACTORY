@@ -2,6 +2,7 @@ class Ability
   include CanCan::Ability
   
   def initialize(user)
+    # everybody
     can :access, :home
     if user # logged in users
       can :update, User
@@ -16,6 +17,7 @@ class Ability
       end
     else  # anonymous
       can :read, Job
+      can :new, Job
       can :create, UserSession
       can :create, User
       can :read, User
