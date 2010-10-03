@@ -4,14 +4,16 @@ class Ability
   def initialize(user)
     can :access, :home
     if user # logged in users
-      can :read, Job
-      can :create, Job
-      can :update, Job
       can :update, User
+      can :read, User
+      can :destroy, UserSession
       can :read, Bid
       can :create, Bid
-      can :destroy, UserSession      
-      can :read, User
+      can :read, Job
+      can :create, Job
+      can :update, Job do |job|
+        job.creator == user && !(job.bids.size > 0)
+      end
     else  # anonymous
       can :read, Job
       can :create, UserSession

@@ -36,6 +36,13 @@ describe JobsController do
       get :index
       assigns[:jobs].to_set.should == new_jobs.to_set
     end
+    
+    it "should allow logged in users" do
+      user = Factory.create :user
+      login_as! user
+      get :index
+      response.should be_success
+    end
   end
 
   describe "#show" do
@@ -75,6 +82,19 @@ describe JobsController do
       assigns[:job].should == @job
       response.should be_success
     end
+    
+    it "should not let you edit others' jobs" do
+      another_user = Factory.create :user
+      another_job = Factory.create(:job, :creator => another_user)
+      get :edit, :id => another_job.id
+      response.should_not be_success
+    end
+    
+    it "should not let you edit your job if bids have been made" do
+      bid = Factory.create(:bid, :job => @job)
+      get :edit, :id => @job.id
+      response.should_not be_success
+    end
   end
 
   describe "#update" do
@@ -84,6 +104,23 @@ describe JobsController do
       put :update, :id => @job.id , :job => job
       assigns[:job].title.should == new_title
       response.should redirect_to job_path(assigns[:job])
+    end
+    
+    it "should not let you update others' jobs" do
+      another_user = Factory.create :user
+      another_job = Factory.create(:job, :creator => another_user)
+      old_title = another_job.title
+      put :update, :id => another_job.id, :job => {:title => another_job.title + "some other stuff in quotes"}
+      assigns(:job).reload.title.should == old_title
+      response.should_not be_success
+    end
+    
+    it "should not let you update your job if bids have been made" do
+      bid = Factory.create(:bid, :job => @job)
+      old_title = @job.title      
+      put :update, :id => @job.id, :job => {:title => @job.title + "some other stuff in quotes"}
+      assigns(:job).reload.title.should == old_title
+      response.should_not be_success
     end
   end
 end

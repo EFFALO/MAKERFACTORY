@@ -6,6 +6,13 @@ describe UsersController do
       get :new
       assigns[:user].should be_new_record
     end
+    
+    it "should not allow logged in users" do
+      user = Factory.create :user
+      login_as! user
+      get :new
+      response.should_not be_success
+    end
   end
   
   describe "#create" do
@@ -24,6 +31,13 @@ describe UsersController do
       assigns[:user].email.should == user[:email]
       response.should redirect_to(account_url)
     end
+    
+    it "should not allow logged in users" do
+      user = Factory.create :user
+      login_as! user
+      post :create, :user => {}
+      response.should_not be_success
+    end
   end
   
   describe "#show" do
@@ -41,7 +55,7 @@ describe UsersController do
       @user = Factory(:user)
     end
     
-    it "should let you edit only yoself" do
+    it "should let you edit yoself" do
       login_as! @user
       get :edit
       assigns[:user].should == @user

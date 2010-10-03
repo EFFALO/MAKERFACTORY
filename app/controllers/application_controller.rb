@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :confirm_password, :password_confirmation, :creditcard
   
   rescue_from CanCan::AccessDenied do |exception|
+    #TODO: three options. 1-throw 403. 2-message explaining problem. 3-need to log in page
     flash[:error] = exception.message
     redirect_to login_url
   end
