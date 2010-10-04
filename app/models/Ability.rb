@@ -7,7 +7,9 @@ class Ability
     
     if user # logged in users
       
-      can :update, User
+      can :update, User do |u|
+        user == u
+      end
       can :read, User
       can :destroy, UserSession
       can :read, Bid

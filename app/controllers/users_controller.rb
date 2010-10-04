@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :except => [:edit, :update]
 
   def new
     @user = User.new
@@ -25,6 +25,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
+    authorize! :update, @user
     if @user
       @page_title = "Edit #{@user.name}"
     else
@@ -35,6 +36,7 @@ class UsersController < ApplicationController
   
   def update
     @user = current_user
+    authorize! :update, @user
     return redirect_to(login_path) unless @user
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"

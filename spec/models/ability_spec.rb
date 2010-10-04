@@ -21,4 +21,11 @@ describe Ability do
 
     @ability.should_not be_able_to(:create, bid2)
   end
+  
+  it "should allow you to update only yourself" do
+    user2 = Factory.create(:user)
+    
+    @ability.should_not be_able_to(:update, user2)
+    @ability.should be_able_to(:update, @user)
+  end
 end

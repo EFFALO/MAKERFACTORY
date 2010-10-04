@@ -8,9 +8,10 @@
         = @user.created_at
     .right
       %ul.context-menu
-        %li.edit
-          %a
-            = link_to 'Edit', edit_account_path
+        - if can? :edit, @user
+          %li.edit
+            %a
+              = link_to 'Edit', edit_account_path
     .clear
   .content.light
     .left

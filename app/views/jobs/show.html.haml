@@ -8,9 +8,10 @@
         = @job.created_at
     .right
       %ul.context-menu
-        %li.edit
-          %a
-            = link_to 'Edit', edit_job_path(@job)
+        - if can? :update, @job
+          %li.edit
+            %a
+              = link_to 'Edit', edit_job_path(@job)
     .clear
   .content.light
     .left
