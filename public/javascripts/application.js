@@ -20,11 +20,40 @@ $(function(){
     }
   };
   
+  var bidSuccess = function(data, textStatus) {
+    var success_text = 'YES YOU DONE SUBMITTED A BID';
+    $('div.callout div.content h3').html('BID SUCCESSFUL');
+    $('div.callout div.content div.bid_instructions').html(success_text);
+    $('div.callout div.content form').empty();
+    console.log('bid success');
+  };
+  
+  var bindXhrBidPost = function() {
+    $('form.new_bid').submit(function(event){
+      event.preventDefault();
+      var formEl = $(this);
+      var data = formEl.serialize();
+      // better validate
+      $.post(formEl.attr('action'), data, bidSuccess);
+
+      $(':enabled').attr('disabled', 'disabled');
+      $('form.new_bid').addClass('dimmed');
+      $('form.new_bid').prepend('<img src="/images/spinner.gif" class="spinner">');
+      // if there is some kind of error
+      // #hide/disable form
+      // #disable button
+      // #show spinner
+
+    });
+    
+  };
+  
   if($('form.job_form').length) {
     dimJobsForAnonymous();
   }
   if($('form.new_bid').length) {
     dimBidFormForAnonymous();
+    bindXhrBidPost();
   }
 
 
