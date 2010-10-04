@@ -36,14 +36,6 @@ describe BidsController do
     end
   end
 
-  describe "#new" do
-    it "should make a new jorb" do
-      get :new
-      assigns[:bid].should be_new_record
-      response.should be_success
-    end
-  end
-
   describe "#create" do
     it "should make a new bid with a creator" do
       job = Factory.create(:job)

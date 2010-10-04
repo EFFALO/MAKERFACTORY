@@ -3,10 +3,9 @@
     = link_to("FIND A JOB", jobs_url)
   %li.main
     = link_to("POST A JOB", new_job_url)
-  - if can? :create, Bid
+  - if current_user
     %li.bids
       = link_to("ACTIVE", account_url)
-  - if can? :update, @current_user    
     %li.profile
       = link_to("PROFILE", account_url)
   %li.login

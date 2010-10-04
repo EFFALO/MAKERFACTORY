@@ -20,7 +20,7 @@ Sass::Plugin.options = {:always_update => true}
 Sass::Plugin.update_stylesheets
 
 config.action_mailer.delivery_method = :smtp
-#config.action_mailer.perform_deliveries = true
+config.action_mailer.perform_deliveries = false
 ActionMailer::Base.smtp_settings = {
   :enable_starttls_auto => true,
   :address => "smtp.gmail.com",

@@ -43,61 +43,63 @@
       .callout
         .fold
         .content
-          - if can_bid_on_job?(current_user, @job)
+          - if can? :new, @bid
             %h3
               LET'S MAKE A BID
-            %p
-              Use the form below to submit your bid to the job owner. Be sure to include:
-            %ul.things-to-remember
-              %li
-                How much you will charge (or if you're willing to trade or barter)
-              %li
-                When you can deliver by
-              %li
-                How you plan on delivering (in person, in the mail, etc.)
-            %p
-              In the interest of keeping things simple, honest and straightforward, you have
-              %span.red
-                %strong
-                  333
-              characters to explain your bid:
-              - form_for @bid, :class => 'place-a-bid' do |form|
-                = form.hidden_field :job_id
-                .message
-                  .stripe
-                    .field-highlight.left.extra
-                    %h4
-                      TYPE YOUR MESSAGE HERE
-                    .counter
-                      222/333
-                    .clear
-                  = form.text_area :message
-                .quantity
-                  %label
-                    .field-highlight.left
-                    I can make
-                    = form.text_field :quantity, :size => 2
-                    copies of this object
-                %span.notice
+            %div.bid_instructions
+              %p
+                Use the form below to submit your bid to the job owner. Be sure to include:
+              %ul.things-to-remember
+                %li
+                  How much you will charge (or if you're willing to trade or barter)
+                %li
+                  When you can deliver by
+                %li
+                  How you plan on delivering (in person, in the mail, etc.)
+              %p
+                In the interest of keeping things simple, honest and straightforward, you have
+                %span.red
                   %strong
-                    NOTE
-                  This bid is not a legal contract, only a semi-formal way of engaging in a conversation!
-                %input{:type=>"submit", :class=>"submit-bid", :value=>"PLACE BID"}
-                .clear
-          - elsif owns_job?(current_user, @job)
-            %h3
-              THIS IS YOUR JOB!
-            %p
-              You created this job on
-              = @job.created_at
-              and so far # of people have submitted bids. To view this job's bid history, click here.
-            .clear
-          - else
-            %h3
-              YOU ALREADY BID ON THIS!
-            %p
-              Click here to see your bid.
-            .clear
+                    333
+                characters to explain your bid:
+            - form_for @bid, :class => 'place-a-bid' do |form|
+              = form.hidden_field :job_id
+              .message
+                .stripe
+                  .field-highlight.left.extra
+                  %h4
+                    TYPE YOUR MESSAGE HERE
+                  .counter
+                    222/333
+                  .clear
+                = form.text_area :message
+              .quantity
+                %label
+                  .field-highlight.left
+                  I can make
+                  = form.text_field :quantity, :size => 2
+                  copies of this object
+              %span.notice
+                %strong
+                  NOTE
+                This bid is not a legal contract, only a semi-formal way of engaging in a conversation!
+              %input{:type=>"submit", :class=>"submit-bid", :value=>"PLACE BID"}
+              .clear
+          - elsif cannot? :create, @bid
+            - if @job.creator == current_user
+              %h3
+                THIS IS YOUR JOB!
+              %p
+                You created this job on
+                = @job.created_at
+                and so far # of people have submitted bids. To view this job's bid history, click here.
+              .clear
+            - else
+              %h3
+                YOU ALREADY BID ON THIS!
+              %p
+                Click here to see your bid.
+              .clear
     .right
       .upload-image
         .bucket

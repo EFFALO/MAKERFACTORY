@@ -9,10 +9,6 @@ class BidsController < ApplicationController
     @bid = Bid.find(params[:id])
   end
   
-  def new
-    @bid = Bid.new
-  end
-  
   def create
     @bid = Bid.new(params[:bid].merge(:creator => current_user))
     if @bid.save

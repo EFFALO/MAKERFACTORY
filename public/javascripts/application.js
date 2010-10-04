@@ -11,9 +11,22 @@ $(function(){
     
   };
   
+  var dimBidFormForAnonymous = function() {
+    if(!makerfactory.loggedIn) {
+      $(':enabled').attr('disabled', 'disabled');
+      $('form.new_bid').addClass('dimmed');
+      $('div.bid_instructions').html('<p>Hello, you need to <a href="/register">register</a> or <a href="/login">log in</a> before you can bid on this job.</p>');
+      $('div#flash').append(notice);
+    }
+  };
+  
   if($('form.job_form').length) {
-    dimJobsForAnonymous();    
+    dimJobsForAnonymous();
   }
+  if($('form.new_bid').length) {
+    dimBidFormForAnonymous();
+  }
+
 
   
   // old map stuff
