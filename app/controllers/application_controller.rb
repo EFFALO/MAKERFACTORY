@@ -19,8 +19,6 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     #TODO: three options. 1-throw 403. 2-message explaining problem. 3-need to log in page
     flash[:error] = exception.message
-    raise THISISWHEREYOUMESSEDUP.to_s
-    # should be checking for current_user logged in, not exist
     current_user ? redirect_to(root_url) : redirect_to(login_url)
   end
   

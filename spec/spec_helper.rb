@@ -18,7 +18,7 @@ Dir[File.expand_path(File.join(File.dirname(__FILE__),'factories','**','*_factor
 require "authlogic/test_case"
 include Authlogic::TestCase
 
-def login_as! user
+def login_as!(user)
   activate_authlogic
   UserSession.create!(user)
 end

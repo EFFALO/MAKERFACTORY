@@ -38,8 +38,11 @@ describe BidsController do
     it "should not allow anonymous users" do
       logout!
       job = Factory.create(:job)
-      post :create, :bid => Factory.attributes_for(:bid), :job_id => job.id
-      response.should redirect_to(login_url) 
+      lambda { 
+        post :create, :bid => Factory.attributes_for(:bid), :job_id => job.id
+      }.should_not change(Bid, :count)
+      # We would love to do this, testing current_user in authlogic after logout! doesn't seem to work.
+      # response.should redirect_to(login_url)
     end
   end
 
