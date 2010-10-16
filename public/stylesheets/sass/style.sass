@@ -126,7 +126,8 @@ ul.context-menu
 .content
   font-size: 13px
   color: #4c433e
-
+  
+  
   &.light
     background: url(/images/bg-2col.png) repeat-y
 
@@ -135,7 +136,10 @@ ul.context-menu
 
   &.dark
     background: url(/images/bg-2col_dark.png) repeat-y
-
+  
+  &.home
+    background: url(/images/bg-2col_home.png) repeat-y
+    
   &.white
     background: #fff
 
@@ -171,13 +175,43 @@ ul.context-menu
 
 
 .home
+  background: #534741
+  
   .left
     font-size: 16px
     color: #ebebeb
     text-shadow: #534741 0px 0px 5px
-
-  .right .callout p
-    font-size: 11px
+    
+    .video
+      width: 400px
+      heght: 225px
+      border-right: 1px solid #312b28
+      
+  .right
+    width: 240px
+    
+  .right p
+    color: #fafafa
+    text-shadow: #534741 0px 0px 5px
+    margin-bottom: 0
+  
+  .right .callout
+    width: 240px
+    padding-top: 5px
+    
+    .content
+      padding-left: 10px
+      
+    p
+      text-shadow: none
+      color: #252525
+      font-size: 11px
+    
+    a
+      text-decoration: none
+    
+    &:hover
+      color: #dadada
 
   .left a.action
     text-decoration: none
@@ -190,6 +224,87 @@ ul.context-menu
     &:hover
       color: #fff568
 
+#credit
+  background-image: none
+  background: #534741
+  
+  .left
+    width: 400px
+    color: #fafafa
+    text-shadow: #534741 0px 0px 3px
+    
+    p
+      font-size: 11px
+    
+    a
+      color: #fff
+      font-weight: bold
+      text-decoration: none
+      
+      &:hover
+        text-decoration: underline
+    
+    h3
+      font-family: "Helvetica Neue", Helvetica
+      text-transform: uppercase
+      font-weight: bold
+      font-size: 18px
+      color: #fff799
+      margin: 0 0 5px 0
+      padding: 0
+    .collaborators
+      margin: 0 0 10px 0
+      
+      .collaborator
+        float: left
+        margin-right: 10px
+        margin-top: 10px
+        width: 180px
+        
+        img
+          float: left
+          height: 32px
+          width: 32px
+          margin-right: 8px
+          background: #2c2724
+        
+        h4
+          color: #c990ca
+          display: block
+          font-style: italic
+          font-family: "Georgia", serif
+          font-size: 12px
+          font-weight: normal
+          padding: 0
+          margin: 2px 0 0
+          text-shadow: #3a322e 0px 0px 3px
+        span
+          font-size: 9px
+          color: #fafafa
+          opacity: .8
+          
+  .right
+    width: 240px
+    
+    .box
+      padding-top: 0
+    
+    h5
+      opacity: .9
+      margin: 20px 0 5px 0
+      font-size: 10px
+      color: #fff
+      text-transform: uppercase
+    
+    a
+      text-decoration: none
+      background: url(/images/bullet.png) no-repeat 0 5px
+      font-size: 13px
+      color: #fff799
+      padding-left: 10px
+      
+      &:hover
+        text-decoration: underline
 
 .specifications table
   background-color: #fbfafa
@@ -517,8 +632,8 @@ ul.file-list
         height: 50px
 
         &:hover
-          background: #deded4
-          border-top-color: #423934
+          background: #F8F0A9
+          border-top-color: #e1d96b
         
     li.login
       margin-top: 2px
@@ -690,3 +805,4 @@ form.post-a-job
   position: relative
   top: 24%
   left: 42%
+  

@@ -1,35 +1,24 @@
 .page.shadow
-  .content.dark
+  .content.home
     .full
       .home
         .left
-          .box-thick
+          .video
+        .right
+          .box
             %p
-              MAKERFACTORY is a service for connecting makers with people who need things made.
-            %p
-              By leveraging the combination of low-cost digital fabrication tools and a passionate collective of makers from all around the world, a newer, more localized and expressive form of manufacturing can begin to emerge.
-            %a.action{ :href => "#" }
-              Learn more about MAKERFACTORY
-        .right.signups
-          .callout.need-maker
-            .fold
-              \&nbsp;
-            %a{:href => register_path}
-              .content
-                %h3
-                  NEED SOMETHING MADE?
-                %p
-                  You provide the blueprints and we'll try to connect you with the people who can make it happen. Click here to sign up and post a job!
-
+              %strong
+                MAKERFACTORY
+              is a free service for connecting the emerging network of localized fabrication technologies with people like you who need stuff 3d printed, CNC’ed, or otherwise made.
           .callout.need-job
             .fold
               \&nbsp;
             %a{:href => register_path}
               .content
                 %h3
-                  CAN YOU MAKE THINGS?
+                  REGISTER HERE
                 %p
-                  Got a MakerBot or Rep-rap? Laser cutter or CNC? Put your bot to work - click here to sign up and bid on jobs!
+                  Need something made? Willing to make things for other people? Click here to register for an account. It's totally free!
 
       .clear
       #map
@@ -55,148 +44,59 @@
             4
           %td
             \-
-        %tr.alt
-          %td
-            1
-          %td
-            2
-          %td
-            3
-          %td
-            4
-          %td
-            \-
-        %tr
-          %td
-            1
-          %td
-            2
-          %td
-            3
-          %td
-            4
-          %td
-            \-
-        %tr.alt
-          %td
-            1
-          %td
-            2
-          %td
-            3
-          %td
-            4
-          %td
-            \-
-        %tr
-          %td
-            1
-          %td
-            2
-          %td
-            3
-          %td
-            4
-          %td
-            \-
-        %tr.alt
-          %td
-            1
-          %td
-            2
-          %td
-            3
-          %td
-            4
-          %td
-            \-
-        %tr
-          %td
-            1
-          %td
-            2
-          %td
-            3
-          %td
-            4
-          %td
-            \-
-        %tr.alt
-          %td
-            1
-          %td
-            2
-          %td
-            3
-          %td
-            4
-          %td
-            \-
-        %tr
-          %td
-            1
-          %td
-            2
-          %td
-            3
-          %td
-            4
-          %td
-            \-
-        %tr.alt
-          %td
-            1
-          %td
-            2
-          %td
-            3
-          %td
-            4
-          %td
-            \-
-        %tr
-          %td
-            1
-          %td
-            2
-          %td
-            3
-          %td
-            4
-          %td
-            \-
-        %tr.alt
-          %td
-            1
-          %td
-            2
-          %td
-            3
-          %td
-            4
-          %td
-            \-
-        %tr
-          %td
-            1
-          %td
-            2
-          %td
-            3
-          %td
-            4
-          %td
-            \-
-        %tr.alt.last
-          %td
-            1
-          %td
-            2
-          %td
-            3
-          %td
-            4
-          %td
-            \-
-
+      #credit
+        .left
+          .box
+            %h3
+              BROUGHT TO YOU BY EFFALO
+            %p
+              %strong
+                MAKERFACTORY
+              was concieved, designed, and developed by your friends at
+              %a{:href=>"http://effalo.com"}
+                EFFALO
+              , a research and design collaborative headquartered in the pacific northwest. This particular project was staffed by:
+            .collaborators
+              .collaborator
+                %img{:src=>"/images/profile-mfelix.png"}
+                %h4
+                  Michael Felix
+                %span
+                  Design + Project Management
+              .collaborator
+                %img{:src=>"/images/profile-akurtz.png"}
+                %h4
+                  Andrew Kurtz
+                %span
+                  Development
+              .collaborator
+                %img{:src=>"/images/profile-mogden.png"}
+                %h4
+                  Max Ogden
+                %span
+                  Development
+              .collaborator
+                %img{:src=>"/images/profile-espier.png"}
+                %h4
+                  Ezra Spier
+                %span
+                  Development
+              .clear
+        .right
+          .box
+            %h5
+              WE HAVE A BLOG!
+            %p
+              %a{:href=>"http://makerfactory.tumblr.com"}
+                http://makerfactory.tumblr.com
+            %h5
+              JOB FEED VIA TWITTER
+            %p
+              %a{:href=>"http://twitter.com/makerfactory-jobs"}
+                @makerfactory-jobs
+            %h5
+              WHY NOT SAY HELLO?
+            %p
+              %a{:href=>"mailto:hello@effalo.com"}
+                hello@effalo.com
     .clear
