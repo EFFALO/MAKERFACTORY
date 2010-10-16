@@ -1,4 +1,7 @@
 $(function(){
+  var elements = {
+    'award_bid_links' : $('tr.award_bid a')
+  };
   
   var dimJobsForAnonymous = function() {
     if(!makerfactory.loggedIn) {
@@ -48,6 +51,25 @@ $(function(){
     
   };
   
+  var bindAwardBidButtons = function() {
+    var handleXHRsuccess = function(button) {
+      button.hide(200, 'swing');
+      var awarded = button.replaceWith('awarded!');
+      awarded.show();
+    };
+    
+    var buttons = elements.award_bid_links;
+    buttons.each(function(){
+      button = $(this);
+      button.click(function(){
+        button.unbind();
+        $.post(button.attr('data-bid-award'), null, function(){
+          handleXHRsuccess(button);
+        });
+      });
+    });
+  }
+  
   var bindTRLinks = function() {
     $('tr').each(function(){
       var href = $(this).attr('data-href');
@@ -66,6 +88,9 @@ $(function(){
   }
   if($('table').length) {
     bindTRLinks();
+  }
+  if(elements.award_bid_links.length) {
+    bindAwardBidButtons();
   }
 
 

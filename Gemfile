@@ -8,7 +8,7 @@ gem 'authlogic'
 gem 'haml'
 gem 'factory_girl'
 gem 'faker'
-gem 'cancan'
+gem 'cancan', "~>1.3.0"
 
 group :development do
   gem 'sqlite3-ruby'
@@ -16,6 +16,6 @@ group :development do
 end
 
 group :test do 
-  gem 'rspec', :require => false
-  gem 'rspec-rails', :require => false
+  gem 'rspec', "~>1.3.0", :require => false
+  gem 'rspec-rails', "~>1.3.2", :require => false
 end

@@ -10,57 +10,53 @@ describe BidsController do
 
   describe "#index" do
     it "should be successful" do
-      get :index
-      assigns(:bids).should == [@bid]
+      job = Factory.create(:job, :creator => @user)
+      bid = Factory.create(:bid, :job => job)
+      get :index, :job_id => job.id
+      assigns(:bids).should == [bid]
       response.should be_success
     end
     
-    it "should only get the 10 most recent bids" do
-      old_bids = 10.times.map { Factory.create(:bid) }
-      new_bids = 10.times.map { Factory.create(:bid, :created_at => Time.now + 1.week) }
-      get :index
-      assigns[:bids].to_set.should == new_bids.to_set
-    end
-  end
-
-  describe "#show" do
-    it "should be successful" do
-      get :show, :id => @bid.id
-      assigns[:bid].should == @bid
-      response.should be_success
-    end
-    
-    it "should have a new bid available" do
-      get :show, :id => @bid.id
-      assigns[:bid].should be_a(Bid)
+    it "should fail for job non-owners" do
+      logout!
+      login_as! Factory.create(:user)
+      get :index, :job_id => @bid.job.id
+      response.should_not be_success
     end
   end
 
   describe "#create" do
     it "should make a new bid with a creator" do
       job = Factory.create(:job)
-      post :create, :bid => Factory.attributes_for(:bid, :job => job)
+      post :create, :bid => Factory.attributes_for(:bid), :job_id => job.id
       bid = assigns[:bid]
       bid.should be_valid
       bid.creator.should == @user
       response.should redirect_to job_url(job)
     end
-  end
-
-  describe "#edit" do
-    it "should not be successful" do
-      get :edit, :id => @bid.id
-      response.should_not be_success
+    
+    it "should not allow anonymous users" do
+      logout!
+      job = Factory.create(:job)
+      post :create, :bid => Factory.attributes_for(:bid), :job_id => job.id
+      response.should redirect_to(login_url) 
     end
   end
 
-  describe "#update" do
-    it "should not update yo bidz" do
-      bid = {:message => "new_mesage"}
-      put :update, :id => @bid.id , :bid => bid
-      response.should_not be_success
+  describe "#award" do
+    it "should set a bid to awarded" do
+      job = Factory.create(:job, :creator => @user)
+      bid = Factory.create(:bid, :job => job)
+      post :award, :job_id => job.id, :id => bid.id
+      response.should redirect_to(job_bids_url(:job_id => job.id))
+      bid.reload.awarded.should be_true
+    end
+    
+    it "should disallow anonymous users" do
+      logout!
+      post :award, :job_id => @bid.job.id, :id => @bid
+      response.should redirect_to(login_url)
     end
   end
-
 
 end

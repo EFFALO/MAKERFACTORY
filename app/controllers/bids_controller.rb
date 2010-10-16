@@ -1,16 +1,18 @@
 class BidsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :job, :except => [:accept, :index]
+  load_and_authorize_resource :bid, :through => :job, :except => [:accept, :index]
   
   def index
-    @bids = Bid.find(:all, :limit => 10, :order => 'created_at DESC')
+    @job = Job.find(params[:job_id])
+    # this authorize is only because we can't get Cancan to play nice with nested resources
+    # and indexes
+    authorize! :read_bids, @job
+    
+    @bids = @job.bids
   end
-  
-  def show
-    @bid = Bid.find(params[:id])
-  end
-  
+
   def create
-    @bid = Bid.new(params[:bid].merge(:creator => current_user))
+    @bid = Bid.new(params[:bid].merge(:creator => current_user, :job => @job))
     if @bid.save
       flash[:notice] = "You have just successfully bid ... ed"
       redirect_to job_path(@bid.job)
@@ -21,17 +23,11 @@ class BidsController < ApplicationController
     end
   end
   
-  def edit
+  def award
     @bid = Bid.find(params[:id])
+    authorize! :award, @bid
+    @bid.award!
+    redirect_to :action => :index, :job_id => @bid.job.id
   end
-  
-  def update
-    @bid = Bid.find(params[:id])
-    if @bid.update_attributes(params[:bid])
-      flash[:notice] = "Bid successfully update ... ed"
-      redirect_to bid_path(@bid)
-    else
-      render :action => :edit
-    end
-  end
+
 end

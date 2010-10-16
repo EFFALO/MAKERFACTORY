@@ -25,4 +25,9 @@ class Bid < ActiveRecord::Base
       errors.add(:creator, "You can't bid on your own job.")
     end
   end
+  
+  def award!
+    self.awarded = true
+    self.save
+  end
 end

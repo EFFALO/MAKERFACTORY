@@ -63,7 +63,7 @@
                   %strong
                     333
                 characters to explain your bid:
-            - form_for @bid, :class => 'place-a-bid' do |form|
+            - form_for([@job, @bid], :class => 'place-a-bid') do |form|
               = form.hidden_field :job_id
               .message
                 .stripe

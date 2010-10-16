@@ -1,0 +1,43 @@
+.page.shadow
+  .stripe
+    .left
+      %h2
+        = "Bids for #{@job.title}"
+      %span.info
+        This page shows your active jobs and bids
+    .clear
+  %h3
+  %table.list{:cellspacing => "0", :cellpadding => "0" }
+    %tr
+      %th.title
+        JOB TITLE
+      %th.title
+        MESSAGE
+      %th.deliver-to
+        DELIVER TO
+      %th.deliver-by
+        DELIVER BY
+      %th.quantity
+        QUANTITY
+      %th.date-bidded
+        BIDDED AT
+      %th
+    - @bids.each do |bid|
+      %tr{:class => "award_bid #{cycle('prim', 'alt')}"}
+        %td
+          = bid.job.title
+        %td
+          = bid.message
+        %td
+          = bid.job.deliver_to
+        %td
+          = bid.job.deliver_by 
+        %td
+          = "#{bid.quantity}/#{bid.job.quantity_needed}"
+        %td
+          = bid.created_at.strftime('%y/%m/%d')
+        %td
+          - if can?(:award, bid)
+            = link_to( 'award', '#', 'data-bid-award' => award_job_bids_url(:job_id => @job,:id => bid) )
+          - else
+            awarded!

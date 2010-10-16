@@ -5,8 +5,9 @@ ActionController::Routing::Routes.draw do |map|
   # Resources
   map.resources :password_resets
   map.resources :users, :only => :show
-  map.resources :jobs
-  map.resources :bids
+  map.resources :jobs do |jobs|
+    jobs.resources :bids, :collection => {:award => :post}
+  end
   
   map.login 'login', :controller => "user_sessions", :action => "new"
   map.logout 'logout', :controller => "user_sessions", :action => "destroy"
