@@ -24,6 +24,7 @@ class Ability
       can :update, Job do |job|
         job.creator == user && !(job.bids.size > 0)
       end
+      can :access, :users_active
       
     else  # anonymous
       

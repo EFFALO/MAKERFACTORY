@@ -48,12 +48,24 @@ $(function(){
     
   };
   
+  var bindTRLinks = function() {
+    $('tr').each(function(){
+      var href = $(this).attr('data-href');
+      if(href) $(this).click(function(){
+        location.href = href;
+      });
+    });
+  };
+  
   if($('form.job_form').length) {
     dimJobsForAnonymous();
   }
   if($('form.new_bid').length) {
     dimBidFormForAnonymous();
     bindXhrBidPost();
+  }
+  if($('table').length) {
+    bindTRLinks();
   }
 
 

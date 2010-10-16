@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource :except => [:edit, :update]
+  load_and_authorize_resource :except => [:edit, :update, :active]
 
   def new
     @user = User.new
@@ -46,4 +46,9 @@ class UsersController < ApplicationController
     end
   end
   
+  def active
+    authorize! :access, :users_active
+    @jobs = current_user.created_jobs
+    @bids = current_user.bids
+  end
 end
