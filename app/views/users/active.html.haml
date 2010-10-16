@@ -2,41 +2,34 @@
   .stripe
     .left
       %h2
-        ACTIVE
+        ACTIVE JOBS
       %span.info
-        This page shows your active jobs and bids
+        These are jobs that you created
     .clear
-  %h3
-    My Jobs
   %table.list{ :cellspacing => "0", :cellpadding => "0"}
     %tr
-      %th.title
+      %th.title-long
         JOB TITLE
-      %th.deliver-to
-        DELIVER TO
       %th.deliver-by
         DELIVER BY
-      %th.quantity
-        QUANTITY
     - @jobs.each do |job|
       %tr{:class => cycle('prim', 'alt'), 'data-href' => job_url(job)}
         %td
           = job.title
         %td
-          = job.deliver_to
-        %td
           = job.deliver_by
-        %td
-          = job.quantity_needed
           
-  %h3
-    My Bids
+  .stripe
+    .left
+      %h2
+        ACTIVE BIDS
+      %span.info
+        These are jobs you have placed bids on
+    .clear
   %table.list{ :cellspacing => "0", :cellpadding => "0" }
     %tr
       %th.title
         JOB TITLE
-      %th.deliver-to
-        DELIVER TO
       %th.deliver-by
         DELIVER BY
       %th.quantity
@@ -47,8 +40,6 @@
       %tr{:class => cycle('prim', 'alt'), 'data-href' => job_url(bid.job)}
         %td
           = bid.job.title
-        %td
-          = bid.job.deliver_to
         %td
           = bid.job.deliver_by 
         %td
