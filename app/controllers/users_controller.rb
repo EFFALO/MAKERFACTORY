@@ -48,6 +48,7 @@ class UsersController < ApplicationController
   
   def active
     authorize! :access, :users_active
+    @user = current_user
     @jobs = current_user.created_jobs
     @bids = current_user.bids
   end

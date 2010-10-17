@@ -87,4 +87,41 @@ describe UsersController do
       response.should redirect_to(login_path)
     end
   end
+
+  describe "#active" do
+    before(:each) do
+      @user = Factory.create(:user)
+      login_as! @user
+    end
+
+    it "should allow users with bids and jobs to access the page" do
+      Factory.create(:job, :creator => @user)
+      Factory.create(:bid, :creator => @user)
+      get :active
+      response.should be_success
+    end
+
+    it "should not allow a user without bids or jobs to access the page" do
+      get :active
+      response.should_not be_success
+    end
+
+    it "should allow the user to access the page if he has jobs" do
+      Factory.create(:job, :creator => @user)
+      get :active
+      response.should be_success
+    end
+
+    it "should allow the user to access the page if he has bids" do
+      Factory.create(:bid, :creator => @user)
+      get :active
+      response.should be_success
+    end
+
+    it "should not allow anonymous users" do
+      logout!
+      get :active
+      response.should_not be_success
+    end
+  end
 end

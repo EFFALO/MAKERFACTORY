@@ -1,48 +1,50 @@
 .page.shadow
-  .stripe
-    .left
-      %h2
-        ACTIVE JOBS
-      %span.info
-        These are jobs that you created
-    .clear
-  %table.list{ :cellspacing => "0", :cellpadding => "0"}
-    %tr
-      %th.title-long
-        JOB TITLE
-      %th.deliver-by
-        DELIVER BY
-    - @jobs.each do |job|
-      %tr{:class => cycle('prim', 'alt'), 'data-href' => job_url(job)}
-        %td
-          = job.title
-        %td
-          = job.deliver_by
-          
-  .stripe
-    .left
-      %h2
-        ACTIVE BIDS
-      %span.info
-        These are jobs you have placed bids on
-    .clear
-  %table.list{ :cellspacing => "0", :cellpadding => "0" }
-    %tr
-      %th.title
-        JOB TITLE
-      %th.deliver-by
-        DELIVER BY
-      %th.quantity
-        QUANTITY
-      %th.date-bidded
-        BIDDED AT
-    - @bids.each do |bid|
-      %tr{:class => cycle('prim', 'alt'), 'data-href' => job_url(bid.job)}
-        %td
-          = bid.job.title
-        %td
-          = bid.job.deliver_by 
-        %td
-          = "#{bid.quantity}/#{bid.job.quantity_needed}"
-        %td
-          = bid.created_at.strftime('%y/%m/%d')
+  - unless @user.created_jobs.empty?
+    .stripe
+      .left
+        %h2
+          ACTIVE JOBS
+        %span.info
+          These are jobs that you created
+      .clear
+    %table.list{ :cellspacing => "0", :cellpadding => "0"}
+      %tr
+        %th.title-long
+          JOB TITLE
+        %th.deliver-by
+          DELIVER BY
+      - @jobs.each do |job|
+        %tr{:class => cycle('prim', 'alt'), 'data-href' => job_url(job)}
+          %td
+            = job.title
+          %td
+            = job.deliver_by
+
+  - unless @user.created_jobs.empty?        
+    .stripe
+      .left
+        %h2
+          ACTIVE BIDS
+        %span.info
+          These are jobs you have placed bids on
+      .clear
+    %table.list{ :cellspacing => "0", :cellpadding => "0" }
+      %tr
+        %th.title
+          JOB TITLE
+        %th.deliver-by
+          DELIVER BY
+        %th.quantity
+          QUANTITY
+        %th.date-bidded
+          BIDDED AT
+      - @bids.each do |bid|
+        %tr{:class => cycle('prim', 'alt'), 'data-href' => job_url(bid.job)}
+          %td
+            = bid.job.title
+          %td
+            = bid.job.deliver_by 
+          %td
+            = "#{bid.quantity}/#{bid.job.quantity_needed}"
+          %td
+            = bid.created_at.strftime('%y/%m/%d')
