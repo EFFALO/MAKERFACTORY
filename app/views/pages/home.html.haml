@@ -1,8 +1,13 @@
 :javascript
   $(function(){
-    makerFactory.jobs = [
-      #{Job.all.map { |job| %Q('#{job.deliver_to}') }.join(',')}
-    ];
+    makerFactory.jobs = #{Job.all.map do |job|
+        {
+          :location => job.deliver_to,
+          :title    => job.title,
+          :href     => job_url(job),
+          :img_url  => job.image1.file? ? job.image1.url(:small) : nil
+        }
+        end.to_json};
   });
   
 .page.shadow

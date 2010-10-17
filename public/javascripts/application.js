@@ -88,7 +88,7 @@ $(function(){
       // PDX, frankly
       var pdx = new google.maps.LatLng(45.51498682492308, -122.6799488067627);
       var myOptions = {
-        zoom : 8,
+        zoom : 2,
         center : pdx, // obviously
         mapTypeId : google.maps.MapTypeId.ROADMAP,
         streetViewControl : false,
@@ -102,17 +102,51 @@ $(function(){
       var map = new google.maps.Map(elements.gmaps_canvas[0], myOptions);
       
       var drawAllJobs = function() {
-        $.each(makerFactory.jobs, function(i, jobAddr){
+        var currentMarker;
+        var infoWindow = new google.maps.InfoWindow({
+          maxWidth : 400
+        });
+        
+        $.each(makerFactory.jobs, function(i, job){
           var drawMarker = function(geoResults) {
             var marker = new google.maps.Marker({
               map : map,
               clickable : true,
               position : geoResults[0].geometry.location
             });
+            
+            var img_tag = '';
+            if (job.img_url) img_tag = '<img src="' + job.img_url + '" />';
+            var content = 
+              img_tag +
+              '<a href="' + job.href + '">' +
+                job.title +
+              '</a>' +
+              ' @ ' + job.location;
+            
+            var draw = function () {
+              infoWindow.setContent(content);
+              infoWindow.open(map, marker);
+            }
+            
+            google.maps.event.addListener(marker, 'click', function(){
+              if (!currentMarker) {
+                currentMarker = marker;
+                draw();
+              } else if (currentMarker == marker) {
+                infoWindow.close();
+                currentMarker = null;
+              } else {
+                infoWindow.close();
+                currentMarker = marker;
+                draw();
+              }
+
+            });
           };
           
           new google.maps.Geocoder().geocode({
-            address : jobAddr
+            address : job.location
           }, drawMarker);
           
         });
