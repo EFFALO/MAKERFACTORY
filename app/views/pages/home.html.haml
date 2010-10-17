@@ -1,3 +1,10 @@
+:javascript
+  $(function(){
+    makerFactory.jobs = [
+      #{Job.all.map { |job| %Q('#{job.deliver_to}') }.join(',')}
+    ];
+  });
+  
 .page.shadow
   .content.home
     .full
@@ -21,7 +28,7 @@
                   Need something made? Willing to make things for other people? Click here to register for an account. It's totally free!
 
       .clear
-      #map
+      .gmaps_canvas
       %table.list{ :cellspacing => "0", :cellpadding => "0" }
         %tr
           %th.title

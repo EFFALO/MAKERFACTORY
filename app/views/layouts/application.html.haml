@@ -9,9 +9,9 @@
       google.load("jquery", "1.4.2");
       // google.load("maps", "2.x");
     %script{ :language => "javascript", :type => "text/javascript" }
-      makerfactory = {};
-      makerfactory.currentUserId = #{current_user ? current_user.id : "null"};
-      makerfactory.loggedIn = !!makerfactory.currentUserId;
+      makerFactory = {};
+      makerFactory.currentUserId = #{current_user ? current_user.id : "null"};
+      makerFactory.loggedIn = !!makerFactory.currentUserId;
     = javascript_include_tag 'application'
     = stylesheet_link_tag 'style'
     = yield :stylesheets

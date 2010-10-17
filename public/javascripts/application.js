@@ -1,10 +1,7 @@
 $(function(){
-  var elements = {
-    'award_bid_links' : $('tr.award_bid a')
-  };
   
   var dimJobsForAnonymous = function() {
-    if(!makerfactory.loggedIn) {
+    if(!makerFactory.loggedIn) {
       $(':enabled').attr('disabled', 'disabled');
       $('div.page').addClass('dimmed');
       var notice = $('<div>').addClass('flash_notice yellow');
@@ -15,7 +12,7 @@ $(function(){
   };
   
   var dimBidFormForAnonymous = function() {
-    if(!makerfactory.loggedIn) {
+    if(!makerFactory.loggedIn) {
       $(':enabled').attr('disabled', 'disabled');
       $('form.new_bid').addClass('dimmed');
       $('div.bid_instructions').html('<p>Hello, you need to <a href="/register">register</a> or <a href="/login">log in</a> before you can bid on this job.</p>');
@@ -79,6 +76,57 @@ $(function(){
     });
   };
   
+  // async load the gmaps scripts/API
+  var loadGoogleMaps = function() {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "http://maps.google.com/maps/api/js?sensor=false&callback=initializeGMaps";
+    document.body.appendChild(script);
+    
+    // callback for when maps scripts load ... it has to be global???
+    window.initializeGMaps = function() {
+      // PDX, frankly
+      var pdx = new google.maps.LatLng(45.51498682492308, -122.6799488067627);
+      var myOptions = {
+        zoom : 8,
+        center : pdx, // obviously
+        mapTypeId : google.maps.MapTypeId.ROADMAP,
+        streetViewControl : false,
+        mapTypeControl : false,
+        scaleControl : false,
+        navigationControl : true,
+        navigationControlOptions : {
+          style: google.maps.NavigationControlStyle.ZOOM_PAN
+        }
+      }
+      var map = new google.maps.Map(elements.gmaps_canvas[0], myOptions);
+      
+      var drawAllJobs = function() {
+        $.each(makerFactory.jobs, function(i, jobAddr){
+          var drawMarker = function(geoResults) {
+            var marker = new google.maps.Marker({
+              map : map,
+              clickable : true,
+              position : geoResults[0].geometry.location
+            });
+          };
+          
+          new google.maps.Geocoder().geocode({
+            address : jobAddr
+          }, drawMarker);
+          
+        });
+      };
+      setTimeout(drawAllJobs, 0);
+    };
+    
+  };
+  
+  var elements = {
+    'award_bid_links' : $('tr.award_bid a'),
+    'gmaps_canvas' : $('.gmaps_canvas')
+  };
+  
   if($('form.job_form').length) {
     dimJobsForAnonymous();
   }
@@ -92,13 +140,7 @@ $(function(){
   if(elements.award_bid_links.length) {
     bindAwardBidButtons();
   }
-
-
-  
-  // old map stuff
-  var map = new GMap2($("#map").get(0));
-  map.addMapType({type:G_AERIAL_MAP});
-  map.setMapType(G_AERIAL_MAP);
-  var portlandOR = new GLatLng(45.51498682492308, -122.6799488067627);
-  map.setCenter(portlandOR, 18);
+  if(elements.gmaps_canvas.length) {
+    loadGoogleMaps();
+  }
 });
