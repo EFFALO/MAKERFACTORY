@@ -28,6 +28,8 @@ class Bid < ActiveRecord::Base
   
   def award!
     self.awarded = true
-    self.save
+    if self.save
+      Notifier.deliver_bid_award_notification(self)
+    end
   end
 end

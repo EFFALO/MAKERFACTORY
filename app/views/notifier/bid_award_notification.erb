@@ -1,0 +1,23 @@
+Howdy, <%= @bid.creator.name %>,
+
+The user <%= @bid.job.creator.name %> has awarded your bid for <%= @bid.quantity %> copies on MAKERFACTORY:
+
+— · — · — · — · — · — · — · —
+
+JOB:
+<%= job_url @bid.job %>
+
+QUANTITY:
+<%= @bid.quantity %> copies
+
+YOUR MESSAGE:
+<%= @bid.message %>
+
+— · — · — · — · — · — · — · —
+
+You may contact them at: <%= @bid.job.creator.email %>. Please do not reply to this email, as it's not monitored by anyone.
+
+Take care,
+
+MAKERFACTORY
+http://makerfactory.com

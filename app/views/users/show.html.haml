@@ -41,6 +41,16 @@
                 Materials:
               %td.attribute.box-inline
                 = @user.materials
+            %tr
+              %td.label.box
+                Bids awarded
+              %td.attribute.box-inline
+                = @user.sent_bid_award_count
+            %tr
+              %td.label.box
+                Bids received
+              %td.attribute.box-inline
+                = @user.received_bid_award_count
     .right
       .upload-image
         .bucket

@@ -16,4 +16,12 @@ class Notifier < ActionMailer::Base
     sent_on       Time.now
     body          :bid => bid
   end
+  
+  def bid_award_notification(bid)
+    subject       "Your bid on #{bid.job.title} has been awarded!"
+    from          "noreply@makerfactory.com"
+    recipients    bid.creator.email
+    sent_on       Time.now
+    body          :bid => bid
+  end
 end
