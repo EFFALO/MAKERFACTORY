@@ -12,6 +12,8 @@
       makerFactory = {};
       makerFactory.currentUserId = #{current_user ? current_user.id : "null"};
       makerFactory.loggedIn = !!makerFactory.currentUserId;
+      makerFactory.jobs_count = #{current_user.created_jobs.count}
+      makerFactory.bids_count = #{current_user.bids.count}
     = javascript_include_tag 'application'
     = stylesheet_link_tag 'style'
     = yield :stylesheets

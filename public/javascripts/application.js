@@ -25,7 +25,19 @@ $(function(){
     $('div.callout div.content h3').html('BID SUCCESSFUL');
     $('div.callout div.content div.bid_instructions').html(success_text);
     $('div.callout div.content form').empty();
-    console.log('bid success');
+    setTimeout(conditionalAddActiveButtons,200);
+  };
+
+  var conditionalAddActiveButtons = function(counts) {
+    // if jobs_count and bids_count are both zero, we know
+    // that user previously was not shown the active link
+    var shouldAddActiveLink = !(makerFactory.jobs_count || makerFactory.bids_count)
+    if(shouldAddActiveLink) {
+      var activeLink = $('<li class="active"><a href="http://localhost:3000/active">ACTIVE</a></li>');
+      activeLink.hide();
+      $('div.nav li.profile').before($(activeLink));
+      activeLink.fadeIn(500);
+    }
   };
   
   var bindXhrBidPost = function() {

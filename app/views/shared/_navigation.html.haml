@@ -5,7 +5,7 @@
     = link_to("POST A JOB", new_job_url)
   - if current_user
     - if can?(:access, :users_active)
-      %li.bids
+      %li.active
         = link_to("ACTIVE", active_url)
     %li.profile
       = link_to("PROFILE", account_url)
