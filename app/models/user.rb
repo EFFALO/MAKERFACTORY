@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_attached_file :image, :styles => { :profile => "290x218>" }
   # validates_attachment_size :image, :in => 1..3.megabytes
   validates_inclusion_of :image_file_size, :in => 1..3.megabytes, :allow_nil => true, :message => 'Images must be less than 3 megabytes.'
+  validates_presence_of :location
 
   def deliver_password_reset_instructions!
     reset_perishable_token!

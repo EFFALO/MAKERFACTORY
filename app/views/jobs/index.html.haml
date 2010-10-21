@@ -30,9 +30,8 @@
             DELIVER BY
           %th.quantity
             QUANTITY
-          %th
         - @jobs.each_with_index do |job, i|
-          %tr{:class => (cycle :tater, :alt) + ((@jobs.size >= i + 1) ? 'last' : nil)}
+          %tr{:class => (cycle :tater, :alt) + ((@jobs.size >= i + 1) ? 'last' : nil), :'data-href' => job_url(job)}
             %td
               = job.title
             %td
@@ -41,6 +40,4 @@
               = job.deliver_by
             %td
               = job.quantity_needed
-            %td
-              = link_to '-', job_path(job)
     .clear
