@@ -77,7 +77,7 @@
                 %h4
                   Michael Felix
                 %span
-                  Design + Project Management
+                  Design + Project Lead
               .collaborator
                 %img{:src=>"/images/profile-akurtz.png"}
                 %h4
@@ -99,19 +99,16 @@
               .clear
         .right
           .box
-            %h5
-              WE HAVE A BLOG!
-            %p
-              %a{:href=>"http://makerfactory.tumblr.com"}
-                http://makerfactory.tumblr.com
-            %h5
-              JOB FEED VIA TWITTER
-            %p
-              %a{:href=>"http://twitter.com/makerfactory-jobs"}
-                @makerfactory-jobs
-            %h5
-              WHY NOT SAY HELLO?
-            %p
-              %a{:href=>"mailto:hello@effalo.com"}
+            %a{:href=>"http://makerfactory.tumblr.com", :class=>"blog"}
+              .icon
+              %h5
+                WE HAVE A BLOG
+            %a{:href=>"http://twitter.com/makerfactory-jobs", :class=>"feed"}
+              .icon
+              %h5
+                FEED OF JOBS
+            %a{:href=>"mailto:hello@effalo.com", :class=>"mailto"}
+              say
+              %span
                 hello@effalo.com
     .clear

@@ -272,7 +272,7 @@ ul.context-menu
           background: #2c2724
         
         h4
-          color: #c990ca
+          color: #fff799
           display: block
           font-style: italic
           font-family: "Georgia", serif
@@ -288,26 +288,82 @@ ul.context-menu
           
   .right
     width: 240px
+    margin-top: 10px
+    text-align: center
     
-    .box
-      padding-top: 0
-    
-    h5
-      opacity: .9
-      margin: 20px 0 5px 0
-      font-size: 10px
-      color: #fff
-      text-transform: uppercase
-    
-    a
+    .mailto
       text-decoration: none
-      background: url(/images/bullet.png) no-repeat 0 5px
-      font-size: 13px
-      color: #fff799
-      padding-left: 10px
+      color: #fafafa
+      clear: both
+      padding: 30px 0
+      float: none
+      display: block
+      width: 100%
+      margin: 0 auto
+      background: #413b39
+      border: 1px solid #413b39
+      
+      span
+        color: #fff799
+        
+      &:hover
+        background: #4b4543
+        border: 1px solid #514c4a
+        
+    .blog
+      text-decoration: none
+      float: left
+      width: 110px
+
+      &:hover
+        .icon
+          opacity: 1
+          
+      .icon
+        float: none
+        opacity: .5
+        height: 64px
+        width: 64px
+        margin: 0 auto
+        background: url(/images/blog.png) no-repeat
+        
+      h5
+        clear: both
+        opacity: .9
+        text-align: center
+        margin: 10px 0
+        font-size: 10px
+        color: #fff
+        text-transform: uppercase     
+
+    .feed
+      text-decoration: none
+      float: left
+      width: 110px
       
       &:hover
-        text-decoration: underline
+        .icon
+          opacity: 1
+          
+      .icon
+        float: none
+        opacity: .5
+        display: block
+        height: 64px
+        width: 65px
+        margin: 0 auto
+        background: url(/images/feed.png) no-repeat
+
+      h5
+        clear: both
+        text-align: center
+        opacity: .9
+        margin: 10px 0
+        font-size: 10px
+        color: #fff
+        text-transform: uppercase
+    
+    
 
 .specifications table
   background-color: #fbfafa
