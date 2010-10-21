@@ -1,3 +1,4 @@
+= javascript_include_tag 'handlebars', 'templates'
 :javascript
   $(function(){
     makerFactory.jobs = #{Job.all.map do |job|
@@ -5,7 +6,9 @@
           :location => job.deliver_to,
           :title    => job.title,
           :href     => job_url(job),
-          :img_url  => job.image1.file? ? job.image1.url(:small) : nil
+          :img_url  => job.image1.file? ? job.image1.url(:small) : nil,
+          :has_img  => job.image1.file?,
+          :quantity => job.quantity_needed
         }
         end.to_json};
   });

@@ -106,7 +106,9 @@ $(function(){
         var infoWindow = new google.maps.InfoWindow({
           maxWidth : 400
         });
-        
+
+        var template = Handlebars.compile(makerFactory.templates.infoWindow);
+
         $.each(makerFactory.jobs, function(i, job){
           var drawMarker = function(geoResults) {
             var marker = new google.maps.Marker({
@@ -115,15 +117,8 @@ $(function(){
               position : geoResults[0].geometry.location
             });
             
-            var img_tag = '';
-            if (job.img_url) img_tag = '<img src="' + job.img_url + '" />';
-            var content = 
-              img_tag +
-              '<a href="' + job.href + '">' +
-                job.title +
-              '</a>' +
-              ' @ ' + job.location;
-            
+            var content = template(job);
+
             var draw = function () {
               infoWindow.setContent(content);
               infoWindow.open(map, marker);
