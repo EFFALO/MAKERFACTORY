@@ -5,7 +5,7 @@ $(function(){
       $(':enabled').attr('disabled', 'disabled');
       $('div.page').addClass('dimmed');
       var notice = $('<div>').addClass('flash_notice yellow');
-      notice.html('Hello, you need to <a href="/register">register</a> or <a href="/login">log in</a> before you post a job.');
+      notice.html('Once you <a href="/register">register</a> or <a href="/login">log in</a> you can post a job using this form.');
       $('div#flash').append(notice);
     }
     
@@ -15,7 +15,7 @@ $(function(){
     if(!makerFactory.loggedIn) {
       $(':enabled').attr('disabled', 'disabled');
       $('form.new_bid').addClass('dimmed');
-      $('div.bid_instructions').html('<p>Hello, you need to <a href="/register">register</a> or <a href="/login">log in</a> before you can bid on this job.</p>');
+      $('div.bid_instructions').html('<p>After you <a href="/register">register</a> or <a href="/login">log in</a> before you can bid on this job.</p>');
       $('div#flash').append(notice);
     }
   };
