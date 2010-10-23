@@ -97,12 +97,14 @@
               .clear
             - else
               %h3
-                YOU MADE THIS BID
+                YOU'VE BIDDED ON THIS JOB
               %div.bid_instructions
                 %p
-                  The job's owner has your contact information, and will get back to you!
-                  You made this bid on:
-                  = @existing_bid.created_at.strftime("%B #{@existing_bid.created_at.day.ordinalize}, %Y @ %H:%M")
+                  The job owner has your contact information and you will be notified by email if you are awarded the bid.
+                %ul.things-to-remember
+                  %li
+                    You placed this bid on:
+                    = @existing_bid.created_at.strftime("%B #{@existing_bid.created_at.day.ordinalize}, %Y @ %H:%M")
               - form_for([@job, @existing_bid], :html => {:class => 'place-a-bid'}) do |form|
                 .message
                   .stripe
