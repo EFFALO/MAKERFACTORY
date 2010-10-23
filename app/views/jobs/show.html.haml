@@ -63,7 +63,7 @@
                   %strong
                     333
                 characters to explain your bid:
-            - form_for([@job, @bid], :class => 'place-a-bid') do |form|
+            - form_for([@job, @bid], :html => {:class => 'place-a-bid'}) do |form|
               = form.hidden_field :job_id
               .message
                 .stripe
@@ -97,10 +97,27 @@
               .clear
             - else
               %h3
-                YOU ALREADY BID ON THIS!
-              %p
-                Click here to see your bid.
-              .clear
+                YOU MADE THIS BID
+              %div.bid_instructions
+                %p
+                  The job's owner has your contact information, and will get back to you!
+                  You made this bid on:
+                  = @existing_bid.created_at.strftime("%B #{@existing_bid.created_at.day.ordinalize}, %Y @ %H:%M")
+              - form_for([@job, @existing_bid], :html => {:class => 'place-a-bid'}) do |form|
+                .message
+                  .stripe
+                    .left.extra
+                    %h4
+                      YOU SENT THIS MESSAGE
+                    .clear
+                  = form.text_area :message, :disabled => true
+                .quantity
+                  %label
+                    .left
+                    You can make
+                    = form.text_field :quantity, :size => 2, :disabled => true
+                    copies of this object
+                .clear
     .right
       .upload-image
         .bucket
