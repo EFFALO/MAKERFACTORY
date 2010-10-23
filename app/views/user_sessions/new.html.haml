@@ -12,7 +12,6 @@
     .left
       .box
         - form_for @user_session, :url => user_session_path do |f|
-          = f.error_messages
           = f.label :email, "Email"
           %br
           = f.text_field :email, :class => 'textfield'

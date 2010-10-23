@@ -166,9 +166,7 @@ $(function(){
   var addClassOnCalloutHover = function() {
     $(elements.callout_link).each(function(){
       $(this).hover(function(){
-        $(this).addClass('hover');
-      },function(){
-        $(this).removeClass('hover');
+        $(this).toggleClass('hover');
       });
     });
   }
