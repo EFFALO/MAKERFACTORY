@@ -18,4 +18,14 @@ module ApplicationHelper
       block.call
     end
   end
+
+  def format_time(time, format)
+    if format == :datestamp
+      time.strftime('%Y-%d-%m')
+    elsif format == :human
+      time.strftime("%B #{time.day.ordinalize}, %Y @ %H:%M")
+    else
+      raise "Don't know time format: #{format}"
+    end
+  end
 end

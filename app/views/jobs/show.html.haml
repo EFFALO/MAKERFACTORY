@@ -5,7 +5,7 @@
       %h2
         = @job.title
       %span.info
-        = @job.created_at
+        = format_time(@job.created_at, :datestamp)
     .right
       %ul.context-menu
         - if can? :update, @job
@@ -104,7 +104,7 @@
                 %ul.things-to-remember
                   %li
                     You placed this bid on:
-                    = @existing_bid.created_at.strftime("%B #{@existing_bid.created_at.day.ordinalize}, %Y @ %H:%M")
+                    = format_time(@existing_bid.created_at, :human)
               - form_for([@job, @existing_bid], :html => {:class => 'place-a-bid'}) do |form|
                 .message
                   .stripe
