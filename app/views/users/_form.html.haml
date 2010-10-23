@@ -2,7 +2,9 @@
   .field-highlight.left
   .left
     %span.prompt
-      ENTER YOUR NAME
+      COME UP WITH A USERNAME
+    %p.help
+      This will be your identity with MAKER FACTORY.
     = form.text_field :name, :class => 'title'
   .right
   .clear
@@ -12,87 +14,94 @@
       .box
         .field-highlight.left
         %h4
-          ENTER SOME TEXT
+          = form.label :email
         %p.help
-          Please enter some text below. It'll be shown on your user profile page. 555 characters or less, please.
+          To be shared with MAKER FACTORY and the people you bid on jobs with, and no one else!
+        = form.text_field :email
+      .box
+        .field-highlight.left
+        %h4
+          = form.label :password, form.object.new_record? ? nil : "Change password"
+        %p.help
+          A minimum of four characters, please.
+      .specifications
+        %table
+          %tr
+            %td.label.box
+              Enter your password:
+            %td.attribute.box-inline
+              = form.password_field :password
+          %tr
+            %td.label.box
+              Once more:
+            %td.attribute.box-inline
+              = form.password_field :password_confirmation
+      %br
+      .box
+        .field-highlight.left
+        %h4
+          = form.label :location
+        %p.help
+          The general location from which you operate. Be general, use terms like: "Portland, OR" or "NYC". This will be shared on your user profile page.
+        = form.text_field :location
+      .box
+        .field-highlight.left
+        %h4
+          SHARE SOME DETAILS
+        %p.help
+          Whatever you write here will be shown on your user profile page. 555 characters or less, please.
         = form.text_area :description
-        .description.box
-        
-        .box
-          .field-highlight.left
-          %h4
-            = form.label :email
-          %p.help
-            Your email address, this is important!
-          = form.text_field :email
-          .description.box
-        .box
-          .field-highlight.left
-          %h4
-            = form.label :password, form.object.new_record? ? nil : "Change password"
-          .specifications
-            %table
-              %tr
-                %td.label.box
-                  = form.label :password
-                %td.attribute.box-inline
-                  = form.password_field :password
-              %tr
-                %td.label.box
-                  = form.label :password_confirmation
-                %td.attribute.box-inline
-                  = form.password_field :password_confirmation
-          .description.box
-          .box
-            .field-highlight.left
-            %h4
-              = form.label :location
-            %p.help
-              The general location from which you operate
-            = form.text_field :location
-            .description.box       
-        
-        
-        
-        .specifications
-          %table
-              
-            %tr
-              %td.label.box
-                .field-highlight.left
+      .box
+        %h4
+          = form.label :url
+        %p.help
+          This will be shared on your user profile page. 
+        = form.text_field :url
+      .box
+        %h4
+          = form.label :equipment
+        %p.help
+          Do you have fabrication equipment, like a Makerbot, CNC, or laser cutter? List them here, separated by commas if you please. This will be shared on your user profile page.
+        = form.text_field :equipment
+      .box
+        %h4
+          = form.label :materials 
+        %p.help
+          Do you keep materials on hand, like ABS, PLA, or otherwise? List them here, separated by commas. This will be shared on your user profile page.
+        = form.text_field :materials
                 
-              %td.attribute.box-inline
-                
-            %tr
-              %td.label.box
-                = form.label :url
-              %td.attribute.box-inline
-                = form.text_field :url
-            %tr
-              %td.label.box
-                = form.label :equipment
-              %td.attribute.box-inline
-                = form.text_field :equipment
-            %tr
-              %td.label.box
-                = form.label :materials
-              %td.attribute.box-inline
-                = form.text_field :materials
     .callout
       .fold
       .content
         %h3
           = form.object.new_record? ? "CREATE YOUR ACCOUNT" : "UPDATE YOUR DETAILS"
         %p
-          Fusce dignissim lectus id ipsum rhoncus facilisis. Donec rutrum mauris non tellus ullamcorper sit amet mattis justo ornare. Phasellus nec aliquet ante. Quisque sem ipsum, malesuada eget volutpat at, euismod eget mauris. Vivamus rutrum porta molestie. Morbi nunc sem, tincidunt at imperdiet ut, bibendum in nisl. Vivamus ac magna eros. Duis et tincidunt ligula. Nulla velit mauris, congue ac laoreet et, sodales et est. Nullam cursus convallis pretium. Phasellus pretium dolor sit amet ante eleifend ullamcorper.
+          Before you create your account, please consider and agree to follow the
+          %strong MAKER FACTORY
+          code of conduct:
+        %ul.things-to-remember
+          %li
+            %strong
+              BE HONEST
+            — Don't misrepresent yourself or your capabilities.
+          %li
+            %strong
+              BE FRIENDLY
+            — Treat others as you'd like to be treated.
+          %li
+            %strong
+              HAVE FUN
+            — Let's build the future, together!
+        %p
+          The communications you initiate and the content you share on this site are your own. We agree to never, ever share your email address with anyone except the owners of jobs you bid on.
         = form.submit "Save"
   .right
     .upload-image
       .bucket
         .box
           %h4
-            UPLOAD IMAGE
+            UPLOAD PROFILE PICTURE
           %p.help
-            Please upload a picture, rendering or sketch represent this job. You may upload a maximum of three files, each much be 5MB or less.
+            This picture will be used to represent your identity on MAKER FACTORY
           = form.file_field(:image)
   .clear
