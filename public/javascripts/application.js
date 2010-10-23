@@ -162,10 +162,21 @@ $(function(){
     };
     
   };
-  
+
+  var addClassOnCalloutHover = function() {
+    $(elements.callout_link).each(function(){
+      $(this).hover(function(){
+        $(this).addClass('hover');
+      },function(){
+        $(this).removeClass('hover');
+      });
+    });
+  }
+
   var elements = {
     'award_bid_links' : $('tr.award_bid a'),
-    'gmaps_canvas' : $('.gmaps_canvas')
+    'gmaps_canvas' : $('.gmaps_canvas'),
+    'callout_link' : $('.callout.link .content')
   };
   
   if($('form.job_form').length) {
@@ -183,5 +194,8 @@ $(function(){
   }
   if(elements.gmaps_canvas.length) {
     loadGoogleMaps();
+  }
+  if(elements.callout_link.length) {
+    addClassOnCalloutHover();
   }
 });
