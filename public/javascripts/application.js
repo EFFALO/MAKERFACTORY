@@ -14,7 +14,7 @@ $(function(){
   var dimBidFormForAnonymous = function() {
     if(!makerFactory.loggedIn) {
       $(':enabled').attr('disabled', 'disabled');
-      $('form.new_bid').addClass('dimmed');
+      $('form.place-a-bid').addClass('dimmed');
       $('div.bid_instructions').html('<p>After you <a href="/register">register</a> or <a href="/login">log in</a> before you can bid on this job.</p>');
       $('div#flash').append(notice);
     }
@@ -41,7 +41,7 @@ $(function(){
   };
   
   var bindXhrBidPost = function() {
-    $('form.new_bid').submit(function(event){
+    $('form.place-a-bid').submit(function(event){
       event.preventDefault();
       var formEl = $(this);
       var data = formEl.serialize();
@@ -49,8 +49,8 @@ $(function(){
       $.post(formEl.attr('action'), data, bidSuccess);
 
       $(':enabled').attr('disabled', 'disabled');
-      $('form.new_bid').addClass('dimmed');
-      $('form.new_bid').prepend('<img src="/images/spinner.gif" class="spinner">');
+      $('form.place-a-bid').addClass('dimmed');
+      $('form.place-a-bid').prepend('<img src="/images/spinner.gif" class="spinner">');
       // if there is some kind of error
       // #hide/disable form
       // #disable button
@@ -171,7 +171,7 @@ $(function(){
   if($('form.job_form').length) {
     dimJobsForAnonymous();
   }
-  if($('form.new_bid').length) {
+  if($('form.place-a-bid').length) {
     dimBidFormForAnonymous();
     bindXhrBidPost();
   }
