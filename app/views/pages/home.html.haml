@@ -1,8 +1,7 @@
 = javascript_include_tag 'handlebars', 'templates'
 :javascript
   $(function(){
-    makerFactory.jobs = #{Job.all.map do |job|
-        {
+    makerFactory.jobs = #{@map_jobs.map do |job| {
           :location => job.deliver_to,
           :title    => job.title,
           :href     => job_url(job),
@@ -50,18 +49,16 @@
             DELIVER BY
           %th.quantity
             QUANTITY
-          %th
-        %tr
-          %td
-            1
-          %td
-            2
-          %td
-            3
-          %td
-            4
-          %td
-            \-
+        - @recent_jobs.each_with_index do |job, i|
+          %tr{:class => (cycle :prim, :alt) + ' ' + ((@recent_jobs.size >= i + 1) ? 'last' : nil)}
+            %td
+              = job.title
+            %td
+              = job.deliver_to
+            %td
+              = job.deliver_by
+            %td
+              = job.quantity_needed
       #credit
         .left
           .box
