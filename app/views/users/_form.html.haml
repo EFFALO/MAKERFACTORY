@@ -17,32 +17,52 @@
           Please enter some text below. It'll be shown on your user profile page. 555 characters or less, please.
         = form.text_area :description
         .description.box
+        
+        .box
+          .field-highlight.left
+          %h4
+            = form.label :email
+          %p.help
+            Your email address, this is important!
+          = form.text_field :email
+          .description.box
+        .box
+          .field-highlight.left
+          %h4
+            = form.label :password, form.object.new_record? ? nil : "Change password"
+          .specifications
+            %table
+              %tr
+                %td.label.box
+                  = form.label :password
+                %td.attribute.box-inline
+                  = form.password_field :password
+              %tr
+                %td.label.box
+                  = form.label :password_confirmation
+                %td.attribute.box-inline
+                  = form.password_field :password_confirmation
+          .description.box
+          .box
+            .field-highlight.left
+            %h4
+              = form.label :location
+            %p.help
+              The general location from which you operate
+            = form.text_field :location
+            .description.box       
+        
+        
+        
         .specifications
           %table
+              
             %tr
               %td.label.box
                 .field-highlight.left
-                = form.label :email
+                
               %td.attribute.box-inline
-                = form.text_field :email
-            %tr
-              %td.label.box
-                .field-highlight.left
-                = form.label :password, form.object.new_record? ? nil : "Change password"
-              %td.attribute.box-inline
-                = form.password_field :password
-            %tr
-              %td.label.box
-                .field-highlight.left
-                = form.label :password_confirmation
-              %td.attribute.box-inline
-                = form.password_field :password_confirmation
-            %tr
-              %td.label.box
-                .field-highlight.left
-                = form.label :location
-              %td.attribute.box-inline
-                = form.text_field :location
+                
             %tr
               %td.label.box
                 = form.label :url
