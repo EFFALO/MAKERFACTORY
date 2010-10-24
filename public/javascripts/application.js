@@ -8,7 +8,6 @@ $(function(){
       notice.html('Once you <a href="/register">register</a> or <a href="/login">log in</a> you can post a job using this form.');
       $('div#flash').append(notice);
     }
-    
   };
   
   var dimBidFormForAnonymous = function() {
@@ -55,9 +54,7 @@ $(function(){
       // #hide/disable form
       // #disable button
       // #show spinner
-
     });
-    
   };
   
   var bindAwardBidButtons = function() {
@@ -115,11 +112,6 @@ $(function(){
       
       var markers = [];
       var currentMarker;
-      var selectedMarker = {
-        open: false,
-        marker: null
-      };
-
       var infoWindow = new google.maps.InfoWindow({
         maxWidth : 400
       });
@@ -160,32 +152,24 @@ $(function(){
           
       });
 
+      // bind the non map clicks
       $('tr').each(function(){
-
         var jobId = $(this).attr('data-job-id');
         var marker = $(markers).filter(function(){
           return this.jobId == jobId;
         })[0];
 
-        marker = marker && marker.marker;
-        $(this).click( function() {
-          if(marker) {
-            if(marker == selectedMarker.marker) {
-               selectedMarker.open = !selectedMarker.open;
-            }
-            if(marker != selectedMarker.marker) {
-              selectedMarker.marker = marker;
-              selectedMarker.open = true;
-            }
-            google.maps.event.trigger(marker, 'click');
-
-          } else if (selectedMarker && selectedMarker.open) { 
-              google.maps.event.trigger(selectedMarker.marker, 'click');
-              selectedMarker.open = false;
-              selectedMarker = null; 
-          } 
-        });
-
+        if (marker) {
+          $(this).data('marker', marker.marker)
+          $(this).click(function(){
+            var gmark = $(this).data('marker')
+            google.maps.event.trigger(gmark, 'click');
+          });
+        } else {
+          $(this).click(function(){
+            infoWindow.close();
+          });
+        }
       });
     }; //initializeGMaps
 
