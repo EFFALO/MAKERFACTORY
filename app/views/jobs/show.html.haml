@@ -3,7 +3,8 @@
   .stripe
     .left
       .avatar
-        %img
+        - link_to user_url(@job.creator) do
+          = image_tag @job.creator.image.url(:avatar)
       %h2
         = @job.title
       .info

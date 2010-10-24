@@ -2,7 +2,7 @@
   .stripe
     .left
       .avatar
-        %img
+        = image_tag @user.image.url(:avatar)
       %h2
         = @user.name
       .info
