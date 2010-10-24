@@ -20,6 +20,7 @@ class Ability
       end
       can :create, Bid do |bid|
         oughta = true
+        oughta = false if bid.job.expired?
         oughta = false if bid.job.creator == user
         oughta = false if user.bids.detect {|b| b.job == bid.job}
         oughta
@@ -35,7 +36,9 @@ class Ability
       end
       can :create, Job
       can :update, Job do |job|
-        job.creator == user && !(job.bids.size > 0)
+        !job.expired? &&
+        job.creator == user &&
+        !(job.bids.size > 0)
       end
       can :access, :users_active do 
         !(user.created_jobs.empty? && user.bids.empty?)

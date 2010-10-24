@@ -18,7 +18,7 @@
         - if can? :update, @job
           %li.edit
             = link_to 'Edit', edit_job_path(@job)
-        -if can? :read_bids, @job
+        - if can? :read_bids, @job
           %li.bids
             - link_to_block_if(@job.bids.count > 0, job_bids_url(@job)) do
               %span.bid-count
@@ -134,28 +134,40 @@
           .callout
             .fold
             .content
-              %h3
-                YOU'VE BIDDED ON THIS JOB
-              %div.bid_instructions
+              - if @existing_bid
+                %h3
+                  YOU'VE BIDDED ON THIS JOB
+                %div.bid_instructions
+                  %p
+                    The job owner has your contact information and you will be notified by email if you are awarded the bid.
+                  %ul.things-to-remember
+                    %li
+                      You placed this bid on:
+                      = format_time(@existing_bid.created_at, :human)
+                - form_for([@job, @existing_bid], :html => {:class => 'place-a-bid'}) do |form|
+                  .message
+                    .stripe
+                      .left.extra
+                      %h4
+                        YOU SENT THIS MESSAGE
+                      .clear
+                    = form.text_area :message, :disabled => true
+                  .quantity
+                    %label
+                      Your bid was for a quantity of: 
+                      = form.text_field :quantity, :size => 2, :disabled => true
+                  .clear
+              - else
+                - # job isn't yours, and is expired ...
+                %h3
+                  THIS JOB HAS EXPIRED
                 %p
-                  The job owner has your contact information and you will be notified by email if you are awarded the bid.
-                %ul.things-to-remember
-                  %li
-                    You placed this bid on:
-                    = format_time(@existing_bid.created_at, :human)
-              - form_for([@job, @existing_bid], :html => {:class => 'place-a-bid'}) do |form|
-                .message
-                  .stripe
-                    .left.extra
-                    %h4
-                      YOU SENT THIS MESSAGE
-                    .clear
-                  = form.text_area :message, :disabled => true
-                .quantity
-                  %label
-                    Your bid was for a quantity of: 
-                    = form.text_field :quantity, :size => 2, :disabled => true
+                  Expired jobs can no longer be bid on. This job was made
+                  = @job.created_at
+                  and so far # of people have submitted bids. To view this job's bid history, click here.
                 .clear
+
+
     .right
       .upload-image
         .bucket
