@@ -96,7 +96,7 @@
                 %span
                   = "Remember, #{@job.creator.name} asked for #{@job.quantity_needed} copies."
                 %br
-                %br
+                %hr
               %p
                 This bid is not a legal contract, only a semi-formal way of engaging in a conversation.
               %p.red
@@ -135,10 +135,8 @@
                   = form.text_area :message, :disabled => true
                 .quantity
                   %label
-                    .left
-                    You can make
+                    Your bid was for a quantity of: 
                     = form.text_field :quantity, :size => 2, :disabled => true
-                    copies of this object
                 .clear
     .right
       .upload-image

@@ -21,7 +21,7 @@ $(function(){
   };
   
   var bidSuccess = function(data, textStatus) {
-    var success_text = 'YES YOU DONE SUBMITTED A BID';
+    var success_text = 'Your bid has successfully been submitted. Check out the <a href="/active">active</a> page to keep track of your bids.';
     $('div.callout div.content h3').html('BID SUCCESSFUL');
     $('div.callout div.content div.bid_instructions').html(success_text);
     $('div.callout div.content form').empty();

@@ -4,7 +4,7 @@
     %span.prompt
       COME UP WITH A USERNAME
     %p.help
-      This will be your identity with MAKER FACTORY.
+      This will be your identity with MAKERFACTORY.
     = form.text_field :name, :class => 'title'
   .right
   .clear
@@ -16,7 +16,7 @@
         %h4
           = form.label :email
         %p.help
-          To be shared with MAKER FACTORY and the people you bid on jobs with, and no one else!
+          To be shared with MAKERFACTORY and the people you bid on jobs with, and no one else!
         = form.text_field :email
       .box
         .field-highlight.left
@@ -77,7 +77,7 @@
           = form.object.new_record? ? "CREATE YOUR ACCOUNT" : "UPDATE YOUR DETAILS"
         %p
           Before you create your account, please consider and agree to follow the
-          %strong MAKER FACTORY
+          %strong MAKERFACTORY
           code of conduct:
         %ul.things-to-remember
           %li
@@ -102,6 +102,6 @@
           %h4
             UPLOAD PROFILE PICTURE
           %p.help
-            This picture will be used to represent your identity on MAKER FACTORY
+            This picture will be used to represent your identity on MAKERFACTORY
           = form.file_field(:image)
   .clear
