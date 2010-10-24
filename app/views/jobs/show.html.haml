@@ -17,8 +17,13 @@
       %ul.context-menu
         - if can? :update, @job
           %li.edit
-            %a
-              = link_to 'Edit', edit_job_path(@job)
+            = link_to 'Edit', edit_job_path(@job)
+        -if can? :read_bids, @job
+          %li.bids
+            - link_to_block_if(@job.bids.count > 0, job_bids_url(@job)) do
+              %span.bid-count
+                = @job.bids.count
+              Bids
     .clear
   .content.light
     .left
@@ -48,10 +53,10 @@
                 Deliver by:
               %td.attribute.box-inline
                 = @job.deliver_by
-      .callout
-        .fold
-        .content
-          - if can? :new, @bid
+      - if can? :new, @bid
+        .callout
+          .fold
+          .content
             %h3
               LET'S MAKE A BID
             %div.bid_instructions
@@ -106,16 +111,29 @@
                 account will be shared with the owner of this job.
               %input{:type=>"submit", :class=>"submit-bid", :value=>"Place bid"}
               .clear
-          - elsif cannot? :create, @bid
-            - if @job.creator == current_user
-              %h3
-                THIS IS YOUR JOB!
-              %p
-                You created this job on
-                = @job.created_at
-                and so far # of people have submitted bids. To view this job's bid history, click here.
-              .clear
-            - else
+      - elsif cannot? :create, @bid
+        - if @job.creator == current_user
+          - if (@job.bids.count > 0)
+            .callout.link
+          - else
+            .callout
+
+              .fold
+              - link_to_block_if(@job.bids.count > 0, job_bids_url(@job)) do
+                .content
+                  %h3
+                    THIS IS YOUR JOB!
+                  %p
+                    You created this job on
+                    = format_time(@job.created_at, :human)
+                    and so far
+                    = pluralize(@job.bids.count, 'person has', 'people have')
+                    have submitted bids. To view this job's bid history, click here.
+                  .clear
+        - else
+          .callout
+            .fold
+            .content
               %h3
                 YOU'VE BIDDED ON THIS JOB
               %div.bid_instructions
