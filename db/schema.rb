@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101016035645) do
+ActiveRecord::Schema.define(:version => 20101023232213) do
 
   create_table "bids", :force => true do |t|
     t.string   "message"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(:version => 20101016035645) do
     t.string   "blueprint_content_type"
     t.integer  "blueprint_file_size"
     t.datetime "blueprint_updated_at"
+    t.float    "lat"
+    t.float    "lng"
   end
 
   create_table "mail_readers", :force => true do |t|

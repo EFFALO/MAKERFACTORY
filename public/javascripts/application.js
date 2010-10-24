@@ -171,10 +171,55 @@ $(function(){
     });
   }
 
+  var bindGeocodeListener = function() {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "http://maps.google.com/maps/api/js?sensor=false&callback=initializeGeocoder";
+    document.body.appendChild(script);
+    
+    window.initializeGeocoder = function() {
+
+      var formEl      = elements.geocoder_form[0]
+      var locationEl  = elements.geocoder_location_field[0];
+      var latEl       = elements.geocoder_lat_field[0];
+      var lngEl       = elements.geocoder_lng_field[0];
+      var geocoded    = false;
+
+      $(formEl).submit(function(e) {
+        if(!geocoded) {
+          var locationVal = $(locationEl).val();
+          e.preventDefault();
+          new google.maps.Geocoder().geocode({
+            address : locationVal
+          }, didFinishGeocoding);
+        } 
+      });
+
+      var didFinishGeocoding = function(geoResults) {
+        if(geoResults.length) {
+          var res = geoResults[0].geometry.location;
+          $(latEl).val(res.lat());
+          $(lngEl).val(res.lng());
+        } else {
+          $(latEl).val(null);
+          $(lngEl).val(null);
+        }
+        geocoded = true;
+        $(formEl).submit();
+      }
+
+    };
+ 
+  };
+
   var elements = {
-    'award_bid_links' : $('tr.award_bid a'),
-    'gmaps_canvas' : $('.gmaps_canvas'),
-    'callout_link' : $('.callout.link .content')
+    'award_bid_links'         : $('tr.award_bid a'),
+    'gmaps_canvas'            : $('.gmaps_canvas'),
+    'callout_link'            : $('.callout.link .content'),
+    'geocoder_lat_field'      : $('.geocoder_lat'),
+    'geocoder_lng_field'      : $('.geocoder_lng'),
+    'geocoder_location_field' : $('.geocoder_location'),
+    'geocoder_form'           : $('.geocoder_form')
   };
   
   if($('form.job_form').length) {
@@ -195,5 +240,8 @@ $(function(){
   }
   if(elements.callout_link.length) {
     addClassOnCalloutHover();
+  }
+  if(elements.geocoder_form.length) {
+    bindGeocodeListener();
   }
 });

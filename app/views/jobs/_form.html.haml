@@ -1,5 +1,7 @@
 = error_messages_for('job')
-- form_for @job, :html => { :multipart => true, :class => 'job_form' } do |form|
+- form_for @job, :html => { :multipart => true, :class => 'job_form geocoder_form' } do |form|
+  = form.hidden_field :lat, :class => 'geocoder_lat'
+  = form.hidden_field :lng, :class => 'geocoder_lng'
   .page.shadow
     .stripe
       .field-highlight.left
@@ -39,7 +41,7 @@
               DELIVER TO
             %p.help
               Where do you need the items delivered? Be general, use terms like: "Portland, OR" or "NYC"
-            = form.text_field :deliver_to
+            = form.text_field :deliver_to, :class => 'geocoder_location'
           .box
             .field-highlight.left
             %h4

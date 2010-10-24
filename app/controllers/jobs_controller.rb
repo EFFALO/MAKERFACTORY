@@ -19,6 +19,9 @@ class JobsController < ApplicationController
     @job = Job.new(params[:job].merge(:creator => current_user))
     if @job.save
       flash[:notice] = "Job successfully created!"
+      if !@job.lat && !@job.lng
+        flash[:notice] = "We created your job but couldn't find its location on a map. Please edit your job if you want it to be on the map."
+      end
       redirect_to job_path(@job)
     else
       render :action => :new
@@ -33,6 +36,9 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     if @job.update_attributes(params[:job])
       flash[:notice] = "Job successfully altered!"
+      if !@job.lat && !@job.lng
+        flash[:notice] = "We altered your job but couldn't find its location on a map. Please edit your job again if you want it to be on the map."
+      end
       redirect_to(job_path(@job))
     else
       flash[:error] = "Sorry couldn't do that!"
