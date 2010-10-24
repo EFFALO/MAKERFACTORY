@@ -31,7 +31,7 @@
           %th.quantity
             QUANTITY
         - @jobs.each_with_index do |job, i|
-          %tr{:class => (cycle :prim, :alt) + ' ' + ((@jobs.size >= i + 1) ? 'last' : nil), :'data-href' => job_url(job)}
+          %tr{:class => (cycle :prim, :alt) + ((@jobs.size <= i + 1) ? ' last' : ''), :'data-href' => job_url(job)}
             %td
               = job.title
             %td
