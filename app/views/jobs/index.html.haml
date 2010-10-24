@@ -4,8 +4,9 @@
       .map
       .paginator
         .summary
-          XX jobs available
-        .controls
+          = @jobs.size
+          jobs available
+        .controls{:style => "display: none;"}
           %span
             \&laquo; Previous
           %ul
