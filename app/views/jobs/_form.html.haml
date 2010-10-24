@@ -19,15 +19,13 @@
             %p.help
               Please describe your job below in 555 characters or less. Be sure to include any details the Maker might need to understand the job: What materials should be used? Any special instructions?
             = form.text_area :description
-            .description.box
           .box
             .field-highlight.left
             %h4
               FABRICATION TYPE
             %p.help
               What kind of fabrication do you need? Common genres include 3d printing, laser cutting, CNC cutting, etc.
-            = form.text_field :fabrication_type
-            .description.box            
+            = form.text_field :fabrication_type           
           .box
             .field-highlight.left
             %h4
@@ -35,7 +33,6 @@
             %p.help
               How many copies do you need? Numbers only, please.
             = form.text_field :quantity_needed
-            .description.box
           .box
             .field-highlight.left
             %h4
@@ -43,7 +40,6 @@
             %p.help
               Where do you need the items delivered? Be general, use terms like: "Portland, OR" or "NYC"
             = form.text_field :deliver_to
-            .description.box
           .box
             .field-highlight.left
             %h4
@@ -51,7 +47,6 @@
             %p.help
               When do you need everything delivered by?
             = form.date_select :deliver_by
-            .description.box
         .callout
           .fold
           .content

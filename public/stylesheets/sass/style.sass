@@ -41,11 +41,23 @@ body
   padding: 0
 
 
+.avatar
+  width: 32px
+  height: 32px
+  background: #252525
+  float: left
+  border: 1px solid #111
+  -webkit-box-shadow: 0px 0px 2px #222
+  
 .stripe
   background: #534741
   color: #fafafa
   padding: 5px 10px
-
+  
+  .avatar
+    margin-top: 2px
+    margin-right: 6px
+    
   .left
     width: 48%
     float: left
@@ -61,6 +73,7 @@ body
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
     font-size: 18px
     text-shadow: #534741 0px 0px 3px
+    color: #fff
 
   h4
     margin: 0
@@ -68,10 +81,24 @@ body
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
     font-size: 14px
     text-shadow: #534741 0px 0px 3px
-
-  span.info
+    
+  .info
     font-size: 11px
-    opacity: .5
+    font-weight: normal
+    color: #ccc
+    opacity: .8
+    
+    span.highlight
+      font-weight: bold
+      color: #fff
+      
+    a
+      color: #f8f0a9
+      text-decoration: none
+      
+      &:hover
+        color: #fff200
+        text-decoration: underline
   
   span.prompt
     text-shadow: #534741 0px 0px 3px
@@ -180,7 +207,7 @@ ul.context-menu
   p
     margin-top: 0
 
-  span.red
+  .red
     color: #9e0b0f
 
 
@@ -406,8 +433,7 @@ ul.context-menu
       font-weight: bold
       color: #8b755b
       padding-left: 20px
-
-
+      
 .sepecifications table td.attribute
   color: #534741
   font-size: 14px
@@ -543,7 +569,10 @@ table.list
 
   .content p
     margin: 0
-
+    
+  .intense
+    color: #9e0b0f
+    
 .callout.link
   a
     text-decoration: none
@@ -589,19 +618,17 @@ form
   &.place-a-bid
     .quantity
       margin-bottom: 10px
-
+      
+      span
+        font-weight: normal
+        margin-left: 10px
+        opacity: .6
+      
       label
         padding-left: 10px
         background: url(/images/bullet.png) no-repeat 0 5px
         font-weight: bold
-
-    input
-      border: none
-      font-size: 14px
-      padding: 3px
-      border-bottom: 1px solid #ccc
-      border-right: 1px solid #ccc
-
+        
     .quantity input
       width: 40px
 
@@ -629,16 +656,6 @@ form
         margin-bottom: 10px
 
     input
-      &.submit-bid
-        float: right
-        background: #c4df9b
-        border: 1px solid #bebd7b
-        color: #252525
-        padding: 10px
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
-        font-weight: bold
-        width: 35%
-
       &.send-message
         float: right
         background: #c4df9b
@@ -648,9 +665,6 @@ form
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
         font-weight: bold
         width: 50%
-
-      &.submit-bid:hover
-        background: #b1c98c
 
     span.notice
       float: left
@@ -880,19 +894,47 @@ form.post-a-job
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
       font-size: 14px
       text-transform: uppercase
-      
-.flash_notice
+
+.errorExplanation
+  margin: 20px 0
   background: #da85ac
   color: #fff
   font-style: bold
   text-align: center
+  border: 1px solid #c5789b
+  text-align: left
+  font-size: 14px
+  font-weight: bold
+  text-transform: uppercase
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+  text-shadow: #ae6a8a 0px 0px 3px
+  -webkit-box-shadow: 1px 1px 2px #ccc
+  
+  ul
+    li
+      font-size: 12px
+      text-transform: none
+      font-weight: normal
+      color: #f9eff4
+      text-shadow: none
+      font-family: "Lucida Grande", Verdana, Arial, sans-serif
+  p
+    background: #ae6a8a url(/images/x.png) 8px 10px no-repeat
+    padding: 8px 8px 8px 28px
+    margin: 0
+    
+  h2
+    display: none
+
+.flash_notice
+  background: #fff799
+  color: #252525
+  font-style: bold
+  text-align: center
   padding: 20px 0
   margin: 10px 0
-  border: 1px solid #c5789b
-  &.yellow 
-    background: #fff799
-    color: #252525
-    border: 1px solid #ccc67a
+  border: 1px solid #ccc67a
+
 
 .dimmed
   opacity: 0.4

@@ -1,11 +1,14 @@
 .page.shadow
   .stripe
     .left
+      .avatar
+        %img
       %h2
         = @user.name
-      %span.info
-        User since
-        = @user.created_at
+      .info
+        Signed up on   
+        %span.highlight
+          = format_time(@user.created_at, :datestamp)
     .right
       %ul.context-menu
         - if can? :edit, @user

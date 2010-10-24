@@ -2,10 +2,16 @@
 .page.shadow
   .stripe
     .left
+      .avatar
+        %img
       %h2
         = @job.title
-      %span.info
-        = format_time(@job.created_at, :datestamp)
+      .info
+        Job created on
+        %span.highlight
+          = format_time(@job.created_at, :datestamp)
+        by
+        =link_to @job.creator.name,user_url(@job.creator)
     .right
       %ul.context-menu
         - if can? :update, @job
@@ -52,13 +58,18 @@
                 Use the form below to submit your bid to the job owner. Be sure to include:
               %ul.things-to-remember
                 %li
-                  How much you will charge (or if you're willing to trade or barter)
+                  %strong
+                    How much you will charge
+                  (or if you're willing to trade or barter)
                 %li
-                  When you can deliver by
+                  %strong
+                    When you can deliver by
                 %li
-                  How you plan on delivering (in person, in the mail, etc.)
+                  %strong
+                    How you plan on delivering
+                  (in person, in the mail, etc.)
               %p
-                In the interest of keeping things simple, honest and straightforward, you have
+                In the interest of keeping things honest, friendly and fun, you have
                 %span.red
                   %strong
                     333
@@ -80,11 +91,19 @@
                   I can make
                   = form.text_field :quantity, :size => 2
                   copies of this object
-              %span.notice
+                %br
+                %span
+                  = "Remember, #{@job.creator.name} asked for #{@job.quantity_needed} copies."
+                %br
+                %br
+              %p
+                This bid is not a legal contract, only a semi-formal way of engaging in a conversation.
+              %p.red
+                By clicking the button below, the email address associated with your
                 %strong
-                  NOTE
-                This bid is not a legal contract, only a semi-formal way of engaging in a conversation!
-              %input{:type=>"submit", :class=>"submit-bid", :value=>"PLACE BID"}
+                  MAKERFACTORY
+                account will be shared with the owner of this job.
+              %input{:type=>"submit", :class=>"submit-bid", :value=>"Place bid"}
               .clear
           - elsif cannot? :create, @bid
             - if @job.creator == current_user
