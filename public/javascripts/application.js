@@ -89,12 +89,12 @@ $(function(){
   };
   
   // async load the gmaps scripts/API
-  var loadGoogleMaps = function() {
+  var loadGoogleMaps = function(doneCallback) {
     var script = document.createElement("script");
     script.type = "text/javascript";
     script.src = "http://maps.google.com/maps/api/js?sensor=false&callback=initializeGMaps";
     document.body.appendChild(script);
-    
+
     // callback for when maps scripts load ... it has to be global???
     window.initializeGMaps = function() {
       // PDX, frankly
@@ -113,54 +113,82 @@ $(function(){
       }
       var map = new google.maps.Map(elements.gmaps_canvas[0], myOptions);
       
-      var drawAllJobs = function() {
-        var currentMarker;
-        var infoWindow = new google.maps.InfoWindow({
-          maxWidth : 400
-        });
-
-        var template = Handlebars.compile(makerFactory.templates.infoWindow);
-
-        $.each(makerFactory.jobs, function(i, job){
-          var drawMarker = function(geoResults) {
-            var marker = new google.maps.Marker({
-              map : map,
-              clickable : true,
-              position : geoResults[0].geometry.location
-            });
-            
-            var content = template(job);
-
-            var draw = function () {
-              infoWindow.setContent(content);
-              infoWindow.open(map, marker);
-            }
-            
-            google.maps.event.addListener(marker, 'click', function(){
-              if (!currentMarker) {
-                currentMarker = marker;
-                draw();
-              } else if (currentMarker == marker) {
-                infoWindow.close();
-                currentMarker = null;
-              } else {
-                infoWindow.close();
-                currentMarker = marker;
-                draw();
-              }
-
-            });
-          };
-          
-          new google.maps.Geocoder().geocode({
-            address : job.location
-          }, drawMarker);
-          
-        });
+      var markers = [];
+      var currentMarker;
+      var selectedMarker = {
+        open: false,
+        marker: null
       };
-      setTimeout(drawAllJobs, 0);
-    };
-    
+
+      var infoWindow = new google.maps.InfoWindow({
+        maxWidth : 400
+      });
+      var template = Handlebars.compile(makerFactory.templates.infoWindow);
+
+      $.each(makerFactory.jobs, function(i, job){
+        if(!(job.lat && job.lng)) return;
+
+        var marker = new google.maps.Marker({
+          map : map,
+          clickable : true,
+          position : new google.maps.LatLng(job.lat, job.lng, true)
+        });
+        markers.push({marker: marker, jobId: job.id});
+
+        var content = template(job);
+        var open = function () {
+          infoWindow.setContent(content);
+          infoWindow.open(map, marker);
+        }
+        var close = function () {
+          infoWindow.close();
+        };
+        
+        google.maps.event.addListener(marker, 'click', function(){
+          if (!currentMarker) {
+            currentMarker = marker;
+            open();
+          } else if (currentMarker == marker) {
+            close();
+            currentMarker = null;
+          } else {
+            close()
+            currentMarker = marker;
+            open();
+          }
+        });
+          
+      });
+
+      $('tr').each(function(){
+
+        var jobId = $(this).attr('data-job-id');
+        var marker = $(markers).filter(function(){
+          return this.jobId == jobId;
+        })[0];
+
+        marker = marker && marker.marker;
+        $(this).click( function() {
+          if(marker) {
+            if(marker == selectedMarker.marker) {
+               selectedMarker.open = !selectedMarker.open;
+            }
+            if(marker != selectedMarker.marker) {
+              selectedMarker.marker = marker;
+              selectedMarker.open = true;
+            }
+            google.maps.event.trigger(marker, 'click');
+
+          } else if (selectedMarker && selectedMarker.open) { 
+              google.maps.event.trigger(selectedMarker.marker, 'click');
+              selectedMarker.open = false;
+              selectedMarker = null; 
+          } 
+        });
+
+      });
+    }; //initializeGMaps
+
   };
 
   var addClassOnCalloutHover = function() {
@@ -185,6 +213,7 @@ $(function(){
       var lngEl       = elements.geocoder_lng_field[0];
       var geocoded    = false;
 
+      // geocode it, then submit it whether or not we got any results ...
       $(formEl).submit(function(e) {
         if(!geocoded) {
           var locationVal = $(locationEl).val();
@@ -222,6 +251,7 @@ $(function(){
     'geocoder_form'           : $('.geocoder_form')
   };
   
+  // conditional hookups
   if($('form.job_form').length) {
     dimJobsForAnonymous();
   }
@@ -236,7 +266,7 @@ $(function(){
     bindAwardBidButtons();
   }
   if(elements.gmaps_canvas.length) {
-    loadGoogleMaps();
+    loadGoogleMaps()
   }
   if(elements.callout_link.length) {
     addClassOnCalloutHover();

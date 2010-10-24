@@ -7,7 +7,10 @@
           :href     => job_url(job),
           :img_url  => job.image1.file? ? job.image1.url(:small) : nil,
           :has_img  => job.image1.file?,
-          :quantity => job.quantity_needed
+          :quantity => job.quantity_needed,
+          :id       => job.id,
+          :lat      => job.lat,
+          :lng      => job.lng
         }
         end.to_json};
   });
@@ -50,7 +53,7 @@
           %th.quantity
             QUANTITY
         - @recent_jobs.each_with_index do |job, i|
-          %tr{:class => (cycle :prim, :alt) + ' ' + ((@recent_jobs.size >= i + 1) ? 'last' : nil)}
+          %tr{:class => (cycle :prim, :alt) + ' ' + ((@recent_jobs.size >= i + 1) ? 'last' : nil), :'data-job-id' => job.id}
             %td
               = job.title
             %td
