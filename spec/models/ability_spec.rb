@@ -28,4 +28,10 @@ describe Ability do
     @ability.should_not be_able_to(:update, user2)
     @ability.should be_able_to(:update, @user)
   end
+
+  it "should not let you bid on expired jobs" do
+    job = Factory.create(:job, :created_at => 3.weeks.ago)
+    bid = Factory.build(:bid, :job => job, :creator => @user)
+    @ability.should_not be_able_to(:create, bid)
+  end
 end

@@ -160,14 +160,13 @@ $(function(){
         })[0];
 
         if (marker) {
-          $(this).data('marker', marker.marker)
           $(this).click(function(){
-            var gmark = $(this).data('marker')
-            google.maps.event.trigger(gmark, 'click');
+            google.maps.event.trigger(marker.marker, 'click');
           });
         } else {
           $(this).click(function(){
             infoWindow.close();
+            currentMarker = null;
           });
         }
       });

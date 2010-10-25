@@ -31,10 +31,18 @@ describe JobsController do
     end
     
     it "should only get the 10 most recent jobs" do
+      now = Time.now
       old_jobs = 10.times.map { Factory.create(:job) }
-      new_jobs = 10.times.map { Factory.create(:job, :created_at => Time.now + 1.week) }
+      new_jobs = 10.times.map { Factory.create(:job, :created_at => now + 1.week) }
       get :index
       assigns[:jobs].to_set.should == new_jobs.to_set
+    end
+
+    it "should not show expired jobs" do
+      @job.update_attribute(:created_at, Job::EXPIRE_IN.ago - 5)
+      jobs = 10.times.map { Factory.create(:job) }
+      get :index
+      assigns[:jobs].to_set.should == jobs.to_set
     end
     
     it "should allow logged in users" do
@@ -92,6 +100,12 @@ describe JobsController do
     
     it "should not let you edit your job if bids have been made" do
       bid = Factory.create(:bid, :job => @job)
+      get :edit, :id => @job.id
+      response.should_not be_success
+    end
+
+    it "should not let you edit your job it has expired" do
+      bid = Factory.create(:bid, :job => @job, :created_at => 3.weeks.ago)
       get :edit, :id => @job.id
       response.should_not be_success
     end

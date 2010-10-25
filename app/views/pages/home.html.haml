@@ -53,7 +53,7 @@
           %th.quantity
             QUANTITY
         - @recent_jobs.each_with_index do |job, i|
-          %tr{:class => (cycle :prim, :alt) + ' ' + ((@recent_jobs.size >= i + 1) ? 'last' : nil), :'data-job-id' => job.id}
+          %tr{:class => (cycle :prim, :alt) + ((@recent_jobs.size <= i + 1) ? ' last' : ''), :'data-job-id' => job.id}
             %td
               = job.title
             %td

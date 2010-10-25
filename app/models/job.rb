@@ -1,4 +1,6 @@
 class Job < ActiveRecord::Base
+  EXPIRE_IN = 3.weeks
+  
   belongs_to :creator, :class_name => 'User'
   has_many :bids
   
@@ -26,6 +28,14 @@ class Job < ActiveRecord::Base
   validates_inclusion_of :image3_file_size, image_validations
   validates_inclusion_of :blueprint_file_size, :in => 1..5.megabytes, :allow_nil => true, :message => 'Blueprints must be less than 5 megabyes.'
 
+  named_scope :active, {
+    :conditions => ["created_at > ?", EXPIRE_IN.ago.to_s(:db)]
+  }
+
+  def expired?
+    self.created_at < (Time.now - EXPIRE_IN)
+  end
+
   private
   
     def validate_deliver_by 
@@ -33,4 +43,5 @@ class Job < ActiveRecord::Base
         errors.add(:quantity, "deliver by can't be in the past.")
       end
     end
+
 end
