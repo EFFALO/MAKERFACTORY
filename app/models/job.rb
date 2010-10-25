@@ -1,4 +1,6 @@
 class Job < ActiveRecord::Base
+  EXPIRE_IN = 3.weeks
+  
   belongs_to :creator, :class_name => 'User'
   has_many :bids
   
@@ -27,11 +29,11 @@ class Job < ActiveRecord::Base
   validates_inclusion_of :blueprint_file_size, :in => 1..5.megabytes, :allow_nil => true, :message => 'Blueprints must be less than 5 megabyes.'
 
   named_scope :active, {
-    :conditions => ["created_at > ?", 3.weeks.ago.to_s(:db)]
+    :conditions => ["created_at > ?", EXPIRE_IN.ago.to_s(:db)]
   }
 
   def expired?
-    self.created_at < (Time.now - 3.weeks)
+    self.created_at < (Time.now - EXPIRE_IN)
   end
 
   private
