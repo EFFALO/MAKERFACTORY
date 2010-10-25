@@ -16,6 +16,9 @@
     .right
       %ul.context-menu
         - if can? :update, @job
+          %li.delete
+            %a
+              = link_to 'Delete', edit_job_path(@job)
           %li.edit
             %a
               = link_to 'Edit', edit_job_path(@job)

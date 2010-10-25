@@ -110,7 +110,7 @@ body
     color: #eee
     opacity: 1
 
-  p.help
+  .help
     border-left: 3px solid rgba(255,255,255,.1)
     color: #b0adab
 
@@ -127,7 +127,8 @@ ul.context-menu
     font-size: 11px
     color: #ccc
     opacity: .7
-
+    float: right
+    margin-left: 10px
     a
       color: #fafafa
       text-decoration: none
@@ -137,6 +138,9 @@ ul.context-menu
       opacity: 1
 
     &.edit
+      background: url(/images/edit.png) no-repeat 0 2px
+      
+    &.no-edit
       background: url(/images/edit.png) no-repeat 0 2px
 
 
@@ -486,7 +490,6 @@ table.list
     padding: 10px
     border-bottom: 1px solid #ddd
 
-  // these TRs are links with JS, hovers and cursors appropriately
   tr
     &:hover
       background-color: #FFF799
@@ -803,12 +806,16 @@ ul.file-list
         text-decoration: none
         color: #252525
 
-p.help
+.help
   border-left: 3px solid rgba(0,0,0,.1)
   padding-left: 5px
   font-style: italic
   font-size: 11px 
     
+  ul
+    li
+      font-size: 11px
+      font-style: normal
     
 .footer
   border-top: 3px solid #534741
@@ -891,13 +898,12 @@ form.post-a-job
       padding: 0
       
 .left
-  .description
-    h4
-      margin: 0 0 10px 0
-      padding: 0
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
-      font-size: 14px
-      text-transform: uppercase
+  h4
+    margin: 0 0 10px 0
+    padding: 0
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+    font-size: 14px
+    text-transform: uppercase
 
 .errorExplanation
   margin: 20px 0
@@ -960,4 +966,44 @@ form.post-a-job
   span
     display: inline
     color: #aaa
+
+
+.bid-help
+  margin: 10px 0
   
+.bids
+  background: #3a322e
+  padding: 20px 0 10px 0
+  border-top: 1px solid #ccc
+  
+  .bid-tile
+    margin: 0 20px 20px 20px
+    width: 600px
+    -webkit-box-shadow: 1px 1px 5px rgba(0,0,0,.5)
+    .stripe
+      background: #607965
+      h3
+        margin: 0 0 10px 0
+        padding: 0
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+        font-size: 14px
+    .quantity
+      .number
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+        font-size: 18px
+        text-shadow: #534741 0px 0px 3px
+        color: #f8f0a9
+        letter-spacing: 1px
+    .message
+      font-size: 12px
+      background: #f5f5f5
+    .action
+      font-size: 12px
+      border-top: 1px solid #ece4a0
+      background: #fbf7d4
+      .direct
+        display: inline
+        margin-left: 10px
+        
+    
+    
