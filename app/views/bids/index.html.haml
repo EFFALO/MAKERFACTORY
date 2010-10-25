@@ -23,11 +23,13 @@
             %em
               bids won
             counter by one. This is shared on their profile.
-        Regardless of the notification, you'll most likely need to consult with the bidder and resolve the final details. By awarding a bid, you help to increase the trust of the agreement by making it public.
+        By awarding a bid, you help to increase the trust of the agreement by making it public. Regardless of the notification, you'll most likely need to consult with the bidder and resolve the final details.
     .right
     .clear
     
   .bids
+    .help
+      Arranged by quantity in descending order
     - @bids.each do |bid|
       .bid-tile{:class => "award_bid #{cycle('prim', 'alt')}"}
         .stripe
