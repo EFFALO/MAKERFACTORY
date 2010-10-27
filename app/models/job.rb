@@ -31,6 +31,9 @@ class Job < ActiveRecord::Base
   named_scope :active, {
     :conditions => ["created_at > ?", EXPIRE_IN.ago.to_s(:db)]
   }
+  named_scope :inactive, {
+    :conditions => ["created_at < ?", EXPIRE_IN.ago.to_s(:db)]
+  }
 
   def expired?
     self.created_at < (Time.now - EXPIRE_IN)

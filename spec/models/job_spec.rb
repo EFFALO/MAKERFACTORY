@@ -19,6 +19,13 @@ describe Job do
       Job.active.should == [job]
     end
   end
+  describe "#inactive" do
+    it "should only find jobs created more than 3 weeks ago" do
+      job         = Factory.create(:job)
+      expired_job = Factory.create(:job, :created_at => 3.weeks.ago - 5) # subtract 5 seconds to avoid nondeterminism
+      Job.inactive.should == [expired_job]
+    end
+  end
 
   describe "#expired?" do
 

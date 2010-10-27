@@ -26,7 +26,7 @@ describe JobsController do
   describe "#index" do
     it "should be successful" do
       get :index
-      assigns(:jobs).should == [@job]
+      assigns(:active_jobs).should == [@job]
       response.should be_success
     end
     
@@ -35,14 +35,14 @@ describe JobsController do
       old_jobs = 10.times.map { Factory.create(:job) }
       new_jobs = 10.times.map { Factory.create(:job, :created_at => now + 1.week) }
       get :index
-      assigns[:jobs].to_set.should == new_jobs.to_set
+      assigns[:active_jobs].to_set.should == new_jobs.to_set
     end
 
     it "should not show expired jobs" do
       @job.update_attribute(:created_at, Job::EXPIRE_IN.ago - 5)
       jobs = 10.times.map { Factory.create(:job) }
       get :index
-      assigns[:jobs].to_set.should == jobs.to_set
+      assigns[:active_jobs].to_set.should == jobs.to_set
     end
     
     it "should allow logged in users" do

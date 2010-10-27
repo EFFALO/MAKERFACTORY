@@ -49,7 +49,8 @@ class UsersController < ApplicationController
   def active
     authorize! :access, :users_active
     @user = current_user
-    @jobs = current_user.created_jobs
+    @active_jobs = Job.active.find(:all, :conditions => ["creator_id = ?", current_user.id])
+    @inactive_jobs = Job.inactive.find(:all, :conditions => ["creator_id = ?", current_user.id])
     @bids = current_user.bids
   end
 
