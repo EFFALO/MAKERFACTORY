@@ -1,68 +1,66 @@
-require 'erb'
+set :application, "MAKERFACTORY"
 
-role :app, "domain_or_ip"
-role :web, "domain_or_ip"
-role :db,  "domain_or_ip", :primary => true
+require "bundler/capistrano"
+set :bundle_flags, "--deployment --local --quiet"
+set :bundle_cmd, "/home/makerfactory/.gems/bin/bundle"
 
-set :application, "makerfactory"
-set :repository,  "git@github:makerfactory.git"
-#set :use_sudo, false
-set :user, "deploy"
-set :deploy_via, :remote_cache
+set :user, "makerfactory"
+set :use_sudo, false
+
+set :repository,  "git://github.com/EFFALO/MAKERFACTORY.git"
 set :scm, :git
-default_run_options[:pty] = true
-#ssh_options[:port] = 30000
+set :branch, 'master'
+set :deploy_to, "/home/#{user}/staging.makerfactory.com"
+set :deploy_via, :remote_cache
+ssh_options[:forward_agent] = true
 
-# Customise the deployment
+set :default_environment, { :GEM_HOME => "#{shared_path}/.gems",
+                            :GEM_PATH => "#{shared_path}/.gems",
+                            :PATH     => "#{shared_path}/.gems/bin:$PATH"}
 
-set :keep_releases, 3
-before "deploy:setup", :db
-after "deploy:update", "deploy:cleanup"
-# after "deploy:update", "deploy:cleanup"
-after "deploy:symlink", "deploy:update_crontab"
-
-# directories to preserve between deployments
-# set :asset_directories, ['public/system/logos', 'public/system/uploads']
-
-# re-linking for config files on public repos  
-# namespace :deploy do
-#   desc "Update the crontab file"
-#   task :update_crontab, :roles => :db do
-#     run "cd #{release_path} && whenever --update-crontab #{application}"
-#   end
-#   desc "Re-link config files"
-#   task :link_config, :roles => :app do
-#     run "ln -nsf #{shared_path}/config/database.yml #{current_path}/config/database.yml"
-#   end
-# end
+#role :web, web_server
+role :app, ENV['SERVER'] ||= "staging.makerfactory.com"
+#role :db,  db_server, :primary => true
 
 namespace :deploy do
-  desc "Restart Application"
-  task :restart, :roles => :app do
-    run "touch #{current_path}/tmp/restart.txt"
+  task :start do ; end
+  task :stop do ; end
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
 end
 
-namespace :db do
-  desc "Create database yaml in shared path" 
-  task :default do
-    db_config = ERB.new <<-EOF
-production:
-  username: 
-  password: 
-  adapter:  mysql
-  encoding: utf8
-  database: "makerfactory_production"
-EOF
-
-    run "mkdir -p #{shared_path}/config" 
-    put db_config.result, "#{shared_path}/config/database.yml" 
+namespace :makerfactory do
+  task :gem_path do
+    run <<-EOC
+      sed '1 a \ENV["GEM_PATH"] = File.expand_path("~/.gems")' #{current_path}/config/preinitializer.rb > ~/tmpfile
+    EOC
+    run "mv ~/tmpfile #{current_path}/config/preinitializer.rb"
+  end
+  
+  task :config_database do
+    run "ln -nsf #{shared_path}/config/database.yml #{current_path}/config/database.yml"
   end
 
-  desc "Make symlink for database yaml" 
-  task :symlink do
-    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml" 
+  task :install_bundler do
+    run "gem install bundler"
+  end
+
+  task :refresh_images do
+    run "cd #{current_path}; CLASS=User #{bundle_cmd} exec rake paperclip:refresh"
+    run "cd #{current_path}; CLASS=Job #{bundle_cmd} exec rake paperclip:refresh"
+  end
+
+  task :env do
+    run "env", :env => {:test => "test" }
+  end
+
+  task :config_mailer do
+    # stub task for configuring email settings
   end
 end
 
-    
+after('deploy:setup', 'makerfactory:install_bundler')
+after('deploy:symlink', 'makerfactory:config_database')
+after('deploy:symlink', 'makerfactory:gem_path')
+after('deploy:symlink', 'makerfactory:config_mailer')
