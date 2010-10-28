@@ -20,11 +20,6 @@
             = link_to 'Delete', edit_job_path(@job)
           %li.edit
             = link_to 'Edit', edit_job_path(@job)
-        - if can? :read_bids, @job
-          %li.show-bids
-            - link_to_block_if(@job.bids.count > 0, job_bids_url(@job)) do
-              %a{:href=>"#bids"}
-                Bids
     .clear
   .content.light
     .left
@@ -117,18 +112,14 @@
           .callout
             .fold
             - if @bids.empty? 
-              - link_to(job_bids_url(@job)) do
-                .content
-                  %h3
-                    THIS IS YOUR JOB!
-                  %p
-                    You created this job on
-                    = format_time(@job.created_at, :human)
-                    and so far
-                    = pluralize(@bids.count, 'person has', 'people have')
-                    submitted
-                    = @bids.count == 1 ? 'a bid.' : 'bids.'
-                  .clear
+              .content
+                %h3
+                  THIS IS YOUR JOB
+                %p
+                  You created this job on
+                  = format_time(@job.created_at, :human)
+                  and so far no one has submitted a bid.
+                .clear
             - else
               .content
                 %h3
