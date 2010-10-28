@@ -1,4 +1,5 @@
 begin
+  ENV["GEM_PATH"] = File.expand_path("~/.gems") if Rails.env == 'production'
   require "rubygems"
   require "bundler"
 rescue LoadError

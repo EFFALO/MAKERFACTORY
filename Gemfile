@@ -13,6 +13,7 @@ gem 'cancan', "~>1.3.0"
 group :development do
   gem 'sqlite3-ruby'
   gem 'awesome_print', :require => 'ap'
+  gem 'capistrano'
 end
 
 group :production do
