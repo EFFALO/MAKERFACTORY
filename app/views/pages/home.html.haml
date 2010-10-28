@@ -42,6 +42,8 @@
       .legend
         %h3
           RECENTLY POSTED JOBS
+        = link_to("Click here to see all jobs ›", jobs_url, :class=>"see-all")
+        .clear
       %table.list{ :cellspacing => "0", :cellpadding => "0" }
         %tr
           %th.title
