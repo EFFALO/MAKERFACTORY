@@ -2,15 +2,6 @@ class BidsController < ApplicationController
   load_and_authorize_resource :job, :except => [:accept, :index]
   load_and_authorize_resource :bid, :through => :job, :except => [:accept, :index]
   
-  def index
-    @job = Job.find(params[:job_id])
-    # this authorize is only because we can't get Cancan to play nice with nested resources
-    # and indexes
-    authorize! :read_bids, @job
-    
-    @bids = @job.bids
-  end
-
   def create
     @bid = Bid.new(params[:bid].merge(:creator => current_user, :job => @job))
     if @bid.save

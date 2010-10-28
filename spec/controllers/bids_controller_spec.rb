@@ -8,23 +8,6 @@ describe BidsController do
     login_as! @user
   end
 
-  describe "#index" do
-    it "should be successful" do
-      job = Factory.create(:job, :creator => @user)
-      bid = Factory.create(:bid, :job => job)
-      get :index, :job_id => job.id
-      assigns(:bids).should == [bid]
-      response.should be_success
-    end
-    
-    it "should fail for job non-owners" do
-      logout!
-      login_as! Factory.create(:user)
-      get :index, :job_id => @bid.job.id
-      response.should_not be_success
-    end
-  end
-
   describe "#create" do
     it "should make a new bid with a creator" do
       job = Factory.create(:job)

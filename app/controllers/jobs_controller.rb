@@ -8,6 +8,9 @@ class JobsController < ApplicationController
   def show
     @job = Job.find(params[:id])
     @existing_bid = Bid.find(:first, :conditions => {:job_id => @job.id, :creator_id => current_user.id}) if current_user
+    if can? :read_bids, @job
+        @bids = @job.bids 
+    end
     @bid = Bid.new(:job => @job)
   end
 

@@ -67,7 +67,8 @@ $(function(){
     var buttons = elements.award_bid_links;
     buttons.each(function(){
       button = $(this);
-      button.click(function(){
+      button.click(function(e){
+        e.preventDefault();
         button.unbind();
         $.post(button.attr('data-bid-award'), null, function(){
           handleXHRsuccess(button);
@@ -225,7 +226,11 @@ $(function(){
   };
 
   var elements = {
-    'award_bid_links'         : $('tr.award_bid a'),
+    'award_bid_links'         : $('.award_bid a').filter(function(){
+      if($(this).attr('data-bid-award')) {
+        return true;
+      }
+    }),
     'gmaps_canvas'            : $('.gmaps_canvas'),
     'callout_link'            : $('.callout.link .content'),
     'geocoder_lat_field'      : $('.geocoder_lat'),
