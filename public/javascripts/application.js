@@ -18,40 +18,74 @@ $(function(){
       $('div#flash').append(notice);
     }
   };
-  
-  var bidSuccess = function(data, textStatus) {
-    var success_text = 'Your bid has successfully been submitted. Check out the <a href="/active">active</a> page to keep track of your bids.';
-    $('div.callout div.content h3').html('BID SUCCESSFUL');
-    $('div.callout div.content div.bid_instructions').html(success_text);
-    $('div.callout div.content form').empty();
-    setTimeout(conditionalAddActiveButtons,200);
-  };
-
-  var conditionalAddActiveButtons = function(counts) {
-    // if jobs_count and bids_count are both zero, we know
-    // that user previously was not shown the active link
-    var shouldAddActiveLink = !(makerFactory.jobs_count || makerFactory.bids_count)
-    if(shouldAddActiveLink) {
-      var activeLink = $('<li class="active"><a href="http://localhost:3000/active">ACTIVE</a></li>');
-      activeLink.hide();
-      $('div.nav li.profile').before($(activeLink));
-      activeLink.fadeIn(500);
-    }
-  };
-  
+    
   var bindXhrBidPost = function() {
     $('form.place-a-bid').submit(function(event){
+
       event.preventDefault();
+
       var formEl = $(this);
       var data = formEl.serialize();
-      // better validate
-      $.post(formEl.attr('action'), data, bidSuccess);
+      var placeToPutIt = $('form.place-a-bid').find('textarea')
+      var spinner =  $('<div class="spinner"><img src="/images/spinner.gif"><span>Workin\' On It<span></div>');
+      var coords = placeToPutIt.offset();
 
-      $(':enabled').attr('disabled', 'disabled');
+      var bidSuccess = function(data, textStatus) {
+        if(data.errors) {
+          bidFailure(data.errors)
+          return
+        }
+
+        if('success' == textStatus) {
+          var success_text = 'Your bid has successfully been submitted. Check out the <a href="/active">active</a> page to keep track of your bids.';
+          $('div.callout div.content h3').html('BID SUCCESSFUL');
+          $('div.callout div.content div.bid_instructions').html(success_text);
+          $('div.callout div.content form').empty();
+          $
+          setTimeout(conditionalAddActiveButtons,200);
+        } else {
+          throw 'non-200 result from POST'
+        }
+      };
+
+      var bidFailure = function(errors) {
+        console.log(errors)
+      }
+
+      var bidError = function() {
+        throw 'Internal error on host.'
+      }
+
+      var conditionalAddActiveButtons = function(counts) {
+        // if jobs_count and bids_count are both zero, we know
+        // that user previously was not shown the active link
+        var shouldAddActiveLink = !(makerFactory.jobs_count || makerFactory.bids_count)
+        if(shouldAddActiveLink) {
+          var activeLink = $('<li class="active"><a href="http://localhost:3000/active">ACTIVE</a></li>');
+          activeLink.hide();
+          $('div.nav li.profile').before($(activeLink));
+          activeLink.fadeIn(500);
+        }
+      };
+
+      $.ajax({
+        data     : data,
+        dataType : 'json',
+        error    : bidError,
+        success  : bidSuccess,
+        url      : formEl.attr('action'),
+        type     : 'POST'
+      })
+      //$.post(formEl.attr('action'), data, bidSuccess);
+      $(':enabled').attr('disabled', true);
       $('form.place-a-bid').addClass('dimmed');
-      $('form.place-a-bid').prepend('<img src="/images/spinner.gif" class="spinner">');
-      // if there is some kind of error
-      // #hide/disable form
+
+      $('body').append(spinner);
+      spinner.offset({
+        left: coords.left + placeToPutIt.width()/2 - spinner.width()/2,
+        top: coords.top + placeToPutIt.height()/2 - spinner.height()/2
+      })
+
       // #disable button
       // #show spinner
     });

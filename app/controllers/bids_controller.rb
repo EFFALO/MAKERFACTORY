@@ -4,13 +4,8 @@ class BidsController < ApplicationController
   
   def create
     @bid = Bid.new(params[:bid].merge(:creator => current_user, :job => @job))
-    if @bid.save
-      flash[:notice] = "You have just successfully bid ... ed"
-      redirect_to job_path(@bid.job)
-    else
-      @job = @bid.job
-      # WE'RE GOING BACK YA'LL CAUSE SHIT AIN'T RIGHT
-      render 'jobs/show'
+    unless @bid.save
+      render :json => {:errors => @bid.errors}
     end
   end
   
