@@ -30,13 +30,30 @@
           .callout.link
             .fold
               \&nbsp;
-            %a{:href => register_path}
-              .content
-                %h3
-                  REGISTER HERE
-                %p
-                  Need something made? Willing to make things for other people? Click here to register for an account. It's totally free!
-
+            - if current_user # if the user has created jobs or bids
+              - if(can? :access, :users_active)
+                %a{:href => active_url}
+                  .content
+                    %h3
+                      Hello,
+                      = current_user.name
+                    %p
+                      Quit yer dilly-dallying and make some stuff! Click here to see your active bids and jobs.
+              - else # if the user is logged in but not created content
+                %a{:href => account_url}
+                  .content
+                    %h3
+                      Hello,
+                      = current_user.name
+                    %p
+                      Welcome back to MAKERFACTORY! Let's build! Click here to see your profile.
+            - else # signed out or anonymous user
+              %a{:href => register_path}
+                .content
+                  %h3
+                    REGISTER HERE
+                  %p
+                    Need something made? Willing to make things for other people? Click here to register for an account. It's totally free!
       .clear
       .gmaps_canvas
       .legend
