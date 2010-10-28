@@ -31,7 +31,13 @@ namespace :deploy do
 end
 
 namespace :makerfactory do
-
+  task :gem_path do
+    run <<-EOC
+      sed '1 a \ENV["GEM_PATH"] = File.expand_path("~/.gems")' #{current_path}/config/preinitializer.rb > ~/tmpfile
+    EOC
+    run "mv ~/tmpfile #{current_path}/config/preinitializer.rb"
+  end
+  
   task :config_database do
     run "ln -nsf #{shared_path}/config/database.yml #{current_path}/config/database.yml"
   end
@@ -56,4 +62,5 @@ end
 
 after('deploy:setup', 'makerfactory:install_bundler')
 after('deploy:symlink', 'makerfactory:config_database')
+after('deploy:symlink', 'makerfactory:gem_path')
 after('deploy:symlink', 'makerfactory:config_mailer')
