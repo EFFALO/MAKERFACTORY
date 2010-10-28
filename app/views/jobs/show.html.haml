@@ -116,86 +116,42 @@
         - if @job.creator == current_user
           .callout
             .fold
-            - link_to_block_if(!@bids.empty?, job_bids_url(@job)) do
+            - if @bids.empty? 
+              - link_to(job_bids_url(@job)) do
+                .content
+                  %h3
+                    THIS IS YOUR JOB!
+                  %p
+                    You created this job on
+                    = format_time(@job.created_at, :human)
+                    and so far
+                    = pluralize(@bids.count, 'person has', 'people have')
+                    submitted
+                    = @bids.count == 1 ? 'a bid.' : 'bids.'
+                  .clear
+            - else
               .content
                 %h3
-                  THIS IS YOUR JOB!
+                  BIDS HAVE BEEN RECEIVED
                 %p
-                  You created this job on
-                  = format_time(@job.created_at, :human)
-                  and so far
-                  = pluralize(@bids.count, 'person has', 'people have')
-                  submitted
-                  = @bids.count == 1 ? 'a bid.' : 'bids.'
-                .clear
-          - if !@bids.empty?
-            .stripe
-              .left
-                %h2
-                  = "Bids for #{@job.title}"
-                %span.info
-                  Here are the bids received for this job
-              .clear
-            .content.light
-              .left
-                .box
+                
                   Below is a list of all the bids you've received for this job. Please take a look and if you want to, award some bids. Awarding a bid does the following: 
-                  %ul.things-to-remember
-                    %li
-                      Sends an email to the bidder informing them that they have won the bid.
-                    %li
-                      Increases your 
-                      %em
-                        bids awarded
-                      counter by one. This is shared on your profile.
-                    %li
-                      Increases the bidder's
-                      %em
-                        bids won
-                      counter by one. This is shared on their profile.
+                %ul.things-to-remember
+                  %li
+                    Sends an email to the bidder informing them that they have won the bid.
+                  %li
+                    Increases your 
+                    %em
+                      bids awarded
+                    counter by one. This is shared on your profile.
+                  %li
+                    Increases the bidder's
+                    %em
+                      bids won
+                    counter by one. This is shared on their profile.
+                %p
                   By awarding a bid, you help to increase the trust of the agreement by making it public. Regardless of the notification, you'll most likely need to consult with the bidder and resolve the final details.
-              .right
-              .clear
-              
-            .bids
-              .help
-                Arranged by quantity, in descending order
-              - @bids.each do |bid|
-                .bid-tile{:class => "award_bid #{cycle('prim', 'alt')}"}
-                  .stripe
-                    .left
-                      .avatar
-                        - link_to user_url(@job.creator) do
-                          = image_tag @job.creator.image.url(:avatar)
-                      %h2
-                        = bid.creator.name
-                      .info
-                        Bid posted on
-                        %span.highlight
-                          = format_time(bid.created_at, :datestamp)
-                    .right
-                      .quantity
-                        .number
-                          = "#{bid.quantity}/#{bid.job.quantity_needed}"
-                        .info.label
-                          Quantity Bidded
-                    .clear
-                  .message
-                    .box
-                      = bid.message
-                  .action
-                    .box
-                      - if can?(:award, bid)
-                        = link_to('award', '#', 'data-bid-award' => award_job_bids_url(:job_id => @job,:id => bid) )
-                        .direct
-                          Direct contact: 
-                          = bid.creator.email
-                      - else
-                        .awarded
-                          .direct
-                            Bid awarded.
-                            Direct contact: 
-                            = bid.creator.email
+                .clear
         - else
           .callout
             .fold
@@ -251,4 +207,48 @@
               %span.details
                 = number_to_human_size @job.blueprint.size
     .clear
+    - if !@bids.empty?
+      %a{:name=>'bids'}
+      .bids
+        .help
+          Arranged by quantity, in descending order
+        - @bids.each do |bid|
+          .bid-tile{:class => "award_bid #{cycle('prim', 'alt')}"}
+            .stripe
+              .left
+                .avatar
+                  - link_to user_url(@job.creator) do
+                    = image_tag @job.creator.image.url(:avatar)
+                %h2
+                  = bid.creator.name
+                .info
+                  Bid posted on
+                  %span.highlight
+                    = format_time(bid.created_at, :datestamp)
+              .right
+                .quantity
+                  .number
+                    = "#{bid.quantity}/#{bid.job.quantity_needed}"
+                  .info.label
+                    Quantity Bidded
+              .clear
+            .message
+              .box
+                = bid.message
+            .action
+              .box
+                - if can?(:award, bid)
+                  = link_to('award bid', '#', 'data-bid-award' => award_job_bids_url(:job_id => @job,:id => bid) )
+                  .direct
+                    Contact this bidder directly:
+                    .email
+                      = bid.creator.email
+                - else
+                  .awarded
+                    Bid awarded!
+                  .direct
+                    Contact this bidder directly: 
+                    .email
+                      = bid.creator.email
+    
 
