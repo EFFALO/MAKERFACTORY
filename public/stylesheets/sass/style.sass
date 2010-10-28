@@ -117,29 +117,38 @@ body
 ul.context-menu
   float: right
   list-style: none
-  margin: 0
+  margin: 0 0 0 0 
   padding: 0
 
   li
     text-align: center
-    width: 24px
+    width: 36px
     padding-top: 24px
     font-size: 11px
     color: #ccc
-    opacity: .7
+    opacity: .5
     float: right
-    margin-left: 10px
+    margin-left: 5px
+    position: relative
+    
     a
       color: #fafafa
       text-decoration: none
       padding-top: 24px
+      text-decoration: none
 
     &:hover
       opacity: 1
-
-    &.edit
-      background: url(/images/edit.png) no-repeat 0 2px
+    
+    .bid-count
+      position: absolute
       
+    &.edit
+      background: url(/images/edit-36x18_white.png) no-repeat 0 2px
+    &.show-bids
+      background: url(/images/bids-36x18_white.png) no-repeat 0 2px
+    &.delete
+      background: url(/images/delete-36x18_white.png) no-repeat 0 2px
     &.no-edit
       background: url(/images/edit.png) no-repeat 0 2px
 
