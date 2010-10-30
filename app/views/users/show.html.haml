@@ -26,6 +26,11 @@
           %table
             %tr
               %td.label.box
+                Participation:
+              %td.attribute.box-inline
+                = @user.participation
+            %tr
+              %td.label.box
                 Location:
               %td.attribute.box-inline
                 = @user.location
@@ -48,7 +53,5 @@
       .upload-image
         .bucket
           = image_tag @user.image.url(:profile)
-    PARTICIPATION
-    = @user.participation
     .clear
 

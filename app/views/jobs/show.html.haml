@@ -153,7 +153,7 @@
                 %div.bid_instructions
                   %p
                     The job owner has your contact information and you will be notified by email if you are awarded the bid.
-                  %ul.things-to-remember
+                  %ul.things-to-remember.greenwrap
                     %li
                       You placed this bid on:
                       = format_time(@existing_bid.created_at, :human)
@@ -202,7 +202,7 @@
     - if @bids && !@bids.empty?
       %a{:name=>'bids'}
       .bids
-        .help
+        %p.help
           Arranged by quantity, in descending order
         - @bids.each do |bid|
           .bid-tile{:class => "award_bid #{cycle('prim', 'alt')}"}
