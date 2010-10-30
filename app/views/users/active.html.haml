@@ -1,70 +1,75 @@
 .page.shadow
-  - unless @active_jobs.empty?
-    .stripe
-      .left
-        %h2
-          ACTIVE JOBS
-        .info
-          These are jobs that you created
-      .clear
-    %table.list{ :cellspacing => "0", :cellpadding => "0"}
-      %tr
-        %th.title-long
-          JOB TITLE
-        %th.deliver-by
-          DELIVER BY
+  .stripe
+    .left
+      %h2
+        TRACKER
+      .info
+        Track your MAKERFACTORY activity below
+    .clear
+  .tiles
+    - unless @active_jobs.empty?
+      %h2
+        ACTIVE JOBS
+      %p.help
+        These are jobs that you created
       - @active_jobs.each do |job|
-        %tr{:class => cycle('prim', 'alt'), 'data-href' => job_url(job)}
-          %td
-            = job.title
-          %td
-            = job.deliver_by
-  - unless @inactive_jobs.empty?
-    .stripe
-      .left
-        %h2
-          INACTIVE JOBS
-        .info
-          These jobs are no longer.
+        .tile{:class => cycle('prim', 'alt'), 'data-href' => job_url(job)}
+          .stripe
+            .left
+              %h3
+                = job.title
+              .info 
+                = job.deliver_by
+            .right
+              %span
+                999
+              .info
+                Bids
+            .clear
+          .photo
       .clear
-    %table.list{ :cellspacing => "0", :cellpadding => "0"}
-      %tr
-        %th.title-long
-          JOB TITLE
-        %th.deliver-by
-          DELIVER BY
+    - unless @inactive_jobs.empty?
+      %br
+      %h2
+        INACTIVE JOBS
+      %p.help
+        These jobs are no longer.
       - @inactive_jobs.each do |job|
-        %tr{:class => cycle('prim', 'alt'), 'data-href' => job_url(job)}
-          %td
-            = job.title
-          %td
-            = job.deliver_by
-
-  - unless @user.bids.empty?        
-    .stripe
-      .left
-        %h2
-          ACTIVE BIDS
-        .info
-          These are jobs you have placed bids on
+        .tile{:class => cycle('prim', 'alt'), 'data-href' => job_url(job)}
+          .stripe
+            .left
+              %h3
+                = job.title
+              .info 
+                = job.deliver_by
+            .right
+              %span
+                999
+              .info
+                Bids
+            .clear
+          .photo
+          = image_tag job.image1.url(:tile) if job.image1.file?
       .clear
-    %table.list{ :cellspacing => "0", :cellpadding => "0" }
-      %tr
-        %th.title
-          JOB TITLE
-        %th.deliver-by
-          DELIVER BY
-        %th.quantity
-          QUANTITY
-        %th.date-bidded
-          BIDDED AT
-      - @bids.each do |bid|
-        %tr{:class => cycle('prim', 'alt'), 'data-href' => job_url(bid.job)}
-          %td
-            = bid.job.title
-          %td
-            = bid.job.deliver_by 
-          %td
-            = "#{bid.quantity}/#{bid.job.quantity_needed}"
-          %td
-            = bid.created_at.strftime('%y/%m/%d')
+    - unless @user.bids.empty?
+      %br
+      %h2
+        ACTIVE BIDS
+      %p.help
+        These are jobs you have placed bids on
+        - @bids.each do |bid|
+          .tile{:class => cycle('prim', 'alt'), 'data-href' => job_url(bid.job)}
+            .stripe
+              .left
+                %h3
+                  = bid.job.title
+                .info 
+                  = bid.job.deliver_by
+              .right
+                %span
+                  = "#{bid.quantity}/#{bid.job.quantity_needed}"
+                .info
+                  Bids
+              .clear
+            .photo
+        .clear
