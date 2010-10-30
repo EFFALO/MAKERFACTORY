@@ -29,4 +29,8 @@ class User < ActiveRecord::Base
     Bid.count(:conditions => ["awarded = ? AND jobs.creator_id = ?", true, self.id], :joins => "JOIN jobs ON jobs.id = job_id")
   end
 
+  def participation
+    received_bid_award_count + sent_bid_award_count
+  end
+
 end
