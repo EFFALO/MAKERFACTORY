@@ -4,13 +4,17 @@ class BidsController < ApplicationController
   
   def create
     @bid = Bid.new(params[:bid].merge(:creator => current_user, :job => @job))
-    if @bid.save
-      flash[:notice] = "You have just successfully bid ... ed"
-      redirect_to job_path(@bid.job)
+    if request.xhr?
+      if @bid.save
+        render :json => {
+          :partial => render_to_string(:partial => 'jobs/current_user_bid', :locals => {:bid => @bid})
+        }
+      else
+        render :json => {:errors => @bid.errors}
+      end
+      return
     else
-      @job = @bid.job
-      # WE'RE GOING BACK YA'LL CAUSE SHIT AIN'T RIGHT
-      render 'jobs/show'
+      redirect_to :controller => :jobs, :action => :show, :id => @bid.job.id
     end
   end
   
@@ -18,7 +22,7 @@ class BidsController < ApplicationController
     @bid = Bid.find(params[:id])
     authorize! :award, @bid
     @bid.award!
-    redirect_to :action => :index, :job_id => @bid.job.id
+    redirect_to :controller => :jobs, :action => :show, :id => @bid.job.id
   end
 
 end

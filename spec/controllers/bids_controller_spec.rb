@@ -34,7 +34,7 @@ describe BidsController do
       job = Factory.create(:job, :creator => @user)
       bid = Factory.create(:bid, :job => job)
       post :award, :job_id => job.id, :id => bid.id
-      response.should redirect_to(job_bids_url(:job_id => job.id))
+      response.should redirect_to(job_url(:id => job.id))
       bid.reload.awarded.should be_true
     end
     

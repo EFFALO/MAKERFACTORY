@@ -4,9 +4,11 @@
     %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-type" }
     %title
       MAKERFACTORY
+    = stylesheet_link_tag 'style'
+    = yield :stylesheets
     %script{ :src => "http://www.google.com/jsapi", :type => "text/javascript" }
     %script{ :language => "javascript", :type => "text/javascript" }
-      google.load("jquery", "1.4.2");
+      google.load("jquery", "1.4.3");
       // google.load("maps", "2.x");
     %script{ :language => "javascript", :type => "text/javascript" }
       makerFactory = {};
@@ -15,9 +17,9 @@
       - if current_user
         makerFactory.jobs_count = #{current_user.created_jobs.count if current_user}
         makerFactory.bids_count = #{current_user.bids.count}
+    = javascript_include_tag 'templates'
+    = javascript_include_tag 'handlebars'
     = javascript_include_tag 'application'
-    = stylesheet_link_tag 'style'
-    = yield :stylesheets
   %body
     .container
       .header

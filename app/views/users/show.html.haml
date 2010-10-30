@@ -24,11 +24,12 @@
             = @user.description
         .specifications
           %table
-            %tr
-              %td.label.box
-                Participation:
-              %td.attribute.box-inline
-                = @user.participation
+            - if @user.participation > 0 
+              %tr
+                %td.label.box
+                  Participation:
+                %td.attribute.box-inline
+                  = @user.participation
             %tr
               %td.label.box
                 Location:
