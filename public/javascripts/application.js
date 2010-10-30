@@ -206,6 +206,25 @@ $(function(){
 
       // bind the non map clicks
       $('tr').each(function(){
+
+        // this kills annoying double click text-selection
+        // highlight
+        var sel ;
+        function clearSelection() {
+          if(document.selection && document.selection.empty){
+            document.selection.empty() ;
+          } else if(window.getSelection) {
+            sel=window.getSelection();
+            if(sel && sel.removeAllRanges)
+              sel.removeAllRanges() ;
+          }
+        }
+
+        // HILARIOUS HAX
+        setInterval(clearSelection, 25)
+        // performance version
+        //$(this).click(clearSelection);
+        
         var jobId = $(this).attr('data-job-id');
         var marker = $(markers).filter(function(){
           return this.jobId == jobId;
