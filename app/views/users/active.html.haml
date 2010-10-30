@@ -27,6 +27,7 @@
                 Bids
             .clear
           .photo
+            = image_tag job.image1.url(:tile)
       .clear
     - unless @inactive_jobs.empty?
       %br
@@ -49,7 +50,7 @@
                 Bids
             .clear
           .photo
-          = image_tag job.image1.url(:tile) if job.image1.file?
+            = image_tag job.image1.url(:tile)
       .clear
     - unless @user.bids.empty?
       %br
@@ -72,4 +73,5 @@
                   Bids
               .clear
             .photo
+              = image_tag bid.job.image1.url(:tile)
         .clear
