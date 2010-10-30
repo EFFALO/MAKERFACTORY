@@ -5,7 +5,7 @@ makerFactory.templates = {
     '<span>QUANTITY:</span> {{quantity}}</div>',
 
   bidErrors : '<div class="errorExplanation">' +
-      '<h3>THERE WERE PROBLEMS WITH THE FOLLOWING FIELDS:</h3>' +
+      '<p>DANG IT:</p>' +
       '<ul>' +
         '{{#errors}}<li>' +
           '{{text}}' +

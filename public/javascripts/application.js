@@ -28,7 +28,7 @@ $(function(){
       var formEl = $(this);
       var data = formEl.serialize();
       var placeToPutIt = $('form.place-a-bid').find('textarea')
-      var spinner =  $('<div class="spinner"><img src="/images/spinner.gif"><br><span>Workin\' On It<span></div>');
+      var spinner =  $('<div class="spinner"><img src="/images/spinner.gif"><br><span>working on it<span></div>');
       var coords = placeToPutIt.offset();
 
       var bidSuccess = function(data, textStatus) {
