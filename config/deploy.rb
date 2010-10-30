@@ -41,7 +41,7 @@ namespace :makerfactory do
   
   task :link_config_files do
     run "ln -nsf #{shared_path}/config/database.yml #{current_path}/config/database.yml"
-    run "ln -nsf #{shared_path}/config/errbit.rb #{current_path}/initializers/errbit.rb"
+    run "ln -nsf #{shared_path}/config/errbit.rb #{current_path}/config/initializers/errbit.rb"
   end
 
   task :test_errbit do
