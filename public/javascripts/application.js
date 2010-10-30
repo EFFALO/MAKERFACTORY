@@ -295,6 +295,52 @@ $(function(){
  
   };
 
+  var bindImageControls = function () {
+    elements.editable_images.each(function() {
+      var deleteImg = $(this).find('.delete_button')
+      var mainImg = $(this).find('.main_img');
+
+      var isOutsideMainImg = function(e){
+        var lOffset = mainImg.offset().left       // left
+        var rOffset = lOffset + mainImg.width()   // right
+        var tOffset = mainImg.offset().top        // top
+        var bOffset = tOffset + mainImg.height(); // bottom
+
+        if((e.pageX <= lOffset  || e.pageX >= rOffset) ||
+          ( e.pageY <= tOffset  || e.pageY >= bOffset)) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      mainImg.hover(function(e) {
+        deleteImg.show();
+      },
+      function(e) {
+        // hide image when outside the delete image bounds
+        // prevents flicker
+        if(isOutsideMainImg(e)){
+          deleteImg.hide();
+        }
+      });
+
+      deleteImg.hover(function(e) {
+      },
+      function(e) {
+        if(isOutsideMainImg(e)) {
+          deleteImg.hide();
+        }
+      });
+
+      deleteImg.click(function(){
+        console.log('yay')
+      })
+
+    });
+
+  };
+
   var elements = {
     'award_bid_links'         : $('.award_bid a').filter(function(){
       if($(this).attr('data-bid-award')) {
@@ -306,8 +352,9 @@ $(function(){
     'geocoder_lat_field'      : $('.geocoder_lat'),
     'geocoder_lng_field'      : $('.geocoder_lng'),
     'geocoder_location_field' : $('.geocoder_location'),
-    'geocoder_form'           : $('.geocoder_form')
-  };
+    'geocoder_form'           : $('.geocoder_form'),
+    'editable_images'          : $('.editable_image')
+    };
   
   // conditional hookups
   if($('form.job_form').length) {
@@ -331,5 +378,8 @@ $(function(){
   }
   if(elements.geocoder_form.length) {
     bindGeocodeListener();
+  }
+  if(elements.editable_images.length) {
+    bindImageControls();
   }
 });
