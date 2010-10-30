@@ -123,25 +123,23 @@
             - else
               .content
                 %h3
-                  BIDS HAVE BEEN RECEIVED
+                  REVIEW & AWARD BIDS
                 %p
                 
                   Below is a list of all the bids you've received for this job. Please take a look and if you want to, award some bids. Awarding a bid does the following: 
                 %ul.things-to-remember
                   %li
-                    Sends an email to the bidder informing them that they have won the bid.
+                    %strong
+                      Sends an email to the bidder
+                    — informing them that they have won the bid. Regardless of this notification, you'll most likely need to consult with the bidder and resolve the final details.
                   %li
-                    Increases your 
-                    %em
-                      bids awarded
-                    counter by one. This is shared on your profile.
-                  %li
-                    Increases the bidder's
-                    %em
-                      bids won
-                    counter by one. This is shared on their profile.
+                    %strong
+                      Participation +1
+                    — increases both your and the bidder's participation counters by one.
                 %p
-                  By awarding a bid, you help to increase the trust of the agreement by making it public. Regardless of the notification, you'll most likely need to consult with the bidder and resolve the final details.
+                  %small
+                    AND PLEASE NOTE 
+                  — Since you've received at least one bid, this job is no longer editable.
                 .clear
         - else
           .callout
@@ -202,6 +200,8 @@
     - if @bids && !@bids.empty?
       %a{:name=>'bids'}
       .bids
+        %h2
+          = pluralize(@job.bids.count, 'BID RECEIVED', 'BIDS RECEIVED')
         %p.help
           Arranged by quantity, in descending order
         - @bids.each do |bid|
@@ -211,7 +211,7 @@
                 .avatar
                   - link_to user_url(@job.creator) do
                     = image_tag @job.creator.image.url(:avatar)
-                %h2
+                %h3
                   = bid.creator.name
                 .info
                   Bid posted on
