@@ -25,6 +25,7 @@
                 = job.bids.count
             .clear
           .photo
+            = image_tag job.image1.url(:tile)
       .clear
     - unless @user.bids.empty?
       %br
@@ -65,5 +66,28 @@
                 = job.bids.count
             .clear
           .photo
-          = image_tag job.image1.url(:tile) if job.image1.file?
+            = image_tag job.image1.url(:tile)
       .clear
+    - unless @user.bids.empty?
+      %br
+      %h2
+        ACTIVE BIDS
+      %p.help
+        These are jobs you have placed bids on
+        - @bids.each do |bid|
+          .tile{:class => cycle('prim', 'alt'), 'data-href' => job_url(bid.job)}
+            .stripe
+              .left
+                %h3
+                  = bid.job.title
+                .info 
+                  = bid.job.deliver_by
+              .right
+                %span
+                  = "#{bid.quantity}/#{bid.job.quantity_needed}"
+                .info
+                  Bids
+              .clear
+            .photo
+              = image_tag bid.job.image1.url(:tile)
+        .clear

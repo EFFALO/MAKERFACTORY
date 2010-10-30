@@ -199,7 +199,7 @@
                 %span.details
                   = number_to_human_size @job.blueprint.size
     .clear
-    - if !@bids.empty?
+    - if @bids && !@bids.empty?
       %a{:name=>'bids'}
       .bids
         .help

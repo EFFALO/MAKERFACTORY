@@ -14,9 +14,10 @@ set :deploy_to, "/home/#{user}/staging.makerfactory.com"
 set :deploy_via, :remote_cache
 ssh_options[:forward_agent] = true
 
-set :default_environment, { :GEM_HOME => "#{shared_path}/.gems",
-                            :GEM_PATH => "#{shared_path}/.gems",
-                            :PATH     => "#{shared_path}/.gems/bin:$PATH"}
+set :default_environment, { :GEM_HOME  => "#{shared_path}/.gems",
+                            :GEM_PATH  => "#{shared_path}/.gems",
+                            :PATH      => "#{shared_path}/.gems/bin:$PATH",
+                            :RAILS_ENV => "production"}
 
 #role :web, web_server
 role :app, ENV['SERVER'] ||= "staging.makerfactory.com"
