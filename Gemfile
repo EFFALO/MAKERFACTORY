@@ -18,6 +18,7 @@ end
 
 group :production do
   gem 'mysql'
+  gem 'hoptoad_notifier'
 end
 
 group :test do 

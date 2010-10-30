@@ -39,8 +39,13 @@ namespace :makerfactory do
     run "mv ~/tmpfile #{current_path}/config/preinitializer.rb"
   end
   
-  task :config_database do
+  task :link_config_files do
     run "ln -nsf #{shared_path}/config/database.yml #{current_path}/config/database.yml"
+    run "ln -nsf #{shared_path}/config/errbit.rb #{current_path}/initializers/errbit.rb"
+  end
+
+  task :test_errbit do
+    run "cd #{current_path}; #{bundle_cmd} exec rake hoptoad:test" 
   end
 
   task :install_bundler do
@@ -62,6 +67,6 @@ namespace :makerfactory do
 end
 
 after('deploy:setup', 'makerfactory:install_bundler')
-after('deploy:symlink', 'makerfactory:config_database')
+after('deploy:symlink', 'makerfactory:link_config_files')
 after('deploy:symlink', 'makerfactory:gem_path')
 after('deploy:symlink', 'makerfactory:config_mailer')
