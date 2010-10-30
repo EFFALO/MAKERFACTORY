@@ -4,7 +4,7 @@
       %h2
         TRACKER
       .info
-        Track your MAKERFACTORY activity below
+        Your MAKERFACTORY activity log
     .clear
   .tiles
     - unless @active_jobs.empty?
@@ -13,7 +13,7 @@
       %p.help
         These are jobs that you created
       - @active_jobs.each do |job|
-        .tile{:class => cycle('prim', 'alt'), 'data-href' => job_url(job)}
+        %a.tile{:class => cycle('prim', 'alt'), 'href' =>  job_url(job)}
           .stripe
             .left
               %h3
@@ -22,34 +22,9 @@
                 = job.deliver_by
             .right
               %span
-                999
-              .info
-                Bids
+                = job.bids.count
             .clear
           .photo
-      .clear
-    - unless @inactive_jobs.empty?
-      %br
-      %h2
-        INACTIVE JOBS
-      %p.help
-        These jobs are no longer.
-      - @inactive_jobs.each do |job|
-        .tile{:class => cycle('prim', 'alt'), 'data-href' => job_url(job)}
-          .stripe
-            .left
-              %h3
-                = job.title
-              .info 
-                = job.deliver_by
-            .right
-              %span
-                999
-              .info
-                Bids
-            .clear
-          .photo
-          = image_tag job.image1.url(:tile) if job.image1.file?
       .clear
     - unless @user.bids.empty?
       %br
@@ -57,19 +32,38 @@
         ACTIVE BIDS
       %p.help
         These are jobs you have placed bids on
-        - @bids.each do |bid|
-          .tile{:class => cycle('prim', 'alt'), 'data-href' => job_url(bid.job)}
-            .stripe
-              .left
-                %h3
-                  = bid.job.title
-                .info 
-                  = bid.job.deliver_by
-              .right
-                %span
-                  = "#{bid.quantity}/#{bid.job.quantity_needed}"
-                .info
-                  Bids
-              .clear
-            .photo
+      - @bids.each do |bid|
+        %a.tile{:class => cycle('prim', 'alt'), 'href' => job_url(bid.job)}
+          .stripe
+            .left
+              %h3
+                = bid.job.title
+              .info 
+                = bid.job.deliver_by
+            .right
+              %span
+                = "#{bid.quantity}/#{bid.job.quantity_needed}"
+            .clear
+          .photo
         .clear
+    - unless @inactive_jobs.empty?
+      %br
+      %h2
+        INACTIVE JOBS
+      %p.help
+        These jobs are no longer available
+      - @inactive_jobs.each do |job|
+        %a.tile{:class => cycle('prim', 'alt'), 'href' => job_url(job)}
+          .stripe
+            .left
+              %h3
+                = job.title
+              .info 
+                = job.deliver_by
+            .right
+              %span
+                = job.bids.count
+            .clear
+          .photo
+          = image_tag job.image1.url(:tile) if job.image1.file?
+      .clear
