@@ -186,17 +186,18 @@
         .bucket
           - [@job.image1, @job.image2, @job.image3].each do |image|
             = image_tag image.url(:profile) if image.file?
-      .stripe
-        %h4
-          DOWNLOAD BLUEPRINTS
-      .box
-        %ul.file-list
-          - if @job.blueprint.file?
-            %li
-              %h5
-                = link_to(@job.blueprint.original_filename, @job.blueprint.url)
-              %span.details
-                = number_to_human_size @job.blueprint.size
+      - if (@job.blueprint.file?)
+        .stripe
+          %h4
+            DOWNLOAD BLUEPRINTS
+        .box
+          %ul.file-list
+            - if @job.blueprint.file?
+              %li
+                %h5
+                  = link_to(@job.blueprint.original_filename, @job.blueprint.url)
+                %span.details
+                  = number_to_human_size @job.blueprint.size
     .clear
     - if !@bids.empty?
       %a{:name=>'bids'}
