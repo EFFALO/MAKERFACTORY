@@ -23,25 +23,29 @@ $(function(){
     $('form.place-a-bid').submit(function(event){
 
       event.preventDefault();
-
+      // clear previous failures
+      $('.errorExplanation').remove();
       var formEl = $(this);
       var data = formEl.serialize();
       var placeToPutIt = $('form.place-a-bid').find('textarea')
-      var spinner =  $('<div class="spinner"><img src="/images/spinner.gif"><span>Workin\' On It<span></div>');
+      var spinner =  $('<div class="spinner"><img src="/images/spinner.gif"><br><span>Workin\' On It<span></div>');
       var coords = placeToPutIt.offset();
 
       var bidSuccess = function(data, textStatus) {
+        var content = $(formEl).parent();
+
         if(data.errors) {
           bidFailure(data.errors)
           return
         }
 
         if('success' == textStatus) {
-          var success_text = 'Your bid has successfully been submitted. Check out the <a href="/active">active</a> page to keep track of your bids.';
-          $('div.callout div.content h3').html('BID SUCCESSFUL');
-          $('div.callout div.content div.bid_instructions').html(success_text);
-          $('div.callout div.content form').empty();
-          $
+          content.empty();
+          spinner.remove();
+          content.append(data.partial);
+          content.children().hide();
+          content.children().fadeIn(300, 'swing');
+          
           setTimeout(conditionalAddActiveButtons,200);
         } else {
           throw 'non-200 result from POST'
@@ -49,11 +53,27 @@ $(function(){
       };
 
       var bidFailure = function(errors) {
-        console.log(errors)
+        var errors = $.map(errors, function (err, i) {
+          var field = err[0].substring(0,1).toUpperCase() + err[0].substring(1);
+          var humanReadable = field + ' ' + err[1] + '.';
+          return {text : humanReadable};
+        })
+        var template = Handlebars.compile(makerFactory.templates.bidErrors);
+        var data = { 'errors' : errors };
+        var result = template(data);
+        $(formEl).before(result)
+
+        $(':disabled').attr('disabled', false);
+        $('form.place-a-bid').removeClass('dimmed');
+        spinner.remove();
       }
 
-      var bidError = function() {
-        throw 'Internal error on host.'
+      var bidError = function(req,textStatus,err) {
+        throw {
+          'xhr' : req,
+          'textStatus' : textStatus,
+          'error' : err
+        }
       }
 
       var conditionalAddActiveButtons = function(counts) {
@@ -64,7 +84,7 @@ $(function(){
           var activeLink = $('<li class="active"><a href="http://localhost:3000/active">ACTIVE</a></li>');
           activeLink.hide();
           $('div.nav li.profile').before($(activeLink));
-          activeLink.fadeIn(500);
+          activeLink.fadeIn(500, 'swing');
         }
       };
 
@@ -76,7 +96,6 @@ $(function(){
         url      : formEl.attr('action'),
         type     : 'POST'
       })
-      //$.post(formEl.attr('action'), data, bidSuccess);
       $(':enabled').attr('disabled', true);
       $('form.place-a-bid').addClass('dimmed');
 
@@ -86,8 +105,6 @@ $(function(){
         top: coords.top + placeToPutIt.height()/2 - spinner.height()/2
       })
 
-      // #disable button
-      // #show spinner
     });
   };
   

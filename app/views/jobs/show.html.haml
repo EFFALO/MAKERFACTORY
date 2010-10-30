@@ -148,28 +148,7 @@
             .fold
             .content
               - if @existing_bid
-                %h3
-                  YOU'VE BIDDED ON THIS JOB
-                %div.bid_instructions
-                  %p
-                    The job owner has your contact information and you will be notified by email if you are awarded the bid.
-                  %ul.things-to-remember.greenwrap
-                    %li
-                      You placed this bid on:
-                      = format_time(@existing_bid.created_at, :human)
-                - form_for([@job, @existing_bid], :html => {:class => 'place-a-bid'}) do |form|
-                  .message
-                    .stripe
-                      .left.extra
-                      %h4
-                        YOU SENT THIS MESSAGE
-                      .clear
-                    = form.text_area :message, :disabled => true
-                  .quantity
-                    %label
-                      Your bid was for a quantity of: 
-                      = form.text_field :quantity, :size => 2, :disabled => true
-                  .clear
+                = render(:partial => 'current_user_bid', :locals => {:bid => @existing_bid})
               - else
                 - # job isn't yours, and is expired ...
                 %h3
