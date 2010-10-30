@@ -49,6 +49,9 @@ body
   border: 1px solid #111
   -webkit-box-shadow: 0px 0px 2px #222
   
+  img
+    border: none
+  
 .stripe
   background: #534741
   color: #fafafa
@@ -61,7 +64,10 @@ body
   .left
     width: 48%
     float: left
-
+  
+  .big
+    width: 100% !important
+    
   .right
     text-align: right
     width: 48%
@@ -1021,58 +1027,69 @@ form.post-a-job
     margin-top: 5px
     margin-bottom: 20px
     
-  .bid-tile
-    margin: 0 20px 20px 20px
-    width: 600px
-    -webkit-box-shadow: 1px 1px 5px rgba(0,0,0,.5)
-    .right
-      width: 220px
-    .stripe
-      background: #607965
-      h3
-        margin: 0
-        padding: 0
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
-        font-size: 16px
-        text-shadow: #607965 0px 0px 3px
-    .quantity
-      .number
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
-        font-size: 18px
-        text-shadow: #607965 0px 0px 3px
-        color: #f8f0a9
-        letter-spacing: 1px
-    .message
-      font-size: 12px
-      background: #f5f5f5
-    .action
-      padding: 5px 0
-      font-size: 12px
-      border-top: 1px solid #ddd
-      background: #e6e6e6
-      a
-        padding: 6px
-        text-decoration: none
-        color: #333
-        background: #f8f0a9
-        border: 1px solid #dcd493
-        font-size: 11px
-        text-transform: uppercase
-        font-weight: bold
-        &:hover
-          background-color: #ffe500
-      .awarded
+.bid-tile
+  margin: 0 10px 20px 10px
+  width: 600px
+  -webkit-box-shadow: 1px 1px 5px rgba(0,0,0,.5)
+  .right
+    width: 220px
+  .stripe
+    background: #607965 !important
+    h3
+      margin: 0
+      padding: 0
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+      font-size: 16px
+      text-shadow: #607965 0px 0px 3px
+      
+      .info
         display: inline
-        font-weight: bold
-        padding-left: 18px
-        background: url(/images/check.png) no-repeat 0 2px
-      .direct
-        display: inline
-        margin-left: 10px
-        color: #999
-      .email
-        color: #666
-        display: inline
+  .quantity
+    .number
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+      font-size: 18px
+      text-shadow: #607965 0px 0px 3px
+      color: #f8f0a9
+      letter-spacing: 1px
+  .message
+    font-size: 12px
+    background: #f5f5f5
+    .box
+      float: left
+    .photo
+      float: left
+      width: 192px
+      height: 144px
+      background: #ddd
+      border-right: 1px solid #aaa
+  .action
+    padding: 5px 0
+    font-size: 12px
+    border-top: 1px solid #ddd
+    background: #e6e6e6
+    a
+      padding: 6px
+      text-decoration: none
+      color: #333
+      background: #f8f0a9
+      border: 1px solid #dcd493
+      font-size: 11px
+      text-transform: uppercase
+      font-weight: bold
+      &:hover
+        background-color: #ffe500
+    .awarded
+      display: inline
+      font-weight: bold
+      padding-left: 18px
+      background: url(/images/check.png) no-repeat 0 2px
+    .direct
+      display: inline
+      margin-left: 10px
+      color: #999
+    .email
+      color: #666
+      display: inline
 
 .tiles
   background: #2e2825
@@ -1103,14 +1120,16 @@ form.post-a-job
       border-color: #F8F0A9
     .left
       h3
+        float: left
         margin: 0
         padding: 0
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
         font-size: 13px
         overflow: hidden
-        width: 140px
         text-transform: normal
         text-shadow: #534741 0px 0px 3px
+      .info
+        float: left
     .right
       width: 64px
       text-align: right
@@ -1119,7 +1138,8 @@ form.post-a-job
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
         margin: 0
         padding: 0
-        font-size: 18px
+        font-weight: bold
+        font-size: 13px
         text-shadow: #534741 0px 0px 3px
         opacity: .7
     .stripe

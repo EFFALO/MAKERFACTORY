@@ -34,19 +34,39 @@
       %p.help
         These are jobs you have placed bids on
       - @bids.each do |bid|
-        %a.tile{:class => cycle('prim', 'alt'), 'href' => job_url(bid.job)}
+        .bid-tile{:class => "#{cycle('prim', 'alt')}"}
           .stripe
             .left
+              .avatar
+                - link_to user_url(bid.job.creator) do
+                  = image_tag bid.job.creator.image.url(:avatar)
               %h3
                 = bid.job.title
-              .info 
-                = bid.job.deliver_by
+                .info
+                  by
+                  =link_to bid.job.creator.name,user_url(bid.job.creator)
+              .info
+                Posted on
+                %span.highlight
+                  = format_time(bid.job.created_at, :datestamp)
+
             .right
-              %span
-                = "#{bid.quantity}/#{bid.job.quantity_needed}"
+              .quantity
+                .number
+                  = "#{bid.quantity}/#{bid.job.quantity_needed}"
+                .info.label
+                  Quantity Bidded
             .clear
-          .photo
-        .clear
+          .message
+            .photo
+              = image_tag bid.job.image1.url(:tile)
+            .box
+              = bid.message
+            .clear
+          .action
+            .box
+              =link_to "view job", job_url(bid.job)
+              
     - unless @inactive_jobs.empty?
       %h2
         INACTIVE JOBS
