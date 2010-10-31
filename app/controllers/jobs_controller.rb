@@ -15,7 +15,7 @@ class JobsController < ApplicationController
   end
 
   def new
-    @job = Job.new
+    @job = Job.new(:deliver_by => 1.week.from_now)
   end
 
   def create
