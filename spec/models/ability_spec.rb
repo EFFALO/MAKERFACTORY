@@ -34,4 +34,12 @@ describe Ability do
     bid = Factory.build(:bid, :job => job, :creator => @user)
     @ability.should_not be_able_to(:create, bid)
   end
+
+  it "should not allow anonymous users to new bids on expired jobs" do
+    job = Factory.create(:job, :created_at => 3.weeks.ago)
+    bid = Factory.build(:bid, :job => job)
+    
+    anonymous_ability = Ability.new(nil)
+    anonymous_ability.should_not be_able_to(:new, bid)
+  end
 end
