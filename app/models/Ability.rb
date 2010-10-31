@@ -48,7 +48,9 @@ class Ability
       
       can :read, Job
       can :new, Job
-      can :new, Bid
+      can :new, Bid do |bid|
+        !bid.job.expired?
+      end
       can :create, UserSession
       can :create, User
       can :read, User

@@ -115,7 +115,7 @@
             - if @bids.empty? 
               .content
                 %h3
-                  THIS IS YOUR JOB
+                  = @job.expired? ? "THIS JOB HAS EXPIRED" : "THIS IS YOUR JOB"
                 %p
                   You created this job on
                   = format_time(@job.created_at, :human)
@@ -153,9 +153,8 @@
                 %h3
                   THIS JOB HAS EXPIRED
                 %p
-                  Expired jobs can no longer be bid on. This job was made
-                  = @job.created_at
-                  and so far # of people have submitted bids. To view this job's bid history, click here.
+                  Expired jobs can no longer be bid on. This job was made on
+                  = format_time(@job.created_at, :human) + "."
                 .clear
 
 
