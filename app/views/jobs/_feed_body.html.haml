@@ -1,0 +1,12 @@
+Description:
+= job.description
+Fabrication Type:
+= job.fabrication_type
+Quanitity Needed:
+= job.quantity_needed
+Deliver By:
+= format_time(job.deliver_by, :human)
+Deliver To:
+= job.deliver_to
+= #image_tag(job.image1.url(:profile))
+

@@ -17,4 +17,5 @@ ActionController::Routing::Routes.draw do |map|
   map.tracker 'tracker', :controller => "users", :action => "tracker"
   map.root :controller => "pages", :action => "home"
   map.pages 'pages/:action', :controller => "pages"
+  map.job_feed 'latest_jobs', :controller => "jobs", :action => "feed"
 end
