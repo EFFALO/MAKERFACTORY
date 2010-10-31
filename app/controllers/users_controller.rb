@@ -51,7 +51,7 @@ class UsersController < ApplicationController
     @user = current_user
     @active_jobs = Job.active.find(:all, :conditions => ["creator_id = ?", current_user.id])
     @inactive_jobs = Job.inactive.find(:all, :conditions => ["creator_id = ?", current_user.id])
-    @bids = current_user.bids
+    @bids = Bid.all(:conditions => {:creator_id => current_user.id}, :order => "created_at DESC")
   end
 
 end
