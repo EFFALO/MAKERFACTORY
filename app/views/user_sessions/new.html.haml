@@ -27,7 +27,10 @@
           %br
           %br
           = f.submit "Login"
-        = link_to "Forgot your password?", new_password_reset_url
+        %br
+        .forgot_password
+          = link_to "Forgot your password?", new_password_reset_url
+        %br
     .right
       .callout.link
         .fold

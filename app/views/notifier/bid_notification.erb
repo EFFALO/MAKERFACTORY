@@ -2,7 +2,7 @@ Howdy, <%= @bid.job.creator.name %>,
 
 The user <%= @bid.creator.name %> has placed a bid on your job "<%= @bid.job.title %>" on MAKERFACTORY:
 
-— · — · — · — · — · — · — · —
+--
 
 JOB:
 <%= job_url @bid.job %>
@@ -13,7 +13,7 @@ QUANTITY:
 MESSAGE:
 <%= @bid.message %>
 
-— · — · — · — · — · — · — · —
+--
 
 You may contact them at: <%= @bid.creator.email %>. Please do not reply to this email, as it's not monitored by anyone.
 
