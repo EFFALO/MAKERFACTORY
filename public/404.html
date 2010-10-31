@@ -5,26 +5,73 @@
 
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <title>The page you were looking for doesn't exist (404)</title>
+  <title>ERROR 404</title>
 	<style type="text/css">
-		body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-		div.dialog {
-			width: 25em;
-			padding: 0 4em;
-			margin: 4em auto 0 auto;
-			border: 1px solid #ccc;
-			border-right-color: #999;
-			border-bottom-color: #999;
+		body { background: url(/images/grid.png); background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
+		div.container {
+		  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+			width: 400px;
+      color: #fafafa;
+      padding: 5px 10px;
+			margin: 5em auto 0 auto;
 		}
-		h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+		div.dialog {
+		  clear: left;
+		  text-align: left;
+		  width: 100%;
+		  background: #da85ac;
+		  -webkit-box-shadow: 1px 1px 2px rgba(0,0,0,.3);
+		  border: 1px solid #c5789b;
+		}
+		.header {
+		  margin-bottom: 10px;
+    }
+    .clear { clear: both;}
+    .stripe {background: #ae6a8a; color: #fafafa;}
+		.icon {
+      float: left;
+      width: 65px;
+      height: 51px;
+      display: block;
+      background: url(/images/icon.png) no-repeat; }
+    .logo h1 {
+      text-align: left;
+      float: left;
+      width: 120px;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #534741;
+      letter-spacing: -1px;
+      line-height: 26px;
+      font-size: 30px;
+      margin: 0 0 0 10px;
+      padding: 0; }
+      .box {padding: 10px; font-family: "Lucida Grande", Verdana, Arial, sans-serif; color: #fafafa; font-size:12px;}
+      h2 {
+        background: #ae6a8a url(/images/x.png) 8px 12px no-repeat;
+        margin: 0;
+        padding: 8px 8px 8px 28px;
+        font-size: 18px;
+        text-transform: uppercase;}
 	</style>
 </head>
 
 <body>
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+          <div class="icon"></div>
+          <h1>MAKER<br />FACTORY</h1>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="dialog">
+      <div class="stripe">
+        <h2>ERROR 404</h2>
+      </div>
+      <div class="box">
+        Page not found, yo!
+      </div>
+    </div>
   </div>
 </body>
 </html>
