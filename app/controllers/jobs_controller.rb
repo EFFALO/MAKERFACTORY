@@ -23,7 +23,7 @@ class JobsController < ApplicationController
     if @job.save
       flash[:notice] = "Job successfully created!"
       if !@job.lat && !@job.lng
-        flash[:notice] = "We created your job but couldn't find its location on a map. Please edit your job if you want it to be on the map."
+        flash[:notice] = "Job created, but we're unsure of its location (so it won't be on the map)."
       end
       redirect_to job_path(@job)
     else
@@ -40,7 +40,7 @@ class JobsController < ApplicationController
     if @job.update_attributes(params[:job])
       flash[:notice] = "Job successfully altered!"
       if !@job.lat && !@job.lng
-        flash[:notice] = "We altered your job but couldn't find its location on a map. Please edit your job again if you want it to be on the map."
+        flash[:notice] = "Job updated, but we're unsure of its location (so it won't be on the map)."
       end
       redirect_to(job_path(@job))
     else

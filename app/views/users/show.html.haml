@@ -35,21 +35,24 @@
                 Location:
               %td.attribute.box-inline
                 = @user.location
-            %tr
-              %td.label.box
-                URL:
-              %td.attribute.box-inline
-                = link_to @user.url, @user.url
-            %tr
-              %td.label.box
-                Equipment:
-              %td.attribute.box-inline
-                = @user.equipment
-            %tr
-              %td.label.box
-                Materials:
-              %td.attribute.box-inline
-                = @user.materials
+            - if !@user.url.empty? 
+              %tr
+                %td.label.box
+                  URL:
+                %td.attribute.box-inline
+                  = link_to @user.url, @user.url
+            - if !@user.equipment.empty? 
+              %tr
+                %td.label.box
+                  Equipment:
+                %td.attribute.box-inline
+                  = @user.equipment
+            - if !@user.materials.empty? 
+              %tr
+                %td.label.box
+                  Materials:
+                %td.attribute.box-inline
+                  = @user.materials
     .right
       .upload-image
         .bucket
