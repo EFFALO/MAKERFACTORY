@@ -30,8 +30,8 @@
             .fold
               \&nbsp;
             - if current_user # if the user has created jobs or bids
-              - if(can? :access, :users_active)
-                %a{:href => active_url}
+              - if(can? :access, :users_tracker)
+                %a{:href => tracker_url}
                   .content
                     %h3
                       Hello,

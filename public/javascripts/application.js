@@ -46,7 +46,7 @@ $(function(){
           content.children().hide();
           content.children().fadeIn(300, 'swing');
           
-          setTimeout(conditionalAddActiveButtons,200);
+          setTimeout(conditionalAddTrackerButtons,200);
         } else {
           throw 'non-200 result from POST'
         }
@@ -76,15 +76,15 @@ $(function(){
         }
       }
 
-      var conditionalAddActiveButtons = function(counts) {
+      var conditionalAddTrackerButtons = function(counts) {
         // if jobs_count and bids_count are both zero, we know
-        // that user previously was not shown the active link
-        var shouldAddActiveLink = !(makerFactory.jobs_count || makerFactory.bids_count)
-        if(shouldAddActiveLink) {
-          var activeLink = $('<li class="active"><a href="http://localhost:3000/active">ACTIVE</a></li>');
-          activeLink.hide();
-          $('div.nav li.profile').before($(activeLink));
-          activeLink.fadeIn(500, 'swing');
+        // that user previously was not shown the tracker link
+        var shouldAddTrackerLink = !(makerFactory.jobs_count || makerFactory.bids_count)
+        if(shouldAddTrackerLink) {
+          var trackerLink = $('<li class="active"><a href="http://localhost:3000/tracker">TRACKER</a></li>');
+          trackerLink.hide();
+          $('div.nav li.profile').before($(trackerLink));
+          trackerLink.fadeIn(500, 'swing');
         }
       };
 

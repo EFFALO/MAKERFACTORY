@@ -40,7 +40,7 @@ class Ability
         job.creator == user &&
         !(job.bids.size > 0)
       end
-      can :access, :users_active do 
+      can :access, :users_tracker do
         !(user.created_jobs.empty? && user.bids.empty?)
       end
       

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource :except => [:edit, :update, :active, :count_jobs_bids]
+  load_and_authorize_resource :except => [:edit, :update, :tracker, :count_jobs_bids]
 
   def new
     @user = User.new
@@ -46,8 +46,8 @@ class UsersController < ApplicationController
     end
   end
   
-  def active
-    authorize! :access, :users_active
+  def tracker
+    authorize! :access, :users_tracker
     @user = current_user
     @active_jobs = Job.active.find(:all, :conditions => ["creator_id = ?", current_user.id])
     @inactive_jobs = Job.inactive.find(:all, :conditions => ["creator_id = ?", current_user.id])

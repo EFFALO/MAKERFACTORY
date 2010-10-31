@@ -4,9 +4,9 @@
   %li.main
     = link_to("POST A JOB", new_job_url)
   - if current_user
-    - if can?(:access, :users_active)
+    - if can?(:access, :users_tracker)
       %li.active
-        = link_to("ACTIVE", active_url)
+        = link_to("TRACKER", tracker_url)
     %li.profile
       = link_to("PROFILE", account_url)
   %li.login

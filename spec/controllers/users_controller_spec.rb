@@ -88,7 +88,7 @@ describe UsersController do
     end
   end
 
-  describe "#active" do
+  describe "#tracker" do
     before(:each) do
       @user = Factory.create(:user)
       login_as! @user
@@ -97,30 +97,30 @@ describe UsersController do
     it "should allow users with bids and jobs to access the page" do
       Factory.create(:job, :creator => @user)
       Factory.create(:bid, :creator => @user)
-      get :active
+      get :tracker
       response.should be_success
     end
 
     it "should not allow a user without bids or jobs to access the page" do
-      get :active
+      get :tracker
       response.should_not be_success
     end
 
     it "should allow the user to access the page if he has jobs" do
       Factory.create(:job, :creator => @user)
-      get :active
+      get :tracker
       response.should be_success
     end
 
     it "should allow the user to access the page if he has bids" do
       Factory.create(:bid, :creator => @user)
-      get :active
+      get :tracker
       response.should be_success
     end
 
     it "should not allow anonymous users" do
       logout!
-      get :active
+      get :tracker
       response.should_not be_success
     end
   end
