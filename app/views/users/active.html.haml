@@ -58,7 +58,7 @@
                   Quantity Bidded
             .clear
           .message
-            .photo
+            %a.photo 
               = image_tag bid.job.image1.url(:tile)
             .box
               = bid.message
@@ -66,6 +66,7 @@
           .action
             .box
               =link_to "view job", job_url(bid.job)
+
               
     - unless @inactive_jobs.empty?
       %h2
