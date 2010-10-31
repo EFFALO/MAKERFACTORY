@@ -20,7 +20,17 @@
               ENTER A DESCRIPTION
             %p.help
               Please describe your job below in 555 characters or less. Be sure to include any details the Maker might need to understand the job: What materials should be used? Any special instructions?
-            = form.text_area :description
+            .message.constrain
+              .stripe
+                .prompt
+                  Enter a maximum of 
+                  %span.maximum
+                    555
+                  characters
+                .counter
+                  0/555
+                .clear
+              = form.text_area :description  
           .box
             .field-highlight.left
             %h4
@@ -75,7 +85,7 @@
             UPLOAD BLUEPRINTS
         .box
           %p.help
-            Please upload any files the Maker might need to make an informed bid on your job. You may upload a maximum of three files, each must be 3MB or less.
+            Please upload any files the Maker might need to make an informed bid on your job. You may upload one file, 3MB or less.
           = form.file_field(:blueprint)
           %br
           %br

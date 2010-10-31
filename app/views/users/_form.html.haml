@@ -50,7 +50,17 @@
           SHOUTOUT
         %p.help
           Whatever you write here will be shown on your user profile page. 555 characters or less, please.
-        = form.text_area :description
+        .message.constrain
+          .stripe
+            .prompt
+              Enter a maximum of 
+              %span.maximum
+                555
+              characters
+            .counter
+              0/555
+            .clear
+          = form.text_area :description
       .box
         %h4
           = form.label :url
