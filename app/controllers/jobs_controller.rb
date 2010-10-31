@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :except => [:feed]
   
   def index
     @jobs = Job.active.find(:all, :limit => 10, :order => "created_at DESC")
@@ -49,4 +49,9 @@ class JobsController < ApplicationController
     end
   end
 
+  def feed
+    @jobs = Job.active(:order => "id DESC", :limit => 20)
+    render :layout => false
+    response.headers["Content-Type"] = "application/xml; charset=utf-8"
+  end
 end
