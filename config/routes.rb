@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :user_session
   
   # Resources
-  map.resources :password_resets
+  map.resources :password_resets, :only => [:new, :create, :edit, :update]
   map.resources :users, :only => :show
   map.resources :jobs do |jobs|
     jobs.resources :bids,
