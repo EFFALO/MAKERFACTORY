@@ -1198,15 +1198,9 @@ form.post-a-job
       background: #ddd
     
 .editable_image    
-  position: relative
 
-  .delete_button
-    position: absolute
-    top: 0px
-    right: -10px
-    z-index: 999
-    
-  .main_img
+  .image_container
+    width: 290px
     margin: 0px 0px 0px -10px !important
 
 .forgot_password
@@ -1216,6 +1210,19 @@ form.post-a-job
     padding-left: 10px
     text-decoration: none
     color: #e89067
+    position: relative
     &:hover
       text-decoration: underline
+
+    .delete_button
+      position: absolute
+      top: 0px
+      right: 0px
+      z-index: 999
+      
+    .main_img
+
+  .file_field
+    opacity: 0.3
+    display: none
 

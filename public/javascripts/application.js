@@ -297,9 +297,14 @@ $(function(){
 
   var bindImageControls = function () {
     elements.editable_images.each(function() {
+      var imageContainer = $(this).find('.image_container')
       var deleteImg = $(this).find('.delete_button')
       var mainImg = $(this).find('.main_img');
+      var fileField = $(this).find('input');
 
+      // allows the controls to know if you've actually
+      // left the main image, not simply entered a child 
+      // element
       var isOutsideMainImg = function(e){
         var lOffset = mainImg.offset().left       // left
         var rOffset = lOffset + mainImg.width()   // right
@@ -314,27 +319,48 @@ $(function(){
         }
       }
 
+      var xhrDeleteImage = function() {
+        $.ajax({
+          url: '/',//deleteImg.attr('data-href'),
+          type: 'get',
+          data: {},
+          //dataType: 'json',
+          success: function(data, textStatus, XMLHttpRequest) {
+            deleteImg.remove();
+            fileField.show();
+            imageContainer.slideUp('fast',function(){
+              imageContainer.remove();
+              fileField.fadeTo('slow',1.0)
+              fileField.attr('disabled',false)
+            })
+
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            throw 'Error on host during delete attempt.'
+
+          }
+        })
+      };
+
       mainImg.hover(function(e) {
         deleteImg.show();
       },
       function(e) {
-        // hide image when outside the delete image bounds
-        // prevents flicker
         if(isOutsideMainImg(e)){
           deleteImg.hide();
         }
       });
 
-      deleteImg.hover(function(e) {
-      },
-      function(e) {
-        if(isOutsideMainImg(e)) {
-          deleteImg.hide();
+      deleteImg.hover(
+        function(e) { },
+        function(e) {
+          if(isOutsideMainImg(e)) {
+            deleteImg.hide();
+          }
         }
-      });
-
+      );
       deleteImg.click(function(){
-        console.log('yay')
+        xhrDeleteImage();
       })
 
     });

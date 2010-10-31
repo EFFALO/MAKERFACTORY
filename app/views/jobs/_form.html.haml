@@ -80,8 +80,10 @@
               - [:image1, :image2, :image3].each do |img|
                 - if(@job.send(img).file?)
                   .editable_image
-                    = image_tag @job.send(img).url(:profile), :class => 'main_img'
-                    = image_tag image_path("delete_picture.jpg"), :class => 'delete_button', :style => 'display:none;'
+                    .image_container
+                      = image_tag @job.send(img).url(:profile), :class => 'main_img'
+                      = image_tag image_path("delete_picture.jpg"), :class => 'delete_button', :style => 'display:none;'
+                    = form.file_field(img, :disabled => true, :class => 'file_field')
                 - else
                   = form.file_field(img)
         .stripe
