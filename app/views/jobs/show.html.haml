@@ -96,7 +96,7 @@
                   copies of this object
                 %br
                 %span
-                  = "Remember, #{@job.creator.name} asked for #{@job.quantity_needed} copies."
+                  = "Remember, #{@job.creator.name} asked for #{pluralize(@job.quantity_needed, "copy", "copies")}."
                 %br
                 %hr
               %p
