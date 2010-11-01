@@ -9,8 +9,9 @@ set :use_sudo, false
 
 set :repository,  "git://github.com/EFFALO/MAKERFACTORY.git"
 set :scm, :git
-set :branch, 'master'
-set :deploy_to, "/home/#{user}/staging.makerfactory.com"
+set :branch, ENV['BRANCH'] ||= 'master'
+set :directory, ENV['DOMAIN'] ||= 'staging.makerfactory.com'
+set :deploy_to, "/home/#{user}/#{directory}"
 set :deploy_via, :remote_cache
 ssh_options[:forward_agent] = true
 
@@ -20,7 +21,7 @@ set :default_environment, { :GEM_HOME  => "#{shared_path}/.gems",
                             :RAILS_ENV => "production"}
 
 #role :web, web_server
-role :app, ENV['SERVER'] ||= "staging.makerfactory.com"
+role :app, ENV['SERVER'] ||= "makerfactory.com"
 #role :db,  db_server, :primary => true
 
 namespace :deploy do
