@@ -9,7 +9,7 @@ class Job < ActiveRecord::Base
   validates_numericality_of :quantity_needed, :greater_than => 0
   validate :validate_deliver_by
   
-  image_options = {:styles => { :profile => "290x218>", :small => '64x64#', :tile => "192x145>"}}
+  image_options = {:styles => { :profile => "290x218>", :small => '64x64#', :tile => "192x145#"}}
   has_attached_file :image1, image_options
   has_attached_file :image2, image_options
   has_attached_file :image3, image_options
