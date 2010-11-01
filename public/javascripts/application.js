@@ -111,7 +111,7 @@ $(function(){
   var bindAwardBidButtons = function() {
     var handleXHRsuccess = function(button) {
       button.hide(200, 'swing');
-      var awarded = button.replaceWith('awarded!');
+      var awarded = button.replaceWith('<div class="awarded">Bid awarded!</div>');
       awarded.show();
     };
     
