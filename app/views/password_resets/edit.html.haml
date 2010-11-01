@@ -1,15 +1,24 @@
-%h1
-  Change My Password
-- form_for @user, :url => password_reset_path, :method => :put do |f|
-  = f.error_messages
-  = f.label :password
-  %br
-  = f.password_field :password
-  %br
-  %br
-  = f.label :password_confirmation
-  %br
-  = f.password_field :password_confirmation
-  %br
-  %br
-  = f.submit "Update my password and log me in"
+.page.shadow
+  .stripe
+    .left
+      %h2
+        CHANGE PASSWORD
+      %span.info
+        Your password will be emailed to you
+    .right
+    .clear
+  .content
+    .box
+      - form_for @user, :url => password_reset_path, :method => :put do |f|
+        = f.error_messages
+        = f.label :password
+        %br
+        = f.password_field :password
+        %br
+        %br
+        = f.label :password_confirmation
+        %br
+        = f.password_field :password_confirmation
+        %br
+        %br
+        = f.submit "Update my password and log me in"
