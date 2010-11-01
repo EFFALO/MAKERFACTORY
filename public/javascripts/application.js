@@ -320,11 +320,11 @@ $(function(){
       }
 
       var xhrDeleteImage = function() {
+        deleteImg.remove();
         $.ajax({
           url: deleteImg.attr('data-href'),
           type: 'put',
           success: function(data, textStatus, XMLHttpRequest) {
-            deleteImg.remove();
             fileField.show();
             imageContainer.slideUp('fast',function(){
               imageContainer.remove();

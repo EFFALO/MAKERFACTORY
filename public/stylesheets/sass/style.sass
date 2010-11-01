@@ -1198,12 +1198,16 @@ form.post-a-job
       background: #ddd
       overflow: hidden
 
+// contains: an image, its delete button, and a hidden file 
+// field to be shown if the image is removed
 .editable_image
   position: relative
 
   .file_field
-    opacity: .3
-    display: none !important
+    // initial state for JS fadein
+    // note that this element also begins display:none
+    // from template
+    opacity: .2
 
   .image_container
     width: 290px
