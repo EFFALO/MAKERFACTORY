@@ -1196,11 +1196,30 @@ form.post-a-job
       background: #ddd
       overflow: hidden
 
+
 .editable_image    
+  position: relative
+// contains: an image, its delete button, and a hidden file 
+// field to be shown if the image is removed
+
+  .file_field
+    opacity: .2
+    // initial state for JS fadein
+    // note that this element also begins display:none
+    // from template
 
   .image_container
     width: 290px
     margin: 0px 0px 0px -10px !important
+
+    .delete_button
+      position: absolute
+      top: 5px
+      right: -5px
+      z-index: 999
+
+    .main_img
+    
 .forgot_password
   font-size: 11px
   a
@@ -1208,19 +1227,6 @@ form.post-a-job
     padding-left: 10px
     text-decoration: none
     color: #e89067
-    position: relative
     &:hover
       text-decoration: underline
-
-    .delete_button
-      position: absolute
-      top: 0px
-      right: 0px
-      z-index: 999
-      
-    .main_img
-
-  .file_field
-    opacity: 0.3
-    display: none
 
