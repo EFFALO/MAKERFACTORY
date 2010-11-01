@@ -2,8 +2,8 @@
   .stripe
     .left
       %h2.caps
-        = @jobs.size
-        jobs available
+        = pluralize(@jobs.size, "job", "jobs")
+        available
     .clear
   %table.list{ :cellspacing => "0", :cellpadding => "0" }
     %tr
