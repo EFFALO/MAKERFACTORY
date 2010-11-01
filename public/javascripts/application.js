@@ -295,10 +295,10 @@ $(function(){
  
   };
 
-  var bindImageControls = function () {
+  var bindImageDeletionControls = function () {
     elements.editable_images.each(function() {
-      var imageContainer = $(this).find('.image_container')
-      var deleteImg = $(this).find('.delete_button')
+      var imageContainer = $(this).find('.image_container');
+      var deleteImg = $(this).find('.delete_button');
       var mainImg = $(this).find('.main_img');
       var fileField = $(this).find('input');
 
@@ -321,10 +321,8 @@ $(function(){
 
       var xhrDeleteImage = function() {
         $.ajax({
-          url: '/',//deleteImg.attr('data-href'),
-          type: 'get',
-          data: {},
-          //dataType: 'json',
+          url: deleteImg.attr('data-href'),
+          type: 'put',
           success: function(data, textStatus, XMLHttpRequest) {
             deleteImg.remove();
             fileField.show();
@@ -333,11 +331,9 @@ $(function(){
               fileField.fadeTo('slow',1.0)
               fileField.attr('disabled',false)
             })
-
           },
           error: function(XMLHttpRequest, textStatus, errorThrown) {
             throw 'Error on host during delete attempt.'
-
           }
         })
       };
@@ -360,7 +356,8 @@ $(function(){
         }
       );
       deleteImg.click(function(){
-        xhrDeleteImage();
+        var doIt = confirm('Are you sure you want to remove this image?')
+        if(doIt) xhrDeleteImage();
       })
 
     });
@@ -406,6 +403,6 @@ $(function(){
     bindGeocodeListener();
   }
   if(elements.editable_images.length) {
-    bindImageControls();
+    bindImageDeletionControls();
   }
 });

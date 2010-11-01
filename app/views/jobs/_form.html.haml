@@ -82,7 +82,7 @@
                   .editable_image
                     .image_container
                       = image_tag @job.send(img).url(:profile), :class => 'main_img'
-                      = image_tag image_path("delete_picture.jpg"), :class => 'delete_button', :style => 'display:none;'
+                      = image_tag image_path("delete_picture.jpg"), :class => 'delete_button', :style => 'display:none;', :'data-href' => "/jobs/#{@job.id}/delete_image?field_name=#{img}"
                     = form.file_field(img, :disabled => true, :class => 'file_field')
                 - else
                   = form.file_field(img)
