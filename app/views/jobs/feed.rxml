@@ -11,7 +11,9 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
      xml.item do
        xml.title       job.title
        xml.link        job_url(job)
-       xml.description render(:partial => "feed_body", :locals => {:job => job})
+       xml.description do
+         xml << h (render(:partial => "feed_body", :locals => {:job => job}))
+       end
        xml.guid        job_url(job)
      end
    end

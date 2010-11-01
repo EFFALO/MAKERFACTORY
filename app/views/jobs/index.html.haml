@@ -1,3 +1,6 @@
+- content_for :header do
+  = auto_discovery_link_tag(:rss, job_feed_url, {:title => "Latest Jobs RSS"})
+
 .page.shadow 
   .stripe
     .left

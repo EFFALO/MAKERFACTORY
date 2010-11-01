@@ -1,3 +1,5 @@
+- content_for :header do
+  = auto_discovery_link_tag(:rss, job_feed_url, {:title => "Latest Jobs RSS"})
 :javascript
   $(function(){
     makerFactory.jobs = #{@map_jobs.map do |job| {
@@ -121,7 +123,7 @@
               .icon
               %h5
                 WE HAVE A BLOG
-            %a{:href=>"http://twitter.com/makerfactory-jobs", :class=>"feed"}
+            - link_to(job_feed_url, {:class => "feed"}) do
               .icon
               %h5
                 FEED OF JOBS
