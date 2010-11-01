@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
-  load_and_authorize_resource :except => [:feed]
-  
+  load_and_authorize_resource :except => [:delete_image, :feed]
+
   def index
     @jobs = Job.active.find(:all, :limit => 10, :order => "created_at DESC")
   end
@@ -9,7 +9,7 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     @existing_bid = Bid.find(:first, :conditions => {:job_id => @job.id, :creator_id => current_user.id}) if current_user
     if can? :read_bids, @job
-      @bids = @job.bids 
+      @bids = @job.bids.find(:all, :order => "quantity DESC") if @job.bids
     end
     @bid = Bid.new(:job => @job)
   end
@@ -54,4 +54,15 @@ class JobsController < ApplicationController
     render :layout => false
     response.headers["Content-Type"] = "application/xml; charset=utf-8"
   end
+
+  def delete_image
+    @job = Job.find(params[:id])
+    authorize! :update, @job
+    image_fields = [:image1,:image2,:image3]
+    field = image_fields.detect {|i| i.to_s == params[:field_name]}
+    @job.send("#{field}=",nil) if field
+    @job.save!
+    render :nothing => true
+  end
+
 end

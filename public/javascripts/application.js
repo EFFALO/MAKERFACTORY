@@ -295,6 +295,75 @@ $(function(){
  
   };
 
+  var bindImageDeletionControls = function () {
+    elements.editable_images.each(function() {
+      var imageContainer = $(this).find('.image_container');
+      var deleteImg = $(this).find('.delete_button');
+      var mainImg = $(this).find('.main_img');
+      var fileField = $(this).find('input');
+
+      // allows the controls to know if you've actually
+      // left the main image, not simply entered a child 
+      // element
+      var isOutsideMainImg = function(e){
+        var lOffset = mainImg.offset().left       // left
+        var rOffset = lOffset + mainImg.width()   // right
+        var tOffset = mainImg.offset().top        // top
+        var bOffset = tOffset + mainImg.height(); // bottom
+
+        if((e.pageX <= lOffset  || e.pageX >= rOffset) ||
+          ( e.pageY <= tOffset  || e.pageY >= bOffset)) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      var xhrDeleteImage = function() {
+        $.ajax({
+          url: deleteImg.attr('data-href'),
+          type: 'put',
+          success: function(data, textStatus, XMLHttpRequest) {
+            deleteImg.remove();
+            fileField.show();
+            imageContainer.slideUp('fast',function(){
+              imageContainer.remove();
+              fileField.fadeTo('slow',1.0)
+              fileField.attr('disabled',false)
+            })
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+            throw 'Error on host during delete attempt.'
+          }
+        })
+      };
+
+      mainImg.hover(function(e) {
+        deleteImg.show();
+      },
+      function(e) {
+        if(isOutsideMainImg(e)){
+          deleteImg.hide();
+        }
+      });
+
+      deleteImg.hover(
+        function(e) { },
+        function(e) {
+          if(isOutsideMainImg(e)) {
+            deleteImg.hide();
+          }
+        }
+      );
+      deleteImg.click(function(){
+        var doIt = confirm('Are you sure you want to remove this image?')
+        if(doIt) xhrDeleteImage();
+      })
+
+    });
+
+  };
+
   var elements = {
     'award_bid_links'         : $('.award_bid a').filter(function(){
       if($(this).attr('data-bid-award')) {
@@ -306,8 +375,9 @@ $(function(){
     'geocoder_lat_field'      : $('.geocoder_lat'),
     'geocoder_lng_field'      : $('.geocoder_lng'),
     'geocoder_location_field' : $('.geocoder_location'),
-    'geocoder_form'           : $('.geocoder_form')
-  };
+    'geocoder_form'           : $('.geocoder_form'),
+    'editable_images'          : $('.editable_image')
+    };
   
   // conditional hookups
   if($('form.job_form').length) {
@@ -331,5 +401,8 @@ $(function(){
   }
   if(elements.geocoder_form.length) {
     bindGeocodeListener();
+  }
+  if(elements.editable_images.length) {
+    bindImageDeletionControls();
   }
 });

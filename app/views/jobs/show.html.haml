@@ -162,7 +162,9 @@
       .upload-image
         .bucket
           - [@job.image1, @job.image2, @job.image3].each do |image|
-            = image_tag image.url(:profile) if image.file?
+            - if image.file?
+              - link_to image.url(:original), :target => "_new" do
+                = image_tag image.url(:profile) if image.file?
       - if (@job.blueprint.file?)
         .stripe
           %h4

@@ -137,4 +137,14 @@ describe JobsController do
       response.should_not be_success
     end
   end
+
+  describe "delete_image" do
+    it "should remove the named image from a job" do
+      @job.image1 = File.new(File.join(RAILS_ROOT, "/spec/fixtures/paperclip", "domegramming.jpg"), 'rb') 
+      @job.save!
+      xhr :put, :delete_image, :id => @job.id, :field_name => 'image1'
+      Job.find(@job.id).image1.file?.should == false
+    end
+  end
+
 end
