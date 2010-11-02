@@ -49,6 +49,11 @@ class JobsController < ApplicationController
     end
   end
 
+  def destroy
+    Job.find(params[:id]).destroy
+    redirect_to(tracker_path)
+  end
+
   def feed
     @jobs = Job.active(:order => "id DESC", :limit => 20)
     render :layout => false

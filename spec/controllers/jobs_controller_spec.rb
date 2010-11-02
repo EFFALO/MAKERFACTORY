@@ -138,6 +138,29 @@ describe JobsController do
     end
   end
 
+  describe "destroy" do
+    it "should allow the owner" do
+      delete :destroy, :id => @job.id
+      Job.find_by_id(@job.id).should be_nil
+      response.should redirect_to(tracker_path)
+    end
+
+    it "should not allow if the job has bids" do
+      Factory.create(:bid, :job => @job)
+      delete :destroy, :id => @job.id
+      Job.find_by_id(@job.id).should_not be_nil
+      response.should_not be_success
+    end
+
+    it "should disallow nonowners" do
+      logout!
+      login_as!(Factory.create(:user))
+      delete :destroy, :id => @job.id
+      Job.find_by_id(@job.id).should_not be_nil
+      response.should_not be_success
+    end
+  end
+
   describe "delete_image" do
     it "should remove the named image from a job" do
       @job.image1 = File.new(File.join(RAILS_ROOT, "/spec/fixtures/paperclip", "domegramming.jpg"), 'rb') 

@@ -15,9 +15,10 @@
         =link_to @job.creator.name,user_url(@job.creator)
     .right
       %ul.context-menu
-        - if can? :update, @job
+        - if can? :destroy, @job
           %li.delete
-            = link_to 'Delete', edit_job_path(@job)
+            = link_to 'Delete', job_path(@job), :method => :delete
+        - if can? :update, @job
           %li.edit
             = link_to 'Edit', edit_job_path(@job)
     .clear

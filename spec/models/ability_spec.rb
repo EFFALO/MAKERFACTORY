@@ -42,4 +42,21 @@ describe Ability do
     anonymous_ability = Ability.new(nil)
     anonymous_ability.should_not be_able_to(:new, bid)
   end
+
+  it "should allow you to delete your unbidded job" do
+    job = Factory.create(:job, :creator => @user)
+    @ability.should be_able_to(:destroy, job)
+  end
+
+  it "should not allow you to delete a job with bids" do
+    job = Factory.create(:job, :creator => @user)
+    Factory.create(:bid, :job => job)
+    @ability.should_not be_able_to(:destroy, job)
+  end
+
+  it "should not allow you to delete another's job" do
+    user = Factory.create(:user)
+    job = Factory.create(:job, :creator => user)
+    @ability.should_not be_able_to(:destroy, job)
+  end
 end
