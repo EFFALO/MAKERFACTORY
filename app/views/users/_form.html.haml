@@ -85,30 +85,36 @@
       .content
         %h3
           = form.object.new_record? ? "CREATE YOUR ACCOUNT" : "UPDATE YOUR DETAILS"
-        %p
-          Before you create your account, please consider and agree to follow the
-          %strong MAKERFACTORY
-          code of conduct:
-        %ul.things-to-remember
-          %li
-            %strong
-              BE HONEST
-            — Don't misrepresent yourself or your capabilities.
-          %li
-            %strong
-              BE RESPECTFUL
-            — Don't upload content you don't already own or have permission to use.
-          %li
-            %strong
-              HAVE FUN
-            — Let's build the future, together, one piece at a time.
-        %p
-          We agree to never share your email address with anyone except the users you explicitly choose.
-        = form.submit "Save"
+        - if form.object.new_record?
+          %p
+            Before you create your account, please consider and agree to follow the
+            %strong MAKERFACTORY
+            code of conduct:
+          %ul.things-to-remember
+            %li
+              %strong
+                BE HONEST
+              — Don't misrepresent yourself or your capabilities.
+            %li
+              %strong
+                BE RESPECTFUL
+              — Don't upload content you don't already own or have permission to use.
+            %li
+              %strong
+                HAVE FUN
+              — Let's build the future, together, one piece at a time.
+          %p
+            We agree to never share your email address with anyone except the users you explicitly choose.
+          = form.submit "Save"
+        - else
+          %p
+            Everything look alright? Click the button below to update your profile.
+          = form.submit "Save"        
   .right
     .upload-image
       .bucket
         .box
+          .field-highlight.right
           %h4
             UPLOAD PROFILE PICTURE
           %p.help
