@@ -14,7 +14,7 @@ $(function(){
     if(!makerFactory.loggedIn) {
       $(':enabled').attr('disabled', 'disabled');
       $('form.place-a-bid').addClass('dimmed');
-      $('div.bid_instructions').html('<p>After you <a href="/register">register</a> or <a href="/login">log in</a> before you can bid on this job.</p>');
+      $('div.bid_instructions').html('<p>Once you <a href="/register">register</a> or <a href="/login">log in</a> you can place a bid on this job.</p>');
       $('div#flash').append(notice);
     }
   };

@@ -62,11 +62,35 @@
         .callout
           .fold
           .content
-            %h3
-              POSTING YOUR JOB
-            %p
-              This posting is not a legal contract, only a semi-formal way of engaging in a conversation. It will be open to accept bids for three weeks, after which it will be marked as expired.
-            = form.submit "Create"
+            - if form.object.new_record?
+              %h3
+                POSTING YOUR JOB
+              %p
+                Posting this job will allow Makers to submit bids, which will show up at the bottom of this page. You'll be provided with a contact email address for each bid so you can work out the details offsite. Here's some more things to consider:
+              %ul.things-to-remember
+                %li
+                  %strong
+                    This posting is not a legal contract
+                  — only a semi-formal way of engaging in a conversation!
+                %li
+                  %strong
+                    Bidding will be open for three weeks
+                  — after which it will be marked as expired and removed from all job indexes (but it will still be available through a direct link).
+              %p
+                %small.red
+                  AND PLEASE NOTE 
+                — Once you receive a bid on this job, it will no longer be editable. You can delete this job at any time.
+              = form.submit "Post"
+            - else
+              %h3
+                UPDATING YOUR JOB
+              %p
+                If everything looks alright, click the update button below.
+              %p
+                %small.red
+                  REMEMBER 
+                — Once you receive a bid on this job, it will no longer be editable. You can delete this job at any time.
+              = form.submit "Update"              
       .right
         .upload-image
           .bucket
