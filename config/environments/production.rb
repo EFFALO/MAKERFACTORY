@@ -26,3 +26,6 @@ config.action_view.cache_template_loading            = true
 
 # Enable threaded mode
 # config.threadsafe!
+
+mail_config_path = "#{RAILS_ROOT}/config/mail.rb"
+load(mail_config_path) if File.exist?(mail_config_path)

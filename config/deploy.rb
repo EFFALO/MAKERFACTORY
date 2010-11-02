@@ -43,6 +43,7 @@ namespace :makerfactory do
   task :link_config_files do
     run "ln -nsf #{shared_path}/config/database.yml #{current_path}/config/database.yml"
     run "ln -nsf #{shared_path}/config/errbit.rb #{current_path}/config/initializers/errbit.rb"
+    run "ln -nsf #{shared_path}/config/mail.rb #{current_path}/config/mail.rb"
   end
 
   task :test_errbit do
@@ -62,12 +63,9 @@ namespace :makerfactory do
     run "env", :env => {:test => "test" }
   end
 
-  task :config_mailer do
-    # stub task for configuring email settings
-  end
+
 end
 
 after('deploy:setup', 'makerfactory:install_bundler')
 after('deploy:symlink', 'makerfactory:link_config_files')
 after('deploy:symlink', 'makerfactory:gem_path')
-after('deploy:symlink', 'makerfactory:config_mailer')
