@@ -82,44 +82,40 @@
               = job.deliver_by
             %td
               = job.quantity_needed
-      #credit
+      #bottom
         .left
           .box
-            %h3
-              BROUGHT TO YOU BY EFFALO
-            %p
-              %strong
-                MAKERFACTORY
-              = "was developed by your friends at #{link_to "EFFALO", "http://effalo.com"}, a research and design collaborative headquartered in the pacific northwest. We believe in open source and seek to share what we create, in the hopes that others can use, get inspired by, learn from, and build upon — "
-              check out our 
-              %a{:href=>"http://github.com/EFFALO/MAKERFACTORY"}
-                source code on github
-            .collaborators
-              .collaborator
-                %img{:src=>"/images/profile-mfelix.png"}
-                %h4
-                  Michael Felix
-                %span
-                  Design + Project Lead
-              .collaborator
-                %img{:src=>"/images/profile-akurtz.png"}
-                %h4
-                  Andrew Kurtz
-                %span
-                  Development
-              .collaborator
-                %img{:src=>"/images/profile-mogden.png"}
-                %h4
-                  Max Ogden
-                %span
-                  Development
-              .collaborator
-                %img{:src=>"/images/profile-espier.png"}
-                %h4
-                  Ezra Spier
-                %span
-                  Development
-              .clear
+            %h2
+              FAQs
+            .indent
+              %h3
+                What's going on here?
+              %p
+                Suppose you need a few copies of a plastic widget for a project and don't own a 3d printer. MAKERFACTORY lets you broadcast this need and collect bids from Makers who are willing to help you out.
+              %h3
+                How does it work?
+              %p
+                Upload a few pictures, sketches, or diagrams of what you want made. The posting will be listed for three weeks. Meanwhile, Makers can submit bids and MAKERFACTORY will share their email address with you. It's up to you to follow through; MAKERFACTORY is just a semi-formal way to start a conversation.
+              %h3
+                Does it cost anything to use?
+              %p
+                Nope, it's completely free!
+              %h3
+                Is it just for 3d printing?
+              %p
+                You can define the type of fabrication you're looking for on a per-job basis, but we were thinking things like: 3d printing, sewing, welding, CNC milling, laser cutting, etc.
+              %h3
+                How will I know if I won a job?
+              %p
+                The job owner can choose to award multiple bids for a given job. If you win a bid, you'll get an email. Awarding a bid increases both your and the job owner's Participation counter; this number is proudly displayed on your profile page.
+              %h3
+                How is my email address shared?
+              %p
+                If you bid on a job, your email address will be shared with the job owner. The job-owner's email address is shared with the bidder if and when the job-owner awards the bid.
+              %h3
+                What happens to jobs that expire?
+              %p
+                They're removed from the job map and find-a-job list and will remain accessible yet dormant and unable to receive bids. We're working on a way to repost things. 
         .right
           .box
             %a{:href=>"http://makerfactory.tumblr.com", :class=>"blog"}
@@ -129,9 +125,51 @@
             - link_to(job_feed_url, {:class => "feed"}) do
               .icon
               %h5
-                FEED OF JOBS
+                JOBFEED
+            .clear
+            .credit
+              .icon-tiny
+              %h3
+                DEVELOPMENT
+                %br
+                SQUAD
+              .clear
+              %p
+                %strong
+                  MAKERFACTORY
+                = "was developed by your friends at #{link_to "EFFALO", "http://effalo.com"}, a research and design collaborative headquartered in the pacific northwest. We believe in open source and seek to"
+                = "<a href='http://github.com/EFFALO/MAKERFACTORY'>share what we create</a>,"
+                in the hopes that others can find use, get inspired by, learn from, and build upon.
+              .collaborators
+                .collaborator
+                  %img{:src=>"/images/profile-mfelix.png"}
+                  %h4
+                    Michael Felix
+                  %span
+                    Design + Project Lead
+                .collaborator
+                  %img{:src=>"/images/profile-akurtz.png"}
+                  %h4
+                    Andrew Kurtz
+                  %span
+                    Development
+                .collaborator
+                  %img{:src=>"/images/profile-mogden.png"}
+                  %h4
+                    Max Ogden
+                  %span
+                    Development
+                .collaborator
+                  %img{:src=>"/images/profile-espier.png"}
+                  %h4
+                    Ezra Spier
+                  %span
+                    Development
+                .clear
             %a{:href=>"mailto:hello@effalo.com", :class=>"mailto"}
               say
               %span
                 hello@effalo.com
+            %a{:href=>"http://effalo.com", :class=>"link"}
+              see our other projects &rarr;
     .clear

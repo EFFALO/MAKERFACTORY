@@ -28,6 +28,12 @@ body
   display: block
   background: url(/images/icon.png) no-repeat
 
+.icon-tiny
+  float: left
+  width: 41px
+  height: 32px
+  display: block
+  background: url(/images/icon-tiny.png) no-repeat
 
 .logo h1
   float: left
@@ -272,7 +278,7 @@ ul.context-menu
     
     .video
       width: 400px
-      heght: 225px
+      height: 225px
       border-right: 1px solid #312b28
       
   .right
@@ -310,82 +316,127 @@ ul.context-menu
     &:hover
       color: #fff568
 
-#credit
+#bottom
   background-image: none
   background: #534741
   
+  a
+    color: #fff568
+    text-decoration: none
+    
+    &:hover
+      text-decoration: underline
+            
   .left
     width: 400px
     color: #fafafa
-    text-shadow: #534741 0px 0px 3px
     
-    p
-      font-size: 11px
-      margin: 0
-    a
-      color: #fff568
-      text-decoration: none
+    .indent
+      margin-left: 10px
       
-      &:hover
-        text-decoration: underline
-    
-    h3
+    p
+      color: #fff
+      margin-bottom: 10px
+      font-size: 11px
+      line-height: 14px
+      padding-bottom: 10px
+    h2
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
-      text-transform: uppercase
       font-weight: bold
-      font-size: 14px
+      font-size: 18px
       color: #fff799
-      margin: 0 0 5px 0
+      margin: 0 0 10px 0
       padding: 0
       
-    .collaborators
-      margin: 10px 0 0 10px
-      
-      .collaborator
-        float: left
-        margin-right: 10px
-        margin-bottom: 10px
-        width: 170px
-        
-        img
-          float: left
-          height: 32px
-          width: 32px
-          margin-right: 8px
-          background: #2c2724
-          border: 1px solid #3a322e
-        
-        h4
-          color: #fff
-          display: block
-          font-style: italic
-          font-family: "Georgia", serif
-          font-size: 12px
-          font-weight: normal
-          padding: 0
-          margin: 2px 0 0
-          text-shadow: #3a322e 0px 0px 3px
-          text-transform: none
-        span
-          font-size: 9px
-          opacity: .5
+    h3
+      background: url(/images/bullet-light.png) no-repeat 0 4px
+      font-size: 12px
+      color: #c2e9f7
+      margin: 0 0 5px -10px
+      padding: 0 0 0 10px
           
   .right
     width: 240px
     margin-top: 10px
     text-align: center
     
+    .credit
+      text-align: left
+      padding-top: 20px
+      margin-top: 10px
+      border-top: 1px dotted #665c56
+  
+      p
+        font-size: 10px
+        line-height: 14px
+        color: #ddd
+        text-shadow: #534741 0px 0px 2px
+        margin: 10px 0 0 0
+      a
+        color: #fff799
+        text-decoration: none
+
+        &:hover
+          text-decoration: underline
+    
+      h3
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+        text-transform: uppercase
+        font-weight: bold
+        font-size: 16px
+        color: #fafafa
+        line-height: 16px
+        padding: 0
+        margin: 0 0 0 5px
+        text-shadow: #534741 0px 0px 3px
+        float: left
+        
+    .collaborators
+      text-align: left
+      margin: 10px 0 0px 10px
+    
+      .collaborator
+        text-align: left
+        float: left
+        margin-right: 10px
+        margin-bottom: 10px
+        width: 180px
+      
+        img
+          float: left
+          height: 40px
+          width: 40px
+          margin-right: 8px
+          background: #2c2724
+          border: 1px solid #111
+          -webkit-box-shadow: 0px 0px 2px #222
+      
+        h4
+          color: #d5b8d7
+          display: block
+          font-style: italic
+          font-family: "Georgia", serif
+          font-size: 13px
+          font-weight: normal
+          padding: 0
+          margin: 4px 0 0
+          text-shadow: #3a322e 0px 0px 3px
+          text-transform: none
+        span
+          display: block
+          color: #aaa
+          font-size: 10px
+          margin: 2px 0 0
+          opacity: .7
+          
     .mailto
       text-decoration: none
       color: #fafafa
-      clear: both
-      padding: 30px 0
-      float: none
+      padding: 20px 0
       display: block
       width: 100%
-      margin: 0 auto
       background: #413b39
-      border: 1px solid #413b39
+      border: 1px solid #4b4644
       
       span
         color: #fff799
@@ -394,6 +445,27 @@ ul.context-menu
         background: #4b4543
         border: 1px solid #514c4a
         
+    .link
+      margin-top: 50px
+      text-decoration: none
+      color: #fafafa
+      padding: 20px 0
+      display: block
+      width: 100%
+      margin-top: 10px
+      background: #413b39
+      border: 1px solid #4b4644
+  
+      span
+        color: #fff799
+    
+      &:hover
+        background: #4b4543
+        border: 1px solid #514c4a
+        
+      span
+        color: #fff799
+      
     .blog
       text-decoration: none
       float: left
@@ -446,9 +518,7 @@ ul.context-menu
         font-size: 10px
         color: #fff
         text-transform: uppercase
-    
-    
-
+      
 .specifications table
   background-color: #fbfafa
   width: 100%
