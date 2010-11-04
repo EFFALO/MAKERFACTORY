@@ -13,21 +13,34 @@
       %p.help
         These are jobs that you created
       - @active_jobs.each do |job|
-        %a.tile{:class => cycle('prim', 'alt'), 'href' =>  job_url(job)}
+        .bid-tile{:class => "job #{cycle('prim', 'alt')}"}
           .stripe
             .left
+              .avatar
+                - link_to user_url(job.creator) do
+                  = image_tag job.creator.image.url(:avatar)
               %h3
                 = job.title
-              .clear
-              .info 
-                = job.deliver_by
+              .info
+                Job posted on 
+                %span.highlight
+                  = format_time(job.created_at, :datestamp)
             .right
-              %span
-                = job.bids.count
+              .quantity
+                .number
+                  = job.bids.count
+                .info.label
+                  Bids
             .clear
-          .photo
-            = image_tag job.image1.url(:tile)
-      .clear
+          .message
+            %a.photo 
+              = image_tag job.image1.url(:tile)
+            .box
+              = job.description
+            .clear
+          .action
+            .box
+              =link_to "view job", job_url(job)
       %br
     - unless @user.bids.empty?
       %h2
@@ -67,26 +80,34 @@
           .action
             .box
               =link_to "view job", job_url(bid.job)
-
-              
+      %br
     - unless @inactive_jobs.empty?
-      %h2
-        EXPIRED JOBS
-      %p.help
-        These jobs are no longer available
-      - @inactive_jobs.each do |job|
-        %a.tile{:class => cycle('prim', 'alt'), 'href' => job_url(job)}
-          .stripe
-            .left
-              %h3
-                = job.title
-              .info 
-                = job.deliver_by
-            .right
-              %span
+      .bid-tile{:class => "job #{cycle('prim', 'alt')}"}
+        .stripe
+          .left
+            .avatar
+              - link_to user_url(job.creator) do
+                = image_tag job.creator.image.url(:avatar)
+            %h3
+              = job.title
+            .info
+              Job posted on 
+              %span.highlight
+                = format_time(job.created_at, :datestamp)
+          .right
+            .quantity
+              .number
                 = job.bids.count
-            .clear
-          .photo
+              .info.label
+                Bids
+          .clear
+        .message
+          %a.photo 
             = image_tag job.image1.url(:tile)
-      .clear
+          .box
+            = job.description
+          .clear
+        .action
+          .box
+            =link_to "view job", job_url(job)
       %br

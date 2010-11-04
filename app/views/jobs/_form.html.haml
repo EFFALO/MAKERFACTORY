@@ -99,8 +99,7 @@
               %h4
                 UPLOAD IMAGE
               %p.help
-                Please upload a picture, rendering or sketch represent this job. You may upload a maximum of three files, each much be 3MB or less.
-
+                Please upload a picture, rendering or sketch represent this job. You may upload a maximum of three images, each much be 3MB or less. Please be respectful and do not upload copyrighted media.
               - [:image1, :image2, :image3].each do |img|
                 - if(@job.send(img).file?)
                   .editable_image
@@ -116,7 +115,7 @@
             UPLOAD BLUEPRINTS
         .box
           %p.help
-            Please upload any files the Maker might need to make an informed bid on your job. You may upload one file, 3MB or less.
+            You may upload one file, 3MB or less. Please be respectful and do not upload copyrighted media.
           = form.file_field(:blueprint)
           %br
           %br
