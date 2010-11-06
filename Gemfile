@@ -14,6 +14,7 @@ group :development do
   gem 'sqlite3-ruby'
   gem 'awesome_print', :require => 'ap'
   gem 'capistrano'
+  gem 'heroku'
 end
 
 group :production do
