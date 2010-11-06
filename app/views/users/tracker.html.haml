@@ -30,7 +30,7 @@
                 .number
                   = job.bids.count
                 .info.label
-                  Bids
+                  = job.bids.count == 1 ? "Bid" : "Bids"
             .clear
           .message
             %a.photo 
@@ -69,7 +69,7 @@
                 .number
                   = "#{bid.quantity}/#{bid.job.quantity_needed}"
                 .info.label
-                  Quantity Bidded
+                  Bid quantity
             .clear
           .message
             %a.photo 
