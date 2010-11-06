@@ -6,4 +6,5 @@ Factory.define :job do |j|
   j.quantity_needed 9000
   j.deliver_by Date.today + 1.week
   j.deliver_to "Savannah, GA"
+  j.image1 File.new(File.join(RAILS_ROOT, "/spec/fixtures/paperclip", "domegramming.jpg"), 'rb') 
 end

@@ -32,12 +32,14 @@ class Job < ActiveRecord::Base
   validates_inclusion_of :image3_file_size, image_validations
   validates_inclusion_of :blueprint_file_size, :in => 1..5.megabytes, :allow_nil => true, :message => 'Blueprints must be less than 5 megabyes.'
 
-  named_scope :active, {
+  # wrap in lambda to avoid AR caching the created_at comparison time
+  # to first run time
+  named_scope :active, lambda { {
     :conditions => ["created_at > ?", EXPIRE_IN.ago.to_s(:db)]
-  }
-  named_scope :inactive, {
+  } }
+  named_scope :inactive, lambda { {
     :conditions => ["created_at < ?", EXPIRE_IN.ago.to_s(:db)]
-  }
+  } }
 
   def expired?
     self.created_at < (Time.now - EXPIRE_IN)

@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'timecop'
 
 describe Job do
 
@@ -12,19 +13,31 @@ describe Job do
     future_job.save.should == true
   end
 
-  describe "#active" do
-    it "should only find jobs created in the last 3 weeks" do
-      job         = Factory.create(:job)
-      expired_job = Factory.create(:job, :created_at => 3.weeks.ago - 5) # subtract 5 seconds to avoid nondeterminism
-      Job.active.should == [job]
+  describe "named_scopes" do
+    before(:each) do
+      @grace_time = 5
     end
-  end
-  describe "#inactive" do
-    it "should only find jobs created more than 3 weeks ago" do
-      job         = Factory.create(:job)
-      expired_job = Factory.create(:job, :created_at => 3.weeks.ago - 5) # subtract 5 seconds to avoid nondeterminism
-      Job.inactive.should == [expired_job]
+
+    describe "#active" do
+      it "should only find jobs created in the last 3 weeks" do
+        Timecop.freeze(Time.now) do
+          job         = Factory.create(:job)
+          expired_job = Factory.create(:job, :created_at => 3.weeks.ago - @grace_time)
+          Job.active.should == [job]
+        end
+      end
     end
+
+    describe "#inactive" do
+      it "should only find jobs created more than 3 weeks ago" do
+        Timecop.freeze(Time.now) do
+          job         = Factory.create(:job)
+          expired_job = Factory.create(:job, :created_at => 3.weeks.ago - @grace_time)
+          Job.inactive.should == [expired_job]
+        end
+      end
+    end
+
   end
 
   describe "#expired?" do
