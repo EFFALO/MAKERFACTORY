@@ -52,9 +52,13 @@ body
   height: 32px
   background: #252525
   float: left
-  border: 1px solid #111
   -webkit-box-shadow: 0px 0px 2px #222
-  
+  a
+    float: left
+    border: 1px solid #111
+    &:hover
+      border-color: #fff799
+      
   img
     border: none
   
@@ -1158,6 +1162,12 @@ form.post-a-job
       font-size: 16px
       text-shadow: #607965 0px 0px 3px
       
+      a
+        text-decoration: none
+        color: #fff
+        &:hover
+          color: #fff799
+          
       .info
         display: inline
   .quantity

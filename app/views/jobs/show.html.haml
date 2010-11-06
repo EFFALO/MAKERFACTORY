@@ -194,7 +194,8 @@
                   - link_to user_url(bid.creator) do
                     = image_tag bid.creator.image.url(:avatar)
                 %h3
-                  = bid.creator.name
+                  - link_to user_url(bid.creator) do
+                    = bid.creator.name
                 .info
                   Bid posted on
                   %span.highlight
