@@ -8,6 +8,5 @@ tmp/**/*
 /log/*.pid
 public/system/*
 tmp/sent_mails/*
-public/stylesheets/*.css
 db/*.sqlite3
 .rvmrc
