@@ -20,6 +20,7 @@ end
 group :production do
   gem 'mysql'
   gem 'hoptoad_notifier'
+  gem 'aws-s3'
 end
 
 group :test do 

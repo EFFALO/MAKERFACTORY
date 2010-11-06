@@ -11,7 +11,9 @@ class User < ActiveRecord::Base
   has_many :created_jobs, :class_name => "Job", :foreign_key => :creator_id
   has_many :bids, :foreign_key => :creator_id
   
-  has_attached_file :image, :styles => { :profile => "290x218>", :avatar => "32x32#" }
+  image_opts = { :styles => { :profile => "290x218>", :avatar => "32x32#" } }
+  image_opts.merge!(S3_OPTS) if S3_OPTS
+  has_attached_file :image, image_opts
   # validates_attachment_size :image, :in => 1..3.megabytes
   validates_inclusion_of :image_file_size, :in => 1..3.megabytes, :allow_nil => true, :message => 'Images must be less than 3 megabytes.'
   validates_presence_of :location
