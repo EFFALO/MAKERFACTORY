@@ -10,4 +10,4 @@ public/system/*
 tmp/sent_mails/*
 db/*.sqlite3
 .rvmrc
-.bundle
+.bundle/*
