@@ -23,6 +23,7 @@ class Job < ActiveRecord::Base
   #  validates_attachment_size :image3, image_size
   #  validates_attachment_size :blueprint, :in => 1..5.megabytes
   image_validations = {:in => 1..3.megabytes, :allow_nil => true, :message => 'Images must be less than 3 megabytes.'}
+  validates_attachment_presence :image1, :message => "is missing! Can you upload a photo for the job?"
   validates_inclusion_of :image1_file_size, image_validations
   validates_inclusion_of :image2_file_size, image_validations
   validates_inclusion_of :image3_file_size, image_validations
