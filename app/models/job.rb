@@ -14,8 +14,10 @@ class Job < ActiveRecord::Base
   has_attached_file :image1, image_options
   has_attached_file :image2, image_options
   has_attached_file :image3, image_options
-  
-  has_attached_file :blueprint
+
+  blueprint_options = {}
+  blueprint_options.merge!(S3_OPTS) if S3_OPTS
+  has_attached_file :blueprint, blueprint_options
 
   # This validation is broken in current Paperclip. It doesn't allow_nil.
   # image_size = {:in => 1..3.megabytes}
