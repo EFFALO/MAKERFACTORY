@@ -44,7 +44,6 @@ class JobsController < ApplicationController
       end
       redirect_to(job_path(@job))
     else
-      flash[:error] = "Sorry couldn't do that!"
       render :action => :edit
     end
   end

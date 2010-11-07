@@ -349,15 +349,15 @@ $(function(){
 
       // BIND THINGS
 
-      mainImg.hover(function(e) {
-        deleteImg.show();
-      },
-      function(e) {
-        if(isOutsideMainImg(e)){
-          deleteImg.hide();
+      mainImg.hover(
+        function(e) {
+          deleteImg.show();
+        },
+        function(e) {
+          if(isOutsideMainImg(e)){
+            deleteImg.hide();
         }
       });
-
       deleteImg.hover(
         function(e) { },
         function(e) {
