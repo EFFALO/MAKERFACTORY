@@ -30,7 +30,8 @@ describe Ability do
   end
 
   it "should not let you bid on expired jobs" do
-    job = Factory.create(:job, :created_at => 3.weeks.ago)
+    job = Factory.create(:job, :created_at => 3.weeks.ago - 5.minutes)
+    #debugger
     bid = Factory.build(:bid, :job => job, :creator => @user)
     @ability.should_not be_able_to(:create, bid)
   end

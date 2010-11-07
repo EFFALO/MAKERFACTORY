@@ -43,7 +43,7 @@ class Job < ActiveRecord::Base
   } }
 
   def expired?
-    self.created_at < (Time.now - EXPIRE_IN)
+    self.created_at < EXPIRE_IN.ago
   end
 
   private
