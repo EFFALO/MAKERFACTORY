@@ -122,6 +122,15 @@
         .box
           %p.help
             You may upload one file, 3MB or less. Please be respectful and do not upload copyrighted media.
+            - if @job.blueprint.file?
+              %ul.file-list
+                %li
+                  %h5
+                    = link_to(@job.blueprint.original_filename, @job.blueprint.url)
+                  %span.details
+                    = number_to_human_size @job.blueprint.size
+              .replace_instructions.red
+                To replace this file, upload a new one here:
           = form.file_field(:blueprint)
           %br
           %br

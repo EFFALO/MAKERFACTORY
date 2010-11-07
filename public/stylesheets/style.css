@@ -1119,8 +1119,11 @@ form.post-a-job .left textarea {
       display: none;
       opacity: 0.3;
       z-index: 999; }
-      .editable_image .image_container .file_field_container .replace_instructions {
-        color: black; }
+
+.replace_instructions {
+  color: #ae6a8a;
+  font-size: 11px;
+  font-weight: bold; }
 
 .forgot_password {
   font-size: 11px; }
