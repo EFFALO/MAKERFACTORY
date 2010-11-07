@@ -119,5 +119,18 @@
             UPLOAD PROFILE PICTURE
           %p.help
             This picture will be used to represent your identity on MAKERFACTORY
-          = form.file_field(:image)
+            .editable_image
+              - if(current_user.image.file?)
+                .image_container
+                  = image_tag current_user.image.url(:profile), :class => 'main_img'
+                  = image_tag image_path("x-delete.png"), :class => 'delete_button', :style => 'display:none;'
+                  .file_field_container
+                    %span.replace_instructions
+                      Replace this picture:
+                    %br
+                    = form.file_field(:image, :class => 'file_field', :disabled => true)
+              - else
+                .empty_image_container
+                  .file_field_container
+                    = form.file_field(:image)
   .clear

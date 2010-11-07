@@ -105,7 +105,7 @@
                   - if(@job.send(img).file?)
                     .image_container
                       = image_tag @job.send(img).url(:profile), :class => 'main_img'
-                      = image_tag image_path("x.png"), :class => 'delete_button', :style => 'display:none;', :'data-href' => "/jobs/#{@job.id}/delete_image?field_name=#{img}"
+                      = image_tag image_path("x-delete.png"), :class => 'delete_button', :style => 'display:none;'
                       .file_field_container
                         %span.replace_instructions
                           Replace this picture:
