@@ -4,6 +4,7 @@
 class ApplicationController < ActionController::Base
 
   helper :all # include all helpers, all the time
+  before_filter :ensure_domain
   
   # make methods available to views
   helper_method :logged_in?, :current_user_session, :current_user
@@ -37,6 +38,14 @@ class ApplicationController < ActionController::Base
   end
 
 private
+  MFDomain = 'http://makerfactory.com'
+  
+  def ensure_domain
+    if Rails.env == 'production' && request.env['HTTP_HOST'] != MFDomain
+      redirect_to MFDomain
+    end
+  end
+
   def require_user
     unless current_user
       store_location
