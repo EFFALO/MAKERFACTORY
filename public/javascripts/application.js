@@ -389,6 +389,7 @@ $(function(){
       textArea.change(updateCharacterCount);
       textArea.keypress(updateCharacterCount);
       textArea.keydown(updateCharacterCount);
+      textArea.keyup(updateCharacterCount);
 
       // todo:
       // - update on page load (when editing a job) or populate from rails view
