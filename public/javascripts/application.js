@@ -371,6 +371,32 @@ $(function(){
 
   };
 
+  var bindConstrainedTextFields = function () {
+    elements.constrained_text_field.each(function() {
+      var textArea = $(this).find('textarea');
+      var countSpan = $(this).find('div.counter')
+      var maximumCharacters = textArea.attr('data-max-characters');
+      var currentCharacters = textArea.val().length;
+
+      var updateCharacterCount = function () {
+        if(textArea.val().length != currentCharacters) {
+          currentCharacters = textArea.val().length;
+          countSpan.html(currentCharacters + '/' + maximumCharacters)
+        }
+      }
+
+      // Many callbacks to bind them all...
+      textArea.change(updateCharacterCount);
+      textArea.keypress(updateCharacterCount);
+      textArea.keydown(updateCharacterCount);
+
+      // todo:
+      // - update on page load (when editing a job) or populate from rails view
+      // - length isn't giving the correct length, let's fix that
+      // - probably not binding to correct events -- selecting text with the mouse and hitting backspace doesn't trigger
+    });
+  }
+
   var elements = {
     'award_bid_links'         : $('.award_bid a').filter(function(){
       if($(this).attr('data-bid-award')) {
@@ -383,7 +409,8 @@ $(function(){
     'geocoder_lng_field'      : $('.geocoder_lng'),
     'geocoder_location_field' : $('.geocoder_location'),
     'geocoder_form'           : $('.geocoder_form'),
-    'editable_images'          : $('.editable_image')
+    'editable_images'          : $('.editable_image'),
+    'constrained_text_field'  : $('.constrain')
     };
   
   // conditional hookups
@@ -412,4 +439,8 @@ $(function(){
   if(elements.editable_images.length) {
     bindImageDeletionControls();
   }
+  if(elements.constrained_text_field.length) {
+    bindConstrainedTextFields();
+  }
+
 });
