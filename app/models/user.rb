@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
     :allow_blank => true,
     :message => 'is required to have an http:// or https://'
   validates_length_of :description, :maximum => 555
+  validates_length_of :name, :maximum => 32
 
   has_many :created_jobs, :class_name => "Job", :foreign_key => :creator_id
   has_many :bids, :foreign_key => :creator_id
