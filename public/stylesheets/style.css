@@ -1105,15 +1105,15 @@ form.post-a-job .left textarea {
       top: 98px;
       left: 24px; }
   .editable_image .image_container {
-    width: 290px;
-    margin: 0px 0px 0px -10px !important; }
+    width: 290px; }
     .editable_image .image_container.replaced {
-      background: #cacaca; }
+      background: #cccccc; }
     .editable_image .image_container .delete_button {
       position: absolute;
       top: 5px;
-      right: -5px;
-      z-index: 999; }
+      right: 5px;
+      z-index: 999;
+      display: none; }
     .editable_image .image_container .file_field_container {
       position: absolute;
       display: none;

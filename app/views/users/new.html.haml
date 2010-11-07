@@ -1,4 +1,4 @@
 = error_messages_for('user')
 .page.shadow
   - form_for @user, :url => account_path, :html => { :multipart => true } do |f|
-    = render :partial => "form", :object => f
+    = render :partial => "form", :locals => {:form => f, :user => @user}

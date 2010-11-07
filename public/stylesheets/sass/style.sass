@@ -1305,17 +1305,18 @@ form.post-a-job
   // an actual image that can be replaced
   .image_container
     width: 290px
-    margin: 0px 0px 0px -10px !important
 
     // after a file has been chosen to upload
     &.replaced
-      background: #CACACA
+      background: #ccc
 
     .delete_button
       position: absolute
       top: 5px
-      right: -5px
+      right: 5px
       z-index: 999
+      // initial state
+      display: none
 
     // initial state when hidden, opacity set for eventual JS fade
     .file_field_container
