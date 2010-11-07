@@ -28,3 +28,6 @@ config.action_view.cache_template_loading            = true
 # config.threadsafe!
 
 Sass::Plugin.options[:never_update] = true
+
+Bundler.require(:pre_boot)
+config.middleware.insert_before(::Rack::Lock, ::Refraction)
