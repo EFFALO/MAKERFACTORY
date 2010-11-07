@@ -1002,7 +1002,8 @@ form.post-a-job .left textarea {
       width: 192px;
       height: 144px;
       background: #dddddd;
-      border-right: 1px solid #cccccc; }
+      border-right: 1px solid #cccccc;
+      overflow: hidden; }
   .bid-tile .action {
     clear: both;
     padding: 5px 0;
