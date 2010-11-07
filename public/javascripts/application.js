@@ -300,7 +300,9 @@ $(function(){
       var imageContainer = $(this).find('.image_container');
       var deleteImg = $(this).find('.delete_button');
       var mainImg = $(this).find('.main_img');
-      var fileField = $(this).find('input');
+      var fileFieldContainer = $(this).find('.file_field_container')
+      var fileField = fileFieldContainer.find('input');
+      var fileReplaceInstructions =  fileFieldContainer.find('.replace_instructions')
 
       // allows the controls to know if you've actually
       // left the main image, not simply entered a child 
@@ -319,24 +321,33 @@ $(function(){
         }
       }
 
-      var xhrDeleteImage = function() {
+      // ANIMATIONS
+
+      var animateEnablingChooseFile = function () {
         deleteImg.remove();
-        $.ajax({
-          url: deleteImg.attr('data-href'),
-          type: 'put',
-          success: function(data, textStatus, XMLHttpRequest) {
-            fileField.show();
-            imageContainer.slideUp('fast',function(){
-              imageContainer.remove();
-              fileField.fadeTo('slow',1.0)
-              fileField.attr('disabled',false)
-            })
-          },
-          error: function(XMLHttpRequest, textStatus, errorThrown) {
-            throw 'Error on host during delete attempt.'
-          }
+        mainImg.fadeTo('fast',0.6,function(){
+          fileFieldContainer.show();
+          fileFieldContainer.css({
+            left : (imageContainer.width() - fileFieldContainer.width()) / 2,
+            top  : (imageContainer.height() - fileFieldContainer.height()) / 2
+          })
+          fileFieldContainer.fadeTo('fast',1.0)
+          fileField.attr('disabled',false)
         })
-      };
+      }
+
+      var animateReplacingImage = function() {
+        fileReplaceInstructions.text('');
+        mainImg.fadeTo('fast', 0, function() {
+          fileFieldContainer.css({
+            left : (imageContainer.width() - fileFieldContainer.width()) / 2,
+            top  : (imageContainer.height() - fileFieldContainer.height()) / 2
+          })
+          imageContainer.addClass('replaced'); 
+        });
+      }
+
+      // BIND THINGS
 
       mainImg.hover(function(e) {
         deleteImg.show();
@@ -356,8 +367,11 @@ $(function(){
         }
       );
       deleteImg.click(function(){
-        var doIt = confirm('Are you sure you want to remove this image?')
-        if(doIt) xhrDeleteImage();
+        animateEnablingChooseFile();
+      })
+      fileField.change(function(){
+        animateReplacingImage();
+        fileField.unbind();
       })
 
     });

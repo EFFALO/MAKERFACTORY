@@ -1285,20 +1285,30 @@ form.post-a-job
       overflow: hidden
 
 
+// contains: an image, its delete button, and a hidden file 
+// field to be shown if the image is removed
 .editable_image    
   position: relative
-  // contains: an image, its delete button, and a hidden file 
-  // field to be shown if the image is removed
 
-  .file_field
-    opacity: .2
-    // initial state for JS fadein
-    // note that this element also begins display:none
-    // from template
+  // place holder file upload fields
+  .empty_image_container
+    width: 290px
+    height: 218px
+    margin: 0px 0px 0px -10px !important
 
+    .file_field_container
+      position: absolute
+      top: 98px
+      left: 24px
+
+  // an actual image that can be replaced
   .image_container
     width: 290px
     margin: 0px 0px 0px -10px !important
+
+    // after a file has been chosen to upload
+    &.replaced
+      background: #CACACA
 
     .delete_button
       position: absolute
@@ -1306,8 +1316,16 @@ form.post-a-job
       right: -5px
       z-index: 999
 
-    //.main_img
-    
+    // initial state when hidden, opacity set for eventual JS fade
+    .file_field_container
+      position: absolute
+      display: none
+      opacity: .3
+      z-index: 999
+
+      .replace_instructions
+        color: #000
+
 .forgot_password
   font-size: 11px
   a

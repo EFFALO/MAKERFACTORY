@@ -82,32 +82,37 @@
               =link_to "view job", job_url(bid.job)
       %br
     - unless @inactive_jobs.empty?
-      .bid-tile{:class => "job #{cycle('prim', 'alt')}"}
-        .stripe
-          .left
-            .avatar
-              - link_to user_url(job.creator) do
-                = image_tag job.creator.image.url(:avatar)
-            %h3
-              = job.title
-            .info
-              Job posted on 
-              %span.highlight
-                = format_time(job.created_at, :datestamp)
-          .right
-            .quantity
-              .number
-                = job.bids.count
-              .info.label
-                Bids
-          .clear
-        .message
-          %a.photo 
-            = image_tag job.image1.url(:tile)
-          .box
-            = job.description
-          .clear
-        .action
-          .box
-            =link_to "view job", job_url(job)
-      %br
+      %h2
+        INACTIVE JOBS
+      %p.help
+        These are your jobs that have expired
+      - @inactive_jobs.each do |job|
+        .bid-tile{:class => "job #{cycle('prim', 'alt')}"}
+          .stripe
+            .left
+              .avatar
+                - link_to user_url(job.creator) do
+                  = image_tag job.creator.image.url(:avatar)
+              %h3
+                = job.title
+              .info
+                Job posted on 
+                %span.highlight
+                  = format_time(job.created_at, :datestamp)
+            .right
+              .quantity
+                .number
+                  = job.bids.count
+                .info.label
+                  Bids
+            .clear
+          .message
+            %a.photo 
+              = image_tag job.image1.url(:tile)
+            .box
+              = job.description
+            .clear
+          .action
+            .box
+              =link_to "view job", job_url(job)
+        %br

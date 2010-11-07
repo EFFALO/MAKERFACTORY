@@ -101,14 +101,20 @@
               %p.help
                 Please upload a picture, rendering or sketch represent this job. You may upload a maximum of three images, each much be 3MB or less. Please be respectful and do not upload copyrighted media.
               - [:image1, :image2, :image3].each do |img|
-                - if(@job.send(img).file?)
-                  .editable_image
+                .editable_image
+                  - if(@job.send(img).file?)
                     .image_container
                       = image_tag @job.send(img).url(:profile), :class => 'main_img'
-                      = image_tag image_path("delete_picture.jpg"), :class => 'delete_button', :style => 'display:none;', :'data-href' => "/jobs/#{@job.id}/delete_image?field_name=#{img}"
-                    = form.file_field(img, :class => 'file_field', :style => 'display:none;', :disabled => true)
-                - else
-                  = form.file_field(img)
+                      = image_tag image_path("x.png"), :class => 'delete_button', :style => 'display:none;', :'data-href' => "/jobs/#{@job.id}/delete_image?field_name=#{img}"
+                      .file_field_container
+                        %span.replace_instructions
+                          Replace this picture:
+                        %br
+                        = form.file_field(img, :class => 'file_field', :disabled => true)
+                  - else
+                    .empty_image_container
+                      .file_field_container
+                        = form.file_field(img)
         .stripe
           .field-highlight.right
           %h4
