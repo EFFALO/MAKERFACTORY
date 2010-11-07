@@ -325,7 +325,7 @@ $(function(){
 
       var animateEnablingChooseFile = function () {
         deleteImg.remove();
-        mainImg.fadeTo('fast',0.6,function(){
+        mainImg.fadeTo('fast',0.3,function(){
           fileFieldContainer.show();
           fileFieldContainer.css({
             left : (imageContainer.width() - fileFieldContainer.width()) / 2,
