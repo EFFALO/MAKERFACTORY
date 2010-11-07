@@ -1098,7 +1098,8 @@ form.post-a-job .left textarea {
   .editable_image .empty_image_container {
     width: 290px;
     height: 218px;
-    margin: 0px 0px 0px -10px !important; }
+    background: #cccccc;
+    border-top: 1px solid #aaaaaa; }
     .editable_image .empty_image_container .file_field_container {
       position: absolute;
       top: 98px;
