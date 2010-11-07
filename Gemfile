@@ -10,6 +10,10 @@ gem 'factory_girl'
 gem 'faker'
 gem 'cancan', "~>1.3.0"
 
+group :pre_boot do
+  gem 'refraction'
+end
+
 group :development do
   gem 'sqlite3-ruby'
   gem 'awesome_print', :require => 'ap'
