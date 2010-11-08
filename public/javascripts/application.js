@@ -372,9 +372,9 @@ $(function(){
   };
 
   var bindConstrainedTextFields = function () {
-    elements.constrained_text_field.each(function() {
-      var textArea = $(this).find('textarea');
-      var countSpan = $(this).find('div.counter')
+    var bindCounterToElement = function (el) {
+      var textArea = $(el).find('textarea');
+      var countSpan = $(el).find('div.counter')
       var maximumCharacters = textArea.attr('data-max-characters');
       var currentCharacters = textArea.val().length;
 
@@ -382,6 +382,11 @@ $(function(){
         if(textArea.val().length != currentCharacters) {
           currentCharacters = textArea.val().length;
           countSpan.html(currentCharacters + '/' + maximumCharacters)
+          if(currentCharacters > maximumCharacters) {
+            countSpan.addClass('red');
+          } else {
+            countSpan.removeClass('red');
+          }
         }
       }
 
@@ -390,11 +395,14 @@ $(function(){
       textArea.keypress(updateCharacterCount);
       textArea.keydown(updateCharacterCount);
       textArea.keyup(updateCharacterCount);
+    };
 
-      // todo:
-      // - update on page load (when editing a job) or populate from rails view
-      // - length isn't giving the correct length, let's fix that
-      // - probably not binding to correct events -- selecting text with the mouse and hitting backspace doesn't trigger
+    elements.constrained_text_field.each(function() {
+      bindCounterToElement(this);
+    });
+
+    elements.constrained_bid_field.each(function() {
+      bindCounterToElement(this);
     });
   }
 
@@ -411,7 +419,8 @@ $(function(){
     'geocoder_location_field' : $('.geocoder_location'),
     'geocoder_form'           : $('.geocoder_form'),
     'editable_images'          : $('.editable_image'),
-    'constrained_text_field'  : $('.constrain')
+    'constrained_text_field'  : $('.constrain'),
+    'constrained_bid_field'   : $('.constrained_bid')
     };
   
   // conditional hookups
@@ -441,6 +450,9 @@ $(function(){
     bindImageDeletionControls();
   }
   if(elements.constrained_text_field.length) {
+    bindConstrainedTextFields();
+  }
+  if(elements.constrained_bid_field.length) {
     bindConstrainedTextFields();
   }
 

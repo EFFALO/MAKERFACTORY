@@ -57,10 +57,17 @@
               %span.maximum
                 555
               characters
-            .counter
-              0/555
+            - if @user.description && @user.description.length > 555
+              .counter.red
+                = "#{@user.description.length}/555"
+            - elsif @user.description
+              .counter
+                = "#{@user.description.length}/555"
+            - else
+              .counter
+                0/555
             .clear
-          = form.text_area :description
+          = form.text_area :description, :'data-max-characters' => 555
       .box
         %h4
           = form.label :url

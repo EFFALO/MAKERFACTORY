@@ -80,15 +80,15 @@
                 characters to explain your bid:
             - form_for([@job, @bid], :html => {:class => 'place-a-bid'}) do |form|
               = form.hidden_field :job_id
-              .message
+              .message.constrained_bid
                 .stripe
                   .field-highlight.left.extra
                   %h4
                     TYPE YOUR MESSAGE HERE
                   .counter
-                    222/333
+                    0/333
                   .clear
-                = form.text_area :message
+                = form.text_area :message, :'data-max-characters' => 333
               .quantity
                 %label
                   .field-highlight.left

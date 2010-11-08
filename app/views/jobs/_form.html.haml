@@ -27,8 +27,15 @@
                   %span.maximum
                     555
                   characters
-                .counter
-                  0/555
+                - if @job.description && @job.description.length > 555
+                  .counter.red
+                    = "#{@job.description.length}/555"
+                - elsif @job.description
+                  .counter
+                    = "#{@job.description.length}/555"
+                - else
+                  .counter
+                    0/555
                 .clear
               = form.text_area :description, :'data-max-characters' => 555
           .box
