@@ -14,6 +14,14 @@
           :lng      => job.lng
         }
         end.to_json};
+
+    makerFactory.findJobById = function(id) {
+      var res = $.grep(makerFactory.jobs, function(job){
+        return job.id === id;
+      })[0]
+
+      return res || null;
+    };
   });
   
 .page.shadow

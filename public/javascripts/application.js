@@ -164,10 +164,25 @@ $(function(){
       
       var markers = [];
       var currentMarker;
+      var jobTrs = {};
+      var highlightedTr;
       var infoWindow = new google.maps.InfoWindow({
         maxWidth : 400
       });
       var template = Handlebars.compile(makerFactory.templates.infoWindow);
+
+      // bind the non map clicks
+      $('tr').each(function(){
+        var jobId = parseInt($(this).attr('data-job-id'));
+        var href;
+        if(jobId) {
+          jobTrs[jobId] = this;
+          href = makerFactory.findJobById(jobId).href; 
+          $(this).click(function(){
+            window.location.href = href;
+          })
+        }
+      });
 
       $.each(makerFactory.jobs, function(i, job){
         if(!(job.lat && job.lng)) return;
@@ -179,7 +194,9 @@ $(function(){
         });
         markers.push({marker: marker, jobId: job.id});
 
+        var jobTrEl = jobTrs[job.id];
         var content = template(job);
+
         var open = function () {
           infoWindow.setContent(content);
           infoWindow.open(map, marker);
@@ -187,60 +204,36 @@ $(function(){
         var close = function () {
           infoWindow.close();
         };
+        var highlightTr = function(tr) {
+          $(highlightedTr).removeClass('highlighted');
+          $(jobTrEl).addClass('highlighted');
+          highlightedTr = tr;
+        }
+        var removeTrHighlight = function() {
+          $(highlightedTr).removeClass('highlighted');
+          highlightedTr = null;
+        }
         
         google.maps.event.addListener(marker, 'click', function(){
           if (!currentMarker) {
             currentMarker = marker;
             open();
+            highlightTr(jobTrEl);
           } else if (currentMarker == marker) {
             close();
             currentMarker = null;
+            removeTrHighlight();
           } else {
             close()
             currentMarker = marker;
             open();
+            highlightTr(jobTrEl);
           }
         });
           
       });
 
-      // bind the non map clicks
-      $('tr').each(function(){
 
-        // this kills annoying double click text-selection
-        // highlight
-        var sel ;
-        function clearSelection() {
-          if(document.selection && document.selection.empty){
-            document.selection.empty() ;
-          } else if(window.getSelection) {
-            sel=window.getSelection();
-            if(sel && sel.removeAllRanges)
-              sel.removeAllRanges() ;
-          }
-        }
-
-        // HILARIOUS HAX
-        setInterval(clearSelection, 25)
-        // performance version
-        //$(this).click(clearSelection);
-        
-        var jobId = $(this).attr('data-job-id');
-        var marker = $(markers).filter(function(){
-          return this.jobId == jobId;
-        })[0];
-
-        if (marker) {
-          $(this).click(function(){
-            google.maps.event.trigger(marker.marker, 'click');
-          });
-        } else {
-          $(this).click(function(){
-            infoWindow.close();
-            currentMarker = null;
-          });
-        }
-      });
     }; //initializeGMaps
 
   };
