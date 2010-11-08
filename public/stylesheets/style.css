@@ -214,7 +214,7 @@ ul.context-menu {
   .content p {
     margin-top: 0; }
   .content .red {
-    color: #9e0b0f !important; }
+    color: #9e0b0f; }
 
 .box {
   padding: 10px; }
@@ -614,14 +614,15 @@ form.place-a-bid .quantity input {
 form.place-a-bid hr {
   margin: 20px 0;
   border: 1px solid #ece5a1; }
+form .constrained_bid .counter.red {
+  color: #f77a1d; }
 form .message h4 {
   float: left;
   margin-bottom: 0; }
 form .message .counter {
   float: right;
   text-align: right;
-  width: 100px;
-  color: #bbbbbb; }
+  width: 100px; }
 form .message textarea {
   padding: 10px;
   font-size: 12px;
@@ -638,16 +639,15 @@ form .constrain {
   font-size: 11px;
   border: 1px solid #cccccc; }
   form .constrain .prompt {
-    float: left;
-    color: #aaaaaa; }
+    float: left; }
   form .constrain .maximum {
     color: #555555; }
   form .constrain .stripe {
     background: #e9e9e9;
-    border-bottom: 1px solid #cccccc; }
+    border-bottom: 1px solid #cccccc;
+    color: #999999; }
   form .constrain .counter {
-    font-weight: bold;
-    color: #555555; }
+    font-weight: bold; }
   form .constrain textarea {
     width: 307px;
     height: 100px;
