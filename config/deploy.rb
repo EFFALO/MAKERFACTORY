@@ -21,7 +21,7 @@ set :default_environment, { :GEM_HOME  => "#{shared_path}/.gems",
                             :RAILS_ENV => "production"}
 
 #role :web, web_server
-role :app, ENV['SERVER'] ||= "makerfactory.com"
+role :app, ENV['SERVER'] ||= "staging.makerfactory.com"
 #role :db,  db_server, :primary => true
 
 namespace :deploy do
