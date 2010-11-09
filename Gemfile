@@ -1,7 +1,7 @@
 source :rubygems
 
 gem 'bundler', "~>1.0.0"
-gem 'rails', "2.3.5"
+gem 'rails', "3.0.1"
 gem 'paperclip', "2.3.1.1"
 gem 'will_paginate'
 gem 'authlogic'

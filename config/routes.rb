@@ -1,21 +1,22 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resource :account, :controller => "users"
-  map.resource :user_session
-  
-  # Resources
-  map.resources :password_resets, :only => [:new, :create, :edit, :update]
-  map.resources :users, :only => :show
-  map.resources :jobs do |jobs|
-    jobs.resources :bids,
-      :collection => {:award => :post},
-      :except => [:index]
+MAKERFACTORY::Application.routes.draw do
+  resource :account
+  resource :user_session
+  resources :password_resets
+  resources :users
+  resources :jobs do
+  resources :bids do
+      collection do
+        post :award
+      end
+    end
   end
-  
-  map.login 'login', :controller => "user_sessions", :action => "new"
-  map.logout 'logout', :controller => "user_sessions", :action => "destroy"
-  map.register 'register', :controller => "users", :action => "new"
-  map.tracker 'tracker', :controller => "users", :action => "tracker"
-  map.root :controller => "pages", :action => "home"
-  map.pages 'pages/:action', :controller => "pages"
-  map.job_feed 'latest_jobs', :controller => "jobs", :action => "feed"
+
+  match 'login' => 'user_sessions#new', :as => :login
+  match 'logout' => 'user_sessions#destroy', :as => :logout
+  match 'register' => 'users#new', :as => :register
+  match 'tracker' => 'users#tracker', :as => :tracker
+  match '/' => 'pages#home', :as => :root
+  match 'pages/:action' => 'pages#index', :as => :pages
+  match 'latest_jobs' => 'jobs#feed', :as => :job_feed
 end
+
