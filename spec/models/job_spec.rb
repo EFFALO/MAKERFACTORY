@@ -13,7 +13,7 @@ describe Job do
     future_job.save.should == true
   end
 
-  describe "named_scopes" do
+  describe "scopes" do
     before(:each) do
       @grace_time = 5
     end

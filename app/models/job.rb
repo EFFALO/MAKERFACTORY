@@ -35,10 +35,10 @@ class Job < ActiveRecord::Base
 
   # wrap in lambda to avoid AR caching the created_at comparison time
   # to first run time
-  named_scope :active, lambda { {
+  scope :active, lambda { {
     :conditions => ["created_at > ?", EXPIRE_IN.ago.to_s(:db)]
   } }
-  named_scope :inactive, lambda { {
+  scope :inactive, lambda { {
     :conditions => ["created_at < ?", EXPIRE_IN.ago.to_s(:db)]
   } }
 
