@@ -412,7 +412,7 @@ $(function(){
       var originalOffset = logo.offset();
 
       logo.mousedown(function() {
-        var top = originalOffset.top + 4;
+        var top = originalOffset.top + 2;
         var left = originalOffset.left;
         logo.offset({top: top, left: left});
       });
