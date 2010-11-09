@@ -796,9 +796,11 @@ ul.file-list {
   font-size: 12px;
   color: #9f9c9b; }
   .footer span.notes {
-    float: left; }
+    float: left;
+    width: 480px; }
   .footer span.creator {
-    float: right; }
+    float: right;
+    width: 140px; }
   .footer a {
     text-decoration: none;
     font-weight: bold;
