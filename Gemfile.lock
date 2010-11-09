@@ -84,7 +84,9 @@ GEM
     net-ssh (2.0.23)
     net-ssh-gateway (1.0.1)
       net-ssh (>= 1.99.1)
-    paperclip (2.3.1.1)
+    paperclip (2.3.5)
+      activerecord
+      activesupport
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.13)
@@ -143,7 +145,7 @@ DEPENDENCIES
   heroku
   hoptoad_notifier
   mysql
-  paperclip (= 2.3.1.1)
+  paperclip (= 2.3.5)
   rails (= 3.0.1)
   refraction
   rspec (~> 2.1.0)

@@ -1,4 +1,4 @@
-- content_for :header do
+= content_for :header do
   = auto_discovery_link_tag(:rss, job_feed_url, {:title => "Latest Jobs RSS"})
 :javascript
   $(function(){
@@ -130,7 +130,7 @@
               .icon
               %h5
                 WE HAVE A BLOG
-            - link_to(job_feed_url, {:class => "feed"}) do
+            = link_to(job_feed_url, {:class => "feed"}) do
               .icon
               %h5
                 JOBFEED
