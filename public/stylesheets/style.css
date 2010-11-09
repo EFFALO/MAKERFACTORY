@@ -1001,6 +1001,9 @@ form.post-a-job .left textarea {
     .bid-tile .message .box {
       float: left;
       width: 380px; }
+      .bid-tile .message .box p {
+        margin: 0 0 10px 0;
+        padding: 0; }
     .bid-tile .message .photo {
       float: left;
       width: 192px;
