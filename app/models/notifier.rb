@@ -6,7 +6,7 @@ class Notifier < ActionMailer::Base
     from          "noreply@makerfactory.com"
     recipients    user.email
     sent_on       Time.now
-    body          :edit_password_reset_url => edit_password_reset_url(user.perishable_token)
+    @edit_password_reset_url = edit_password_reset_url(user.perishable_token)
   end
   
   def bid_notification(bid)
@@ -14,7 +14,7 @@ class Notifier < ActionMailer::Base
     from          "noreply@makerfactory.com"
     recipients    bid.job.creator.email
     sent_on       Time.now
-    body          :bid => bid
+    @bid = bid
   end
   
   def bid_award_notification(bid)
@@ -22,6 +22,6 @@ class Notifier < ActionMailer::Base
     from          "noreply@makerfactory.com"
     recipients    bid.creator.email
     sent_on       Time.now
-    body          :bid => bid
+    @bid = bid
   end
 end

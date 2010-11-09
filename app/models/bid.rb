@@ -12,7 +12,7 @@ class Bid < ActiveRecord::Base
   after_create :notify_job_owner
   
   def notify_job_owner
-    Notifier.deliver_bid_notification(self)
+    Notifier.bid_notification(self).deliver
   end
   
   def validate_quantity
@@ -30,7 +30,7 @@ class Bid < ActiveRecord::Base
   def award!
     self.awarded = true
     if self.save
-      Notifier.deliver_bid_award_notification(self)
+      Notifier.bid_award_notification(self).deliver
     end
   end
 end
