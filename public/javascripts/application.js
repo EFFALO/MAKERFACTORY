@@ -406,6 +406,33 @@ $(function(){
     });
   }
 
+  var bindLogoAnimation = function () {
+    elements.logo.each(function() {
+      var logo = $(this);
+      var originalOffset = logo.offset();
+
+      logo.mousedown(function() {
+        var top = originalOffset.top + 2;
+        var left = originalOffset.left;
+        logo.offset({top: top, left: left});
+      });
+
+      logo.mouseup(function() {
+        var currentOffset = logo.offset();
+        if (currentOffset != originalOffset) {
+          logo.offset(originalOffset);
+        }
+      });
+
+      logo.mouseout(function() {
+        var currentOffset = logo.offset();
+        if (currentOffset != originalOffset) {
+          logo.offset(originalOffset);
+        }
+      });
+    });
+  };
+
   var elements = {
     'award_bid_links'         : $('.award_bid a').filter(function(){
       if($(this).attr('data-bid-award')) {
@@ -420,7 +447,8 @@ $(function(){
     'geocoder_form'           : $('.geocoder_form'),
     'editable_images'          : $('.editable_image'),
     'constrained_text_field'  : $('.constrain'),
-    'constrained_bid_field'   : $('.constrained_bid')
+    'constrained_bid_field'   : $('.constrained_bid'),
+    'logo'                    : $('.logo')
     };
   
   // conditional hookups
@@ -454,6 +482,9 @@ $(function(){
   }
   if(elements.constrained_bid_field.length) {
     bindConstrainedTextFields();
+  }
+  if(elements.logo.length) {
+    bindLogoAnimation();
   }
 
 });

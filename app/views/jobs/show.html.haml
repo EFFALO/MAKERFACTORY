@@ -27,7 +27,7 @@
       .description
         .box
           %p
-            = @job.description
+            = simple_format @job.description
         .specifications
           %table
             %tr
@@ -209,7 +209,7 @@
               .clear
             .message
               .box
-                = bid.message
+                = simple_format bid.message
             .action
               .box
                 - if can?(:award, bid)

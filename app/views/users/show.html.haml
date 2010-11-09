@@ -21,7 +21,7 @@
       .description
         .box
           %p
-            = @user.description
+            = simple_format @user.description
         .specifications
           %table
             - if @user.participation > 0 
