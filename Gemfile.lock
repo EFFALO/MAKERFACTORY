@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/binarylogic/authlogic.git
+  revision: 66ed79515919fe13016911b10ebe734cf8718dc7
+  specs:
+    authlogic (2.1.6)
+      activesupport
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -30,8 +37,6 @@ GEM
     activesupport (3.0.1)
     arel (1.0.1)
       activesupport (~> 3.0.0)
-    authlogic (2.1.6)
-      activesupport
     awesome_print (0.2.1)
     aws-s3 (0.6.2)
       builder
@@ -119,7 +124,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  authlogic
+  authlogic!
   awesome_print
   aws-s3
   bundler (~> 1.0.0)

@@ -4,7 +4,7 @@ gem 'bundler', "~>1.0.0"
 gem 'rails', "3.0.1"
 gem 'paperclip', "2.3.1.1"
 gem 'will_paginate'
-gem 'authlogic'
+gem 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git'
 gem 'haml'
 gem 'factory_girl'
 gem 'faker'

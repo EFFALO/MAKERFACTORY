@@ -1,8 +1,8 @@
 MAKERFACTORY::Application.routes.draw do
-  resource :account
   resource :user_session
   resources :password_resets
   resources :users
+  resource :account, :controller => :users
   resources :jobs do
   resources :bids do
       collection do
