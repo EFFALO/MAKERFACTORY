@@ -17,7 +17,7 @@
           .stripe
             .left
               .avatar
-                - link_to user_url(job.creator) do
+                = link_to user_url(job.creator) do
                   = image_tag job.creator.image.url(:avatar)
               %h3
                 = job.title
@@ -52,7 +52,7 @@
           .stripe
             .left
               .avatar
-                - link_to user_url(bid.job.creator) do
+                = link_to user_url(bid.job.creator) do
                   = image_tag bid.job.creator.image.url(:avatar)
               %h3
                 = bid.job.title
@@ -80,6 +80,15 @@
           .action
             .box
               =link_to "view job", job_url(bid.job)
+              - if bid.awarded?
+                .awarded
+                  Bid awarded!
+                  .direct
+                    Contact job owner directly: 
+                    .email
+                      = bid.job.creator.email
+    
+ 
       %br
     - unless @inactive_jobs.empty?
       %h2
@@ -91,7 +100,7 @@
           .stripe
             .left
               .avatar
-                - link_to user_url(job.creator) do
+                = link_to user_url(job.creator) do
                   = image_tag job.creator.image.url(:avatar)
               %h3
                 = job.title

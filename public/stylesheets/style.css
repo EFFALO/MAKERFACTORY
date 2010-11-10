@@ -1019,6 +1019,7 @@ form.post-a-job .left textarea {
     background: #e6e6e6; }
     .bid-tile .action a {
       padding: 6px;
+      margin-right: 6px;
       text-decoration: none;
       color: #333333;
       background: #f8f0a9;

@@ -111,7 +111,17 @@ $(function(){
   var bindAwardBidButtons = function() {
     var handleXHRsuccess = function(button) {
       button.hide(200, 'swing');
-      var awarded = button.replaceWith('<div class="awarded">Bid awarded!</div>');
+      var awarded = button.replaceWith(
+        // this is duplicated in haml
+        '<div class="awarded">Bid awarded!</div>' // +
+        //'<div class="direct">' +
+          //'Contact this bidder directly:' +
+          //'<div class="email">' +
+            //'andrew.hay.kurtz@gmail.com' +
+          //'</div>' +
+        //'</div>'
+      );
+      
       awarded.show();
     };
     
