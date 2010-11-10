@@ -11,7 +11,7 @@
   .content.halfdark
     .left
       .box
-        - form_for @user_session, :url => user_session_path do |f|
+        = form_for @user_session, :url => user_session_path do |f|
           = f.label :email, "Email"
           %br
           = f.text_field :email, :class => 'textfield'

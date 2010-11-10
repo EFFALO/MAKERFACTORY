@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   acts_as_authentic
 
-  attr_accessible :name, :password, :password_confirmation, :email, :location, :first_name, :last_name,:role_ids, :description, :equipment, :materials, :url, :image
+  attr_accessible :name, :password, :password_confirmation, :email, :location, :first_name, :last_name, :role_ids, :description, :equipment, :materials, :url, :image
   validates_format_of :url,
     :with => URI::regexp(%w(http https)),
     :allow_blank => true,

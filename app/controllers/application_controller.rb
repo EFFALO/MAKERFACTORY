@@ -11,11 +11,6 @@ class ApplicationController < ActionController::Base
   # See ActionController::RequestForgeryProtection for details
   protect_from_forgery
   
-  # See ActionController::Base for details 
-  # Uncomment this to filter the contents of submitted sensitive data parameters
-  # from your application log (in this case, all fields with names like "password"). 
-  filter_parameter_logging :password, :confirm_password, :password_confirmation, :creditcard
-  
   rescue_from CanCan::AccessDenied do |exception|
     #TODO: three options. 1-throw 403. 2-message explaining problem. 3-need to log in page
     flash[:error] = exception.message
