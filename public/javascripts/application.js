@@ -433,6 +433,25 @@ $(function(){
     });
   };
 
+  var bindConfirmDeleteJob = function() {
+    elements.delete_job.each(function(i,delete_button){
+      $(delete_button).click(function(e){
+        e.preventDefault();
+        if(confirm('Are you sure?')){
+          $.ajax({
+            type : 'DELETE',
+            url  : $(this).attr('href'),
+            success : function(data, textStatus, XMLHttpRequest) {
+              // is there an idiomatic way to follow a server redirect here?
+              // stupid hardcoded urls ...
+              window.location = '/tracker';
+            }
+          });
+        }
+      })
+    })
+  }
+
   var elements = {
     'award_bid_links'         : $('.award_bid a').filter(function(){
       if($(this).attr('data-bid-award')) {
@@ -445,10 +464,11 @@ $(function(){
     'geocoder_lng_field'      : $('.geocoder_lng'),
     'geocoder_location_field' : $('.geocoder_location'),
     'geocoder_form'           : $('.geocoder_form'),
-    'editable_images'          : $('.editable_image'),
+    'editable_images'         : $('.editable_image'),
     'constrained_text_field'  : $('.constrain'),
     'constrained_bid_field'   : $('.constrained_bid'),
-    'logo'                    : $('.logo')
+    'logo'                    : $('.logo'),
+    'delete_job'              : $('.delete_job')
     };
   
   // conditional hookups
@@ -485,6 +505,9 @@ $(function(){
   }
   if(elements.logo.length) {
     bindLogoAnimation();
+  }
+  if(elements.delete_job.length) {
+    bindConfirmDeleteJob();
   }
 
 });

@@ -17,7 +17,7 @@
       %ul.context-menu
         - if can? :destroy, @job
           %li.delete
-            = link_to 'Delete', job_path(@job), :method => :delete
+            = link_to 'Delete', job_path(@job), :method => :delete, :class => 'delete_job'
         - if can? :update, @job
           %li.edit
             = link_to 'Edit', edit_job_path(@job)
