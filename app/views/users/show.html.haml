@@ -4,7 +4,7 @@
       .avatar
         = image_tag @user.image.url(:avatar)
       %h2
-        = h @user.name
+        = @user.name
       .info
         Signed up on   
         %span.highlight
@@ -21,7 +21,7 @@
       .description
         .box
           %p
-            = simple_format h(@user.description)
+            = simple_format @user.description
         .specifications
           %table
             - if @user.participation > 0 
@@ -34,25 +34,25 @@
               %td.label.box
                 Location:
               %td.attribute.box-inline
-                = h @user.location
+                = @user.location
             - if !@user.url.empty? 
               %tr
                 %td.label.box
                   URL:
                 %td.attribute.box-inline
-                  = link_to h(@user.url), h(@user.url)
+                  = link_to @user.url, @user.url
             - if !@user.equipment.empty? 
               %tr
                 %td.label.box
                   Equipment:
                 %td.attribute.box-inline
-                  = h @user.equipment
+                  = @user.equipment
             - if !@user.materials.empty? 
               %tr
                 %td.label.box
                   Materials:
                 %td.attribute.box-inline
-                  = h @user.materials
+                  = @user.materials
     .right
       .upload-image
         .bucket

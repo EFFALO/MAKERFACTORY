@@ -6,13 +6,13 @@
         - link_to user_url(@job.creator) do
           = image_tag @job.creator.image.url(:avatar)
       %h2
-        = h @job.title
+        = @job.title
       .info
         Job created on
         %span.highlight
           = format_time(@job.created_at, :datestamp)
         by
-        =link_to h(@job.creator.name),user_url(@job.creator)
+        =link_to @job.creator.name,user_url(@job.creator)
     .right
       %ul.context-menu
         - if can? :destroy, @job
@@ -27,24 +27,24 @@
       .description
         .box
           %p
-            = simple_format h(@job.description)
+            = simple_format @job.description
         .specifications
           %table
             %tr
               %td.label.box
                 Fabrication type:
               %td.attribute.box-inline
-                = h @job.fabrication_type
+                = @job.fabrication_type
             %tr
               %td.label.box
                 Quantity needed:
               %td.attribute.box-inline
-                = h @job.quantity_needed
+                = @job.quantity_needed
             %tr
               %td.label.box
                 Deliver to:
               %td.attribute.box-inline
-                = h @job.deliver_to
+                = @job.deliver_to
             %tr
               %td.label.box
                 Deliver by:
@@ -195,7 +195,7 @@
                     = image_tag bid.creator.image.url(:avatar)
                 %h3
                   - link_to user_url(bid.creator) do
-                    = h bid.creator.name
+                    = bid.creator.name
                 .info
                   Bid posted on
                   %span.highlight
@@ -209,7 +209,7 @@
               .clear
             .message
               .box
-                = simple_format h(bid.message)
+                = simple_format bid.message
             .action
               .box
                 - if can?(:award, bid)
@@ -217,7 +217,7 @@
                   .direct
                     Contact this bidder directly:
                     .email
-                      = h bid.creator.email
+                      = bid.creator.email
                 - else
                   - # this message also exists in javascript, must be updated there as well
                   .awarded
@@ -225,6 +225,6 @@
                   .direct
                     Contact this bidder directly: 
                     .email
-                      = h bid.creator.email
+                      = bid.creator.email
     
 

@@ -21,10 +21,10 @@
     - @jobs.each_with_index do |job, i|
       %tr{:class => (cycle :prim, :alt) + ((@jobs.size <= i + 1) ? ' last' : ''), :'data-href' => job_url(job)}
         %td
-          = h job.title
+          = job.title
         %td
-          = h job.deliver_to
+          = job.deliver_to
         %td
-          = h job.deliver_by
+          = job.deliver_by
         %td
-          = h job.quantity_needed
+          = job.quantity_needed
