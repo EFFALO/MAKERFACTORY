@@ -1,21 +1,25 @@
 = image_tag(job.image1.url(:profile)) if job.image1.file?
-
+<br />
 %strong
   Description:
 = job.description
-%br
+
+<br />
 %strong
   Fabrication Type:
 = job.fabrication_type
-%br
+
+<br />
 %strong
   Quanitity Needed:
 = job.quantity_needed
-%br
+
+<br />
 %strong
   Deliver By:
 = format_time(job.deliver_by, :human)
-%br
+
+<br />
 %strong
   Deliver To:
 = job.deliver_to

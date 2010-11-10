@@ -54,7 +54,7 @@ class JobsController < ApplicationController
   end
 
   def feed
-    @jobs = Job.active(:order => "id DESC", :limit => 20)
+    @jobs = Job.active.order('id DESC').limit(10)
     render :layout => false
     response.headers["Content-Type"] = "application/xml; charset=utf-8"
   end
