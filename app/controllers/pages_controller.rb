@@ -3,8 +3,8 @@ class PagesController < ApplicationController
   def home
     authorize! :access, :home
     @page_title = 'makerfactory'
-    @map_jobs = Job.active
-    @recent_jobs = Job.active.find(:all, :limit => 10, :order => 'created_at DESC')
+    @map_jobs = Job.active.find(:all, :order => 'created_at DESC')
+    @recent_jobs =  @map_jobs.slice(0,10)
   end
   
 end
