@@ -48,6 +48,11 @@ describe UsersController do
     it "should allow anonymous users to get profiles" do
       get :show, :id => @user.id
     end
+
+    it "should redirect logged out users trying to access /account" do
+      get :show
+      response.should redirect_to(login_url)
+    end
   end
   
   describe "#edit" do

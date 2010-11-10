@@ -20,7 +20,9 @@ end
 
 def logout!
   activate_authlogic
-  UserSession.find.destroy
+  u = UserSession.find
+  raise "Don't call logout! if you never logged in" unless u
+  u.destroy
 end
 
 RSpec.configure do |config|

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource :except => [:edit, :update, :tracker, :count_jobs_bids]
+  load_and_authorize_resource :except => [:edit, :update, :tracker]
 
   def new
     @user = User.new
@@ -20,6 +20,10 @@ class UsersController < ApplicationController
     # This handles both singular (account) and plural (users) resource.
     @user = User.find(params[:id]) if params[:id]
     @user ||= current_user
+
+    # a logged out user trying to access /account
+    return redirect_to login_url unless @user
+
     @page_title = "#{@user.name} details"
   end
 
