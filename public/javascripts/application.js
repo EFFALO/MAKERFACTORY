@@ -53,13 +53,15 @@ $(function(){
       };
 
       var bidFailure = function(errors) {
-        var errors = $.map(errors, function (err, i) {
-          var field = err[0].substring(0,1).toUpperCase() + err[0].substring(1);
-          var humanReadable = field + ' ' + err[1] + '.';
-          return {text : humanReadable};
+        var formattedErrors = [];
+        var errors = $.each(errors, function (key, value) {
+          var field = key.substring(0,1).toUpperCase() + key.substring(1);
+          var humanReadable = field + ' ' + value + '.';
+          formattedErrors.push({text : humanReadable});
         })
+        console.log(formattedErrors)
         var template = Handlebars.compile(makerFactory.templates.bidErrors);
-        var data = { 'errors' : errors };
+        var data = { 'errors' : formattedErrors };
         var result = template(data);
         $(formEl).before(result)
 

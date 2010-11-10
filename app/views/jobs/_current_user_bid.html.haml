@@ -7,11 +7,12 @@
     %li
       You placed this bid on:
       = format_time(bid.created_at, :human)
-    %li
-      .awarded
-        Bid awarded! Contact job owner directly: 
-        .email
-          = bid.job.creator.email
+    - if bid.awarded?
+      %li
+        .awarded
+          Bid awarded! Contact job owner directly: 
+          .email
+            = bid.job.creator.email
     
 
 - form_for([@job, bid], :html => {:class => 'place-a-bid'}) do |form|
