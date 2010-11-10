@@ -3,8 +3,8 @@
 :javascript
   $(function(){
     makerFactory.jobs = #{@map_jobs.map do |job| {
-          :location => job.deliver_to,
-          :title    => job.title,
+          :location => h(job.deliver_to),
+          :title    => h(job.title),
           :href     => job_url(job),
           :img_url  => job.image1.file? ? job.image1.url(:small) : nil,
           :has_img  => job.image1.file?,
@@ -45,7 +45,7 @@
                   .content
                     %h3
                       Hello,
-                      = current_user.name
+                      = h current_user.name
                     %p
                       Welcome back! Click here to see your job and bid tracker.
               - else # if the user is logged in but not created content
@@ -53,7 +53,7 @@
                   .content
                     %h3
                       Hello,
-                      = current_user.name
+                      = h current_user.name
                     %p
                       Welcome back to MAKERFACTORY! Click here to see your profile.
             - else # signed out or anonymous user
@@ -83,9 +83,9 @@
         - @recent_jobs.each_with_index do |job, i|
           %tr{:class => (cycle :prim, :alt) + ((@recent_jobs.size <= i + 1) ? ' last' : ''), :'data-job-id' => job.id}
             %td
-              = job.title
+              = h job.title
             %td
-              = job.deliver_to
+              = h job.deliver_to
             %td
               = job.deliver_by
             %td

@@ -20,7 +20,7 @@
                 - link_to user_url(job.creator) do
                   = image_tag job.creator.image.url(:avatar)
               %h3
-                = job.title
+                = h job.title
               .info
                 Job posted on 
                 %span.highlight
@@ -36,7 +36,7 @@
             %a.photo 
               = image_tag job.image1.url(:tile)
             .box
-              = simple_format job.description
+              = simple_format h(job.description)
             .clear
           .action
             .box
@@ -55,10 +55,10 @@
                 - link_to user_url(bid.job.creator) do
                   = image_tag bid.job.creator.image.url(:avatar)
               %h3
-                = bid.job.title
+                = h bid.job.title
                 .info
                   by
-                  =link_to bid.job.creator.name,user_url(bid.job.creator)
+                  =link_to h(bid.job.creator.name),user_url(bid.job.creator)
               .info
                 Bid posted on
                 %span.highlight
@@ -75,7 +75,7 @@
             %a.photo 
               = image_tag bid.job.image1.url(:tile)
             .box
-              = simple_format bid.message
+              = simple_format h(bid.message)
             .clear
           .action
             .box
@@ -94,7 +94,7 @@
                 - link_to user_url(job.creator) do
                   = image_tag job.creator.image.url(:avatar)
               %h3
-                = job.title
+                = h job.title
               .info
                 Job posted on 
                 %span.highlight
@@ -110,7 +110,7 @@
             %a.photo 
               = image_tag job.image1.url(:tile)
             .box
-              = simple_format job.description
+              = simple_format h(job.description)
             .clear
           .action
             .box

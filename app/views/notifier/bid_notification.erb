@@ -1,6 +1,6 @@
-Howdy, <%= @bid.job.creator.name %>,
+Howdy, <%= h @bid.job.creator.name %>,
 
-The user <%= @bid.creator.name %> has placed a bid on your job "<%= @bid.job.title %>" on MAKERFACTORY:
+The user <%= h @bid.creator.name %> has placed a bid on your job "<%= h @bid.job.title %>" on MAKERFACTORY:
 
 --
 
@@ -11,11 +11,11 @@ QUANTITY:
 <%= @bid.quantity %> copies
 
 MESSAGE:
-<%= @bid.message %>
+<%= h @bid.message %>
 
 --
 
-You may contact them at: <%= @bid.creator.email %>. Please do not reply to this email, as it's not monitored by anyone.
+You may contact them at: <%= h @bid.creator.email %>. Please do not reply to this email, as it's not monitored by anyone.
 
 Take care,
 
