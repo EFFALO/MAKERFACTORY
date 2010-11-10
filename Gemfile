@@ -20,6 +20,7 @@ group :development do
   gem 'capistrano'
   gem 'heroku'
   gem 'rspec-rails', "~>2.1.0", :require => false
+  gem 'ruby-debug19'
 end
 
 group :production do
@@ -32,4 +33,5 @@ group :test do
   gem 'timecop'
   gem 'rspec', "~>2.1.0", :require => false
   gem 'rspec-rails', "~>2.1.0", :require => false
+  gem 'ruby-debug19'
 end

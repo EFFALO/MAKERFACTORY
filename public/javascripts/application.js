@@ -300,11 +300,11 @@ $(function(){
       // allows the controls to know if you've actually
       // left the main image, not simply entered a child 
       // element
-      var isOutsideMainImg = function(e){
-        var lOffset = mainImg.offset().left       // left
-        var rOffset = lOffset + mainImg.width()   // right
-        var tOffset = mainImg.offset().top        // top
-        var bOffset = tOffset + mainImg.height(); // bottom
+      var isOutsideImageContainer = function(e){
+        var lOffset = imageContainer.offset().left       // left
+        var rOffset = lOffset + imageContainer.width()   // right
+        var tOffset = imageContainer.offset().top        // top
+        var bOffset = tOffset + imageContainer.height(); // bottom
 
         if((e.pageX <= lOffset  || e.pageX >= rOffset) ||
           ( e.pageY <= tOffset  || e.pageY >= bOffset)) {
@@ -342,19 +342,19 @@ $(function(){
 
       // BIND THINGS
 
-      mainImg.hover(
+      imageContainer.hover(
         function(e) {
           deleteImg.show();
         },
         function(e) {
-          if(isOutsideMainImg(e)){
+          if(isOutsideImageContainer(e)){
             deleteImg.hide();
         }
       });
       deleteImg.hover(
         function(e) { },
         function(e) {
-          if(isOutsideMainImg(e)) {
+          if(isOutsideImageContainer(e)) {
             deleteImg.hide();
           }
         }

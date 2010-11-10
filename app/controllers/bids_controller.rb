@@ -7,7 +7,7 @@ class BidsController < ApplicationController
     if request.xhr?
       if @bid.save
         render :json => {
-          :partial => render_to_string(:partial => 'jobs/current_user_bid', :locals => {:bid => @bid})
+          :partial => render_to_string('jobs/_current_user_bid.html.haml', :locals => {:bid => @bid})
         }
       else
         render :json => {:errors => @bid.errors}
