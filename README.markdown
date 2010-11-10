@@ -7,7 +7,7 @@ things made with people who want to make things. Check it out at
 
 Downloading and installing
 --------------------------
-MAKERFACTORY is a Rails 2 app. We use Bundler. After cloning the
+MAKERFACTORY is a Rails 3 app. We use Bundler. After cloning the
 repository, run:
 
     bundle install
@@ -18,7 +18,7 @@ Get started by loading the database schema:
 
 And launching the application:
 
-    script/server
+    rails s
 
 A Capistrano deploy script is included, but you will likely need to make
 changes for your own environment.
