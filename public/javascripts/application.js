@@ -58,8 +58,7 @@ $(function(){
           var field = key.substring(0,1).toUpperCase() + key.substring(1);
           var humanReadable = field + ' ' + value + '.';
           formattedErrors.push({text : humanReadable});
-        })
-        console.log(formattedErrors)
+        });
         var template = Handlebars.compile(makerFactory.templates.bidErrors);
         var data = { 'errors' : formattedErrors };
         var result = template(data);
