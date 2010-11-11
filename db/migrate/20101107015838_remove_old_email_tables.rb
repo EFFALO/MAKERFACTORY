@@ -5,5 +5,7 @@ class RemoveOldEmailTables < ActiveRecord::Migration
   end
 
   def self.down
+    create_table :messages
+    create_table :mail_readers
   end
 end
