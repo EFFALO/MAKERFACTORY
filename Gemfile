@@ -16,6 +16,7 @@ end
 
 group :development do
   gem 'sqlite3-ruby'
+  gem 'pg'
   gem 'awesome_print', :require => 'ap'
   gem 'capistrano'
   gem 'heroku'
@@ -30,6 +31,7 @@ group :production do
 end
 
 group :test do 
+  gem 'pg'
   gem 'timecop'
   gem 'rspec', "~>2.1.0", :require => false
   gem 'rspec-rails', "~>2.1.0", :require => false
