@@ -10,10 +10,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101107015838) do
+ActiveRecord::Schema.define(:version => 20101111033258) do
 
   create_table "bids", :force => true do |t|
-    t.string   "message"
+    t.text     "message"
     t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -22,13 +22,8 @@ ActiveRecord::Schema.define(:version => 20101107015838) do
     t.boolean  "awarded"
   end
 
-  create_table "conversations", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "jobs", :force => true do |t|
-    t.string   "description"
+    t.text     "description"
     t.string   "title"
     t.string   "fabrication_type"
     t.integer  "quantity_needed"
@@ -83,7 +78,7 @@ ActiveRecord::Schema.define(:version => 20101107015838) do
     t.string   "location"
     t.string   "perishable_token",   :default => "", :null => false
     t.string   "email",              :default => "", :null => false
-    t.string   "description"
+    t.text     "description"
     t.string   "equipment"
     t.string   "materials"
     t.string   "url"
