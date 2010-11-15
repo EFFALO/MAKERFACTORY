@@ -27,7 +27,7 @@
       .description
         .box
           %p
-            = simple_format @job.description
+            = simple_format(auto_link(@job.description))
         .specifications
           %table
             %tr
