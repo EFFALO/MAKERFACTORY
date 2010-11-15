@@ -48,6 +48,8 @@ body {
   float: left;
   -webkit-box-shadow: 0px 0px 2px #222222; }
   .avatar a {
+    width: 32px;
+    height: 32px;
     float: left;
     border: 1px solid #111111; }
     .avatar a:hover {
@@ -377,7 +379,7 @@ ul.context-menu {
       margin-top: 50px;
       text-decoration: none;
       color: #fafafa;
-      padding: 20px 0;
+      padding: 40px 0;
       display: block;
       width: 100%;
       margin-top: 10px;
@@ -404,6 +406,48 @@ ul.context-menu {
         margin: 0 auto;
         background: url(/images/blog.png) no-repeat; }
       #bottom .right .blog h5 {
+        clear: both;
+        opacity: 0.9;
+        text-align: center;
+        margin: 10px 0;
+        font-size: 10px;
+        color: white;
+        text-transform: uppercase; }
+    #bottom .right .mail {
+      text-decoration: none;
+      float: left;
+      width: 110px; }
+      #bottom .right .mail:hover .icon {
+        opacity: 1; }
+      #bottom .right .mail .icon {
+        float: none;
+        opacity: 0.5;
+        height: 64px;
+        width: 64px;
+        margin: 0 auto;
+        background: url(/images/mail.png) no-repeat; }
+      #bottom .right .mail h5 {
+        clear: both;
+        opacity: 0.9;
+        text-align: center;
+        margin: 10px 0;
+        font-size: 10px;
+        color: white;
+        text-transform: uppercase; }
+    #bottom .right .twitter {
+      text-decoration: none;
+      float: left;
+      width: 110px; }
+      #bottom .right .twitter:hover .icon {
+        opacity: 1; }
+      #bottom .right .twitter .icon {
+        float: none;
+        opacity: 0.5;
+        height: 64px;
+        width: 64px;
+        margin: 0 auto;
+        background: url(/images/twitterz.png) no-repeat; }
+      #bottom .right .twitter h5 {
         clear: both;
         opacity: 0.9;
         text-align: center;

@@ -115,25 +115,41 @@
               %h3
                 How will I know if I won a job?
               %p
-                The job owner can choose to award multiple bids for a given job. If you win a bid, you'll get an email. Awarding a bid increases both your and the job owner's Participation counter; this number is proudly displayed on your profile page.
+                The job owner can choose to award multiple bids for a given job. If you win a bid, you'll get an email. Awarding a bid increases both your and the job owner's participation counter; this number is proudly displayed on your profile page.
               %h3
                 How is my email address shared?
               %p
-                If you bid on a job, your email address will be shared with the job owner. The job-owner's email address is shared with the bidder if and when the job-owner awards the bid.
+                If you bid on a job, your email address will be shared with the job owner. The job owner's email address is shared with the bidder if and when the job owner awards the bid.
               %h3
                 What happens to jobs that expire?
               %p
                 They're removed from the job map and find-a-job list and will remain accessible yet dormant and unable to receive bids. We're working on a way to repost things. 
+              %h3
+                Can I view the source code?
+              %p
+                Sure,
+                %a{:href=>"https://github.com/EFFALO/MAKERFACTORY"}
+                  it's here on github.
         .right
           .box
             %a{:href=>"http://makerfactory.tumblr.com", :class=>"blog"}
               .icon
               %h5
-                WE HAVE A BLOG
+                THIS IS OUR BLOG
+            %a{:href=>"http://twitter.com/makerfactory", :class=>"twitter"}
+              .icon
+              %h5
+                TWEETIN' IT UP
+            .clear
+            %br
             = link_to(job_feed_url, {:class => "feed"}) do
               .icon
               %h5
-                JOBFEED
+                RECENT JOB FEED
+            %a{:href=>"mailto:makerfactory@effalo.com", :class=>"mail"}
+              .icon
+              %h5
+                SAY HELLO
             .clear
             .credit
               .icon-tiny
@@ -145,9 +161,7 @@
               %p
                 %strong
                   MAKERFACTORY
-                = "was developed by your friends at #{link_to "EFFALO", "http://effalo.com"}, a research and design collaborative headquartered in the pacific northwest. We believe in open source and seek to".html_safe
-                = "<a href='http://github.com/EFFALO/MAKERFACTORY'>share what we create</a>,".html_safe
-                in the hopes that others can find use, get inspired by, learn from, and build upon.
+                = "was developed by your friends at #{link_to "EFFALO", "http://effalo.com"}, a research and design collaborative headquartered in the pacific northwest.".html_safe
               .collaborators
                 .collaborator
                   %img{:src=>"/images/profile-mfelix.png"}
@@ -174,10 +188,6 @@
                   %span
                     Development
                 .clear
-            %a{:href=>"mailto:hello@effalo.com", :class=>"mailto"}
-              say
-              %span
-                hello@effalo.com
             %a{:href=>"http://effalo.com", :class=>"link"}
               see our other projects &rarr;
     .clear
