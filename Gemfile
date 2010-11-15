@@ -14,25 +14,18 @@ group :pre_boot do
   gem 'refraction'
 end
 
-group :development do
+group :development, :test do
   gem 'sqlite3-ruby'
   gem 'pg'
   gem 'awesome_print', :require => 'ap'
-  gem 'capistrano'
   gem 'heroku'
   gem 'rspec', "~>2.1.0", :require => false
   gem 'rspec-rails', "~>2.1.0", :require => false
+  gem 'timecop'
 end
 
 group :production do
-  gem 'mysql'
   gem 'hoptoad_notifier'
   gem 'aws-s3'
 end
 
-group :test do 
-  gem 'pg'
-  gem 'timecop'
-  gem 'rspec', "~>2.1.0", :require => false
-  gem 'rspec-rails', "~>2.1.0", :require => false
-end
