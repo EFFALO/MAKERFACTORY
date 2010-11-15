@@ -454,7 +454,12 @@ $(function(){
             success : function(data, textStatus, XMLHttpRequest) {
               // is there an idiomatic way to follow a server redirect here?
               // stupid hardcoded urls ...
-              window.location = '/tracker';
+              var should_redirect_to_tracker = !!(makerFactory.jobs_count - 1 || makerFactory.bids_count);
+              if(should_redirect_to_tracker) {
+                window.location = '/tracker';
+              } else {
+                window.location = '/';
+              }
             }
           });
         }
