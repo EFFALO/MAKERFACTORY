@@ -21,7 +21,7 @@
       .description
         .box
           %p
-            = simple_format @user.description
+            = simple_format(auto_link(@user.description))
         .specifications
           %table
             - if @user.participation > 0 

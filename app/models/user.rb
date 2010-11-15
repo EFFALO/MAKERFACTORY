@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
 private
 
   def add_http_prefix_to_url
-    unless self.url =~ URI::regexp(%w(http https))
+    unless self.url =~ URI::regexp(%w(http https)) || self.url.blank?
       self.url = "http://#{self.url}"
     end
   end

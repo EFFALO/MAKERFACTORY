@@ -36,7 +36,7 @@
             %a.photo 
               = image_tag job.image1.url(:tile)
             .box
-              = simple_format job.description
+              = simple_format(auto_link(job.description))
             .clear
           .action
             .box
@@ -75,7 +75,7 @@
             %a.photo 
               = image_tag bid.job.image1.url(:tile)
             .box
-              = simple_format bid.message
+              = simple_format(auto_link(bid.message))
             .clear
           .action
             .box
@@ -119,7 +119,7 @@
             %a.photo 
               = image_tag job.image1.url(:tile)
             .box
-              = simple_format job.description
+              = simple_format(auto_link(job.description))
             .clear
           .action
             .box

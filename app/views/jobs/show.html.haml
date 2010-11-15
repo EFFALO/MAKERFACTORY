@@ -209,7 +209,7 @@
               .clear
             .message
               .box
-                = simple_format bid.message
+                = simple_format(auto_link(bid.message))
             .action
               .box
                 - if can?(:award, bid)
