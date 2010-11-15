@@ -75,4 +75,19 @@ describe User do
       @user.sent_bid_award_count.should == 0
     end
   end
+
+  describe "add http:// to urls" do
+    it "should add http:// to urls if the url needs it" do
+      user = Factory.create(:user, :url => "www.makerfactory.com")
+      user.url.should == "http://www.makerfactory.com"
+    end
+
+    it "should not add http:// to urls if they don't need it" do
+      user = Factory.create(:user, :url => "http://www.makerfactory.com")
+      other_user = Factory.create(:user, :url => "https://www.makerfactory.com")
+
+      user.url.should == "http://www.makerfactory.com"
+      other_user.url.should == "https://www.makerfactory.com"
+    end
+  end
 end

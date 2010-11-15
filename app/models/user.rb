@@ -2,13 +2,11 @@ class User < ActiveRecord::Base
   acts_as_authentic
 
   attr_accessible :name, :password, :password_confirmation, :email, :location, :first_name, :last_name, :role_ids, :description, :equipment, :materials, :url, :image
-  validates_format_of :url,
-    :with => URI::regexp(%w(http https)),
-    :allow_blank => true,
-    :message => 'is required to have an http:// or https://'
   validates_length_of :description, :maximum => 555
   validates_length_of :name, :maximum => 32
   validates_presence_of :name
+
+  before_save :add_http_prefix_to_url
 
   has_many :created_jobs, :class_name => "Job", :foreign_key => :creator_id
   has_many :bids, :foreign_key => :creator_id
@@ -37,4 +35,11 @@ class User < ActiveRecord::Base
     received_bid_award_count + sent_bid_award_count
   end
 
+private
+
+  def add_http_prefix_to_url
+    unless self.url =~ URI::regexp(%w(http https))
+      self.url = "http://#{self.url}"
+    end
+  end
 end
