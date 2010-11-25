@@ -233,6 +233,7 @@ ul.context-menu {
     color: #ebebeb;
     text-shadow: #534741 0px 0px 5px; }
     .home .left .video {
+      background: url(/images/dome-placeholder.jpg) no-repeat;
       width: 400px;
       height: 225px;
       border-right: 1px solid #312b28; }
