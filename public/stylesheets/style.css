@@ -836,14 +836,17 @@ ul.file-list {
   padding-top: 10px;
   margin-bottom: 30px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   color: #9f9c9b; }
   .footer span.notes {
     float: left;
     width: 480px; }
   .footer span.creator {
+    line-height: 14px;
     float: right;
-    width: 140px; }
+    width: 150px;
+    text-align: right;
+    margin-top: 5px; }
   .footer a {
     text-decoration: none;
     font-weight: bold;
