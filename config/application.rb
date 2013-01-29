@@ -44,3 +44,6 @@ end
 
 # https://groups.google.com/forum/?fromgroups=#!topic/rubyonrails-security/61bkgvnSGTQ
 ActionDispatch::ParamsParser::DEFAULT_PARSERS.delete(Mime::XML)
+
+# https://groups.google.com/d/topic/rubyonrails-security/1h2DR63ViGo/discussion
+ActiveSupport::JSON.backend = "JSONGem"
